@@ -1,0 +1,875 @@
+{%- if api == "circuit-terminations" %}
+NetBox Giftwrap has transformed the NetBox Circuit Terminations API. 
+The circuit termination ID is {{ result['id'] }}.
+The description is {{ result['description'] }}.
+The display is {{ result['display'] }}.
+Is the circuit termination occupied? {{ result['_occupied'] }}.
+{%- if result['cable'] %}
+The Cable has the following ID {{ result['cable']['id'] }}. The display is {{ result['cable']['display'] }} and label is {{ result['cable']['label'] }}. 
+{%- endif %}
+{%- if result['circuit'] %}
+The Circuit CID {{ result['circuit']['cid'] }} has a display of {{ result['circuit']['display'] }} with an ID of {{ result['circuit']['id'] }}.
+{%- endif %}
+This circuit terminiation was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- if result['link_peer'] %}
+There is a link peer that is occcupied? {{ result['link_peer']['_occupied'] | default("False") }}
+The link peer cable is {{ result['link_peer']['cable'] }}.
+{%-     if result['link_peer']['device'] is defined %}{{ result['link_peer']['device']['id'] }}
+The link peer device name is {{ result['link_peer']['device']['name'] }} wit a display of {{ result['link_peer']['device']['display'] }}.
+{%-     endif %}
+{%- endif %}
+The Link Peer Type is {{ result['link_peer_type'] }}.
+The circuit termination is marked connected> {{ result['mark_connected'] }}.
+The Port Speed is {{ result['port_speed'] }}. 
+The PP Info is {{ result['pp_info'] }}.
+{%- if result['provider_network'] %}
+The Provider Network ID is {{ result['provider_network']['id'] }} named {{ result['provider_network']['name'] }} with a display of {{ result['provider_network']['display'] }}.
+{%- endif %}
+{%- if result['site'] %}
+The Site ID is {{ result['site']['id'] }} named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug of {{ result['site']['slug'] }}.
+{%- endif %}
+The Term Side is {{ result['term_side'] }}.
+The Upstream Speed is {{ result['upstream_speed'] }}.
+And the cross connect ID is {{ result['xconnect_id'] }}.
+{%- else %}
+{%- if api == "circuit-types" %}
+NetBox Giftwrap has transformed the NetBox Circuit Types API.
+The circuit type ID is {{ result['id'] }} named {{ result['name'] }} with a display of {{ result['display'] }}. 
+The circuit type description {{ result['description'] }} and slug {{ result['slug'] }}. 
+The Circuit Count is {{ result['circuit_count'] }}. 
+This circuit type was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "circuits" %}
+NetBox Giftwrap has transformed the NetBox Circuits API.
+This circuit ID is {{ result['id'] }} with a CID {{ result['cid'] }} and display of {{ result['display'] }}.
+The circuit description {{ result['description'] }} and comments {{ result['comments'] }}.
+The commit rate is {{ result['commit_rate'] }}.
+The status label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} and is named {{ result['tenant']['name']}}. The display is {{ result['tenant']['display'] }} and slug is {{ result['tenant']['slug'] }}.
+The circuit Type ID is {{ result['type']['id'] }} and is named {{ result['type']['name'] }}. The display is {{ result['type']['display'] }} and slug is {{ result['type']['slug'] }}
+The circuit provider ID is {{ result['provider']['id'] }} and is named {{ result['provider']['name'] }}. The display is {{ result['provider']['display'] }} and slug is {{ result['provider']['slug'] }}.
+Termination A ID is {{ result['termination_a']['id'] }} and display is {{ result['termination_a']['display'] }}.
+Termination A Port Speed is {{ result['termination_a']['port_speed'] }}
+{%- if result['termination_a']['site'] is defined %}
+The termination A Site ID is {{ result['termination_a']['site']['id'] }} and is named {{ result['termination_a']['site']['name'] }}. The display is {{ result['termination_a']['site']['display'] }} and slug is {{ result['termination_a']['site']['slug'] }}.
+{%- endif %}
+The termination A Upstream Speed is {{ result['termination_a']['upstream_speed'] }}.
+{%- if result['termination_a']['provider_network'] is defined %}
+The termination A Provider Network ID is {{ result['termination_a']['provider_network']['id'] }} and is named {{ result['termination_a']['provider_network']['name'] }}. The display is {{ result['termination_a']['provider_network']['display'] }}.
+{%- endif %}
+The termination A Cross Connect ID is {{ result['termination_a']['xconnect_id'] }}. 
+Termination Z ID is {{ result['termination_a']['id'] }} and display is {{ result['termination_a']['display'] }}.
+Termination Z Port Speed is {{ result['termination_a']['port_speed'] }}
+{%- if result['termination_a']['site'] is defined %}
+The Termination Z Site ID is {{ result['termination_a']['site']['id'] }} and is named {{ result['termination_a']['site']['name'] }}. The display is {{ result['termination_a']['site']['display'] }} and slug is {{ result['termination_a']['site']['slug'] }}.
+{%- endif %}
+The Termination Z Upstream Speed is {{ result['termination_a']['upstream_speed'] }}.
+{%- if result['termination_a']['provider_network'] is defined %}
+The Termination Z Provider Network ID is {{ result['termination_a']['provider_network']['id'] }} and is named {{ result['termination_a']['provider_network']['name'] }}. The display is {{ result['termination_a']['provider_network']['display'] }}.
+{%- endif %}
+The Termination Z Cross Connect ID is {{ result['termination_a']['xconnect_id'] }}. 
+This circuit was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}. The Install Date was {{ result['install_date'] }}
+{%- else %}
+{%- if api == "provider-networks" %}
+NetBox Giftwrap has transformed the NetBox Provider Networks API.
+This provider network ID is {{ result['id'] }} and is named {{ result['name'] }}. The display is {{ result['display'] }}. 
+The provider network description is {{ result['description'] }} and has the following comments {{ result['comments'] }}.
+The Service ID is {{ result['service_id'] }}
+The Provider ID is {{ result['provider']['id'] }} and is named {{ result['provider']['name'] }}. The display is {{ result['provider']['display'] }} and the slug is {{ result['provider']['slug'] }}.
+The provider network was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "providers" %}
+NetBox Giftwrap has transformed the NetBox Providers API.
+This provider ID is {{ result['id'] }} and is named {{ result['name'] }}. The display is {{ result['display'] }} and slug is {{ result['slug'] }}.
+The provider account is {{ result['account'] }}.
+This provider admin contact is {{ result['admin_contact'] }} and the knock contact is {{ result['noc_contact'] }}.
+The A S N is {{ result['asn'] }}. 
+The provider circuit count is {{ result['circuit_count'] }}.
+The provider has the following comments {{ result['comments'] }}
+The provider was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{% else %}
+{% if api == "cables" %}
+NetBox Giftwrap has transformed the NetBox Cables API.
+The cable ID {{ result['id'] }} has a display of {{ result['display'] }} and a label of {{ result['label'] }}. 
+The cable is a {{ result['type'] }} type. 
+The Tenant ID is {{ result['tenant']['id'] }} and is named {{ result['tenant']['name']}}. The display is {{ result['tenant']['display'] }} and slug is {{ result['tenant']['slug'] }}. 
+The cable color is {{ result['color'] }}.
+The cable length is {{ result['length'] }} using {{ result['length_unit'] }} units.
+The cable status label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The cable termination A ID is {{ result['termination_a_id'] }}. 
+The termination A type is {{ result['termination_a_type'] }} and display is {{ result['termination_a']['display'] }}.
+The termination A Cable is {{ result['termination_a']['cable'] }}.
+Is the termination A Occupied? {{ result['termination_a']['_occupied'] }}.
+The termination A Term Side is {{ result['termination_a']['term_side'] }}.
+{%- if result['termination_a']['circuit'] is defined %}
+The termination A Circuit ID is {{ result['termination_a']['circuit']['id'] }} and CID is {{ result['termination_a']['circuit']['cid'] }}.
+The termination A circuit display is {{ result['termination_a']['circuit']['display'] }}.
+{%- endif %}
+The cable termination B ID is {{ result['termination_b_id'] }}. 
+The termination B type is {{ result['termination_b_type'] }} and display is {{ result['termination_b']['display'] }}.
+The termination B Cable is {{ result['termination_b']['cable'] }}.
+Is the termination B Occupied? {{ result['termination_b']['_occupied'] }}.
+The termination B Term Side is {{ result['termination_b']['term_side'] }}.
+{%- if result['termination_b']['circuit'] is defined %}
+The termination B Circuit ID is {{ result['termination_b']['circuit']['id'] }} and CID is {{ result['termination_b']['circuit']['cid'] }}.
+The termination B circuit display is {{ result['termination_b']['circuit']['display'] }}.
+{%- endif %}
+The cable was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "console-port-templates" %}
+NetBox Giftwrap has transformed the NetBox Console Port Template API.
+The console port template ID is {{ result['id'] }}. The display is {{ result['display'] }} and name is {{ result['name'] }} with the following description: {{ result['description'] }}.
+The label is {{ result['label'] }}.
+The console port template module type ID is {{ result['module_type']['id'] }}. The display is {{ result['module_type']['display'] }} and the model is a {{ result['module_type']['model'] }}.
+{%- if result['module_type']['manufacturer'] is defined %}
+The console port template manufacturer ID is {{ result['module_type']['manufacturer']['id'] }} and name is {{ result['module_type']['manufacturer']['name'] }}. The display is {{ result['module_type']['manufacturer']['display'] }} and the slug is {{ result['module_type']['manufacturer']['slug'] }}.
+{%- endif %}
+The console port template Type Label is {{ result['type']['label'] }} and type value is {{ result['type']['value'] }}.
+The Device Type ID is {{ result['device_type']['id'] }}. The display is {{ result['device_type']['display'] }}.
+The Model is a {{ result['device_type']['model'] }} and the slug is {{ result['device_type']['slug'] }}. 
+{%- if result['device_type']['manufacturer'] is defined %}
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }} and the name is {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug of {{ result['device_type']['manufacturer']['slug'] }}.
+{%- endif %}
+This console port template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "console-ports" %}
+NetBox Giftwrap has transformed the NetBox Console Port API.
+The console port ID is {{ result['id'] }} with a display of {{ result['display'] }} and name of {{ result['name'] }}. 
+The description is {{ result['description'] }} and the label is {{ result['label'] }}.
+Is the console port occupied? {{ result['_occupied'] }}
+{%- if result['device'] is defined %}
+The console port Device ID is {{ result['device']['id'] }} and name is {{ result['device']['name'] }} and display is {{ result['device']['display'] }}.
+{%- endif %}
+The console port Cable ID is {{ result['cable']['id'] }} and display is {{ result['cable']['display'] }} and label is {{ result['cable']['label'] }}.
+Is the console port Endpoint is connected? {{ result['connected_endpoint'] }}
+Is the console port endpoint reachable? {{ result['connected_endpoint_reachable'] }}
+The console port endpoint Type is {{ result['connected_endpoint_type'] }}.
+The Link Peer ID is {{ result['link_peer']['id'] }} and name is {{ result['link_peer']['name'] }} and display is {{ result['link_peer']['display'] }}.
+The link peer Cable is {{ result['link_peer']['cable'] }}. Is the link peer cable occupied? {{ result['link_peer']['_occupied'] }}.
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }} and name is {{ result['link_peer']['device']['name'] }} and display is {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The Link Peer Type is {{ result['link_peer_type'] }}.
+Has the console part has been Marked Connected? {{ result['mark_connected'] }}.
+The Module ID is {{ result['module']['id'] }} and display is {{ result['module']['display'] }} on device {{ result['module']['device'] }}.
+{% if result['module']['module_bay'] is defined %}
+The Module Bay ID is {{ result['module']['module_bay']['id'] }} and name is {{ result['module']['module_bay']['name'] }} and display is {{ result['module']['module_bay']['display'] }}.
+{%- endif %}
+The console port speed is {{ result['speed'] }}. The Type Label is {{ result['type']['label'] }} and type value is {{ result['type']['value'] }}.
+The console port was created {{ result['created'] }} and last updated: {{ result['last_updated']}}.
+{%- else %}
+{%- if api == "device-bay-templates" %}
+NetBox Giftwrap has transformed the NetBox Device Bay Template API.
+The device bay template ID is {{ result['id'] }} with a display of {{ result['display'] }} and name {{ result['name'] }}.
+The description is {{ result['description'] }} and the label is {{ result['label'] }}.
+The Device Type ID is {{ result['device_type']['id'] }} with a display of {{ result['device_type']['display'] }}.
+The slug is {{ result['device_type']['slug'] }} and the model is {{ result['device_type']['model'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }} and name is {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}
+This device bay template was created on {{ result['created']}} and last updated {{ result['last_updated'] }}
+{%- else %}
+{%- if api == "device-bays" %}
+NetBox Giftwrap has transformed the NetBox Device Bay API.
+The device bay ID is {{ result['id'] }} with a display of {{ result['display'] }} and name {{ result['name'] }}. 
+The description is {{ result['description'] }} and the label is {{ result['label'] }}
+The Device ID is {{ result['device']['id'] }} and display is {{ result['device']['display'] }} with a name {{ result['device']['name'] }}
+The Installed Device is {{ result['installed_device'] }}.
+The device bay was created on {{ result['created']}} and last updated {{ result['last_updated'] }}
+{%- else %}
+{%- if api == "device-roles" %}
+NetBox Giftwrap has transformed the NetBox Device Role API.
+The device role ID is {{ result['id'] }} with a display of {{ result['display'] }} and name {{ result['name'] }}.
+The Description is {{ result['description'] }} and slug is {{ result['slug'] }}
+There are {{ result['device_count'] }} physical devices and {{ result['virtualmachine_count'] }} virtual machines for this device role.
+Is it a V M Role? {{ result['vm_role'] }}.
+The Color is {{ result['color'] }}.
+It was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "device-types" %}
+NetBox Giftwrap has transformed the NetBox Device Type API.
+The device type ID is {{ result['id'] }} with a display of {{ result['display'] }} and slug {{ result['slug'] }}.
+The device type has the following comments {{ result['comments'] }}.
+The device type is a {{ result['model'] }} model with part number {{ result['part_number'] }}.
+There are {{ result['device_count'] }} devices. 
+The Sub Device Role Label is {{ result['subdevice_role']['label'] }} and Value is {{ result['subdevice_role']['value'] }}
+The Manufacturer ID is {{ result['manufacturer']['id'] }} with a name of {{ result['manufacturer']['name'] }}, display of {{ result['manufacturer']['display'] }}, and slug {{ result['manufacturer']['slug'] }}.
+The device type Rack Dimensions are {{ result['u_height'] }} U height. Is the device Full Depth? {{ result['is_full_depth'] }}
+The device type Airflow is {{ result['airflow']}}.
+The device type was created on {{ result['created']}} and last updated on {{ result['last_updated']}}.
+{%- else %}
+{%- if api == "devices" %}
+NetBox Giftwrap has transformed the NetBox Devices API.
+The device ID is {{ result['id'] }}, display is {{ result['display'] }} and name is {{ result['name'] }}.
+The comments are {{ result['comments'] }}.
+The asset tag is {{ result['asset_tag'] }} and serial number is {{ result['serial'] }}.
+The device location ID is {{ result['location']['id'] }}, name is {{ result['location']['name'] }}, display is {{ result['location']['display'] }}, and slug is {{ result['location']['slug'] }}.
+The device depth is {{ result['location']['_depth'] }}.
+The device platform ID is {{ result['platform']['id'] }}, name is {{ result['platform']['name'] }}, display is {{ result['platform']['display'] }}, and slug is {{ result['platform']['slug'] }}.
+The parent device is {{ result['parent_device'] }}.
+The cluster is {{ result['cluster'] }}.
+The position is {{ result['position'] }}.
+The airflow is {{ result['airflow'] }}.
+The Device Role ID is {{ result['device_role']['id'] }}, name is {{ result['device_role']['name'] }}, display is {{ result['device_role']['display'] }}, and slug is {{ result['device_role']['slug'] }}.
+The Device Type ID is {{ result['device_type']['id'] }}, display is {{ result['device_type']['display'] }}, slug is {{ result['device_type']['slug'] }}, and model is {{ result['device_type']['model'] }}.
+{%- if result['device_type']['manufacturer'] is defined %}
+The device Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }}, name is {{ result['device_type']['manufacturer']['name'] }}, display is {{ result['device_type']['manufacturer']['display'] }}, and slug is {{ result['device_type']['manufacturer']['slug'] }}.
+{%- endif %}
+The device Face Label is {{ result['face']['label'] }} and value is {{ result['face']['value'] }}.
+The device Rack ID is {{ result['rack']['id'] }}, name is {{ result['rack']['name'] }}, and display is {{ result['rack']['display'] }}.
+The device Site ID is {{ result['site']['id'] }}, name is {{ result['site']['name'] }}, display is {{ result['site']['display'] }}, and slug is {{ result['site']['slug'] }}.
+The device Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The device Tenant ID is {{ result['tenant']['id'] }}, name is {{ result['tenant']['name'] }}, display is {{ result['tenant']['display'] }}, and slug is {{ result['tenant']['slug'] }}.
+The device Primary IP Addresses is {{ result['primary_ip'] }}, IP v 4 address is  {{ result['primary_ip4'] }}, and IP v 6 address is {{ result['primary_ip6'] }}. 
+The VC Position is {{ result['vc_position'] }} with a priority of {{ result['vc_priority'] }}.
+Is the device a Virtual Chassis? {{ result['virtual_chassis'] }}
+The device was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "front-port-templates" %}
+NetBox Giftwrap has transformed the NetBox Front Port Template API.
+The front port template ID is {{ result['id'] }}, display is {{ result['display'] }}, name is {{ result['name'] }} and label is {{ result['label'] }}.
+The module type is {{ result['module_type'] }}.
+The color is {{ result['color'] }}.
+The Device Type ID is {{ result['device_type']['id'] }}, display is {{ result['device_type']['display'] }}, slug is {{ result['device_type']['slug'] }} and model is {{ result['device_type']['model'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }}, name is {{ result['device_type']['manufacturer']['name'] }}, display is {{ result['device_type']['manufacturer']['display'] }}, and slug is {{ result['device_type']['manufacturer']['slug'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The Rear Port ID is {{ result['rear_port']['id'] }}, name is {{ result['rear_port']['name'] }}, display is {{ result['rear_port']['display'] }} and position is {{ result['rear_port_position'] }}.
+The front port template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "front-ports" %}
+NetBox Giftwrap has transformed the NetBox Front Port API.
+The front port ID is {{ result['id'] }}, display is {{ result['display'] }}, name is {{ result['name'] }} and label is {{ result['label'] }} with a description of {{ result['description'] }}.
+Is the front port is occupied? {{ result['_occupied'] }}
+The Cable ID is {{ result['cable']['id'] }}, display is {{ result['cable']['display'] }}, label is {{ result['cable']['label'] }} and color is {{ result['color'] }}.
+The Device ID is {{ result['device']['id'] }}, named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+The Link Peer ID is {{ result['link_peer']['id'] }}, named {{ result['link_peer']['name'] }} with a display of {{ result['link_peer']['display'] }}.
+The link peer cable is {{ result['link_peer']['cable'] }} and is occupied? {{ result['link_peer']['_occupied'] }}
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }}, named {{ result['link_peer']['device']['name'] }} with a display of {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The link peer type is {{ result['link_peer_type'] }}. 
+Is the front port mark connected {{ result['mark_connected'] }}
+The Module is {{ result['module'] }}.
+The Rear Port ID is {{ result['rear_port']['id'] }}, named {{ result['rear_port']['name'] }} with a display of {{ result['rear_port']['display'] }} and label of {{ result['rear_port']['label'] }}.
+The rear port Position is {{ result['rear_port_position'] }}.
+The front port Type Label is {{ result['type']['label'] }} and Value is {{ result['type']['value'] }}.
+The front port was created on {{ result['created'] }} and Last Updated on {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "interface-templates" %}
+NetBox Giftwrap has transformed the NetBox Interface Template API.
+The interface template ID is {{ result['id'] }}, display is {{ result['display'] }}, named {{ result['name'] }} with a label of {{ result['label'] }} and description  {{ result['description'] }}.
+Is the interface template Management Only? {{ result['mgmt_only'] }}
+The interface template Module Type ID is {{ result['module_type']['id'] }}, display is {{ result['module_type']['display'] }}, and model is {{ result['module_type']['model'] }}.
+{%- if result['module_type']['manufacturer'] is defined %}
+The Manufacturer ID is {{ result['module_type']['manufacturer']['id'] }}, named {{ result['module_type']['manufacturer']['name'] }} with a display of {{ result['module_type']['manufacturer']['display'] }} and slug {{ result['module_type']['manufacturer']['slug'] }}.
+{%- endif %}
+The Type Label is {{ result['type']['label'] }} and Value is {{ result['type']['value'] }}.
+The Device Type ID is {{ result['device_type']['id'] }}, with a display of {{ result['device_type']['display'] }}, model {{ result['device_type']['model'] }} and slug {{ result['device_type']['slug'] }}.
+{%- if result['device_type']['manufacturer'] is defined %}
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }}, named {{ result['device_type']['manufacturer']['name'] }}, with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}.
+{%- endif %}
+The interface template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}
+{%- else %}
+{%- if api == "interfaces" %}
+NetBox Giftwrap has transformed the NetBox Interface API.
+The Interface ID is {{ result['id'] }}, with a display of {{ result['display'] }}, named {{ result['name'] }} with a label of {{ result['label'] }} and description of {{ result['description'] }}.
+Is the interface Management Only? {{ result['mgmt_only'] }}
+The Module ID is {{ result['module']['id'] }}, display is {{ result['module']['display'] }}, device is {{ result['module']['device'] }} and slot is {{ result['module']['slot'] }}.
+{%- if result['module']['module_bay'] is defined %}
+The Module Bay ID is {{ result['module']['module_bay']['id'] }}, named {{ result['module']['module_bay']['name'] }} with a display of {{ result['module']['module_bay']['display'] }}.
+{% endif %}
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The Device ID is {{ result['device']['id'] }}, named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+Is the interface Occupied? {{ result['_occupied'] }}.
+The bridge is {{ result['bridge'] }}.
+The Cable ID is {{ result['cable']['id'] }}, with a display of {{ result['cable']['display'] }} and label {{ result['cable']['label'] }}.
+The Connected Endpoint ID is {{ result['connected_endpoint']['id'] }}, named {{ result['connected_endpoint']['name'] }} with a display of {{ result['connected_endpoint']['display'] }}.
+Is the connected endpoint occupied? {{ result['connected_endpoint']['_occupied'] }}.
+The connected endpoint Cable is {{ result['connected_endpoint']['cable'] }}.
+{%- if result['connected_endpoint']['device'] is defined %}
+The connected endpoint Device ID is {{ result['connected_endpoint']['device']['id'] }}, named {{ result['connected_endpoint']['device']['name'] }} with a display of {{ result['connected_endpoint']['device']['display'] }}.
+{%- endif %}
+Is the connected endpoint reachable? {{ result['connected_endpoint_reachable'] }}
+The connected endpoint Type is {{ result['connected_endpoint_type'] }}
+There are {{ result['count_fhrp_groups'] }} FHRP Groups for this interface and {{ result['count_ipaddresses'] }} IP Addresses for this interface.
+The interface duplex is {{ result['duplex'] }}.
+Is the interface Enabled? {{ result['enabled'] }}.
+The LAG ID is {{ result['lag']['id'] }}, named {{ result['lag']['name'] }} with a display of {{ result['lag']['display'] }}. 
+Is the LAG Occupied? {{ result['lag']['_occupied'] }}
+The LAG Cable is {{ result['lag']['cable'] }}.
+{%- if result['lag']['device'] is defined %}
+The LAG Device ID is {{ result['lag']['device']['id'] }}, named {{ result['lag']['device']['name'] }} with a display of {{ result['lag']['device']['display'] }}.
+{%- endif %}
+The Link Peer ID is {{ result['link_peer']['id'] }}, named {{ result['link_peer']['name'] }} with a display of {{ result['link_peer']['display'] }}. 
+Is the link peer Occupied? {{ result['link_peer']['_occupied'] }}.
+The Link Peer Cable is {{ result['link_peer']['cable'] }}.
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }} named {{ result['link_peer']['device']['name'] }} with a display of {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The link peer type is {{ result['link_peer_type'] }}.
+The MAC Address is {{ result['mac_address'] }}.
+Is the interface Marked Connected? {{ result['mark_connected'] }}.
+The Mode is {{ result['mode'] }}.
+The MTU is {{ result['mtu'] }}.
+The RF Channel is {{ result['rf_channel'] }} using frequency: {{ result['rf_channel_frequency'] }} and width: {{ result['rf_channel_width'] }}.
+The RF Role is {{ result['rf_role'] }}.
+The Speed is {{ result['speed'] }}.
+The Tagged VLANs are {{ result['tagged_vlans'] }} and the Untagged VLAN is {{ result['untagged_vlan'] }}.
+The Wireless LANs are {{ result['wireless_lans'] }}.
+The T X Power is {{ result['tx_power'] }}.
+The VRF is {{ result['vrf'] }}.
+Is it a Wireless Link? {{ result['wireless_link'] }}
+The W W N is {{ result['wwn'] }}.
+The interface was Created on {{ result['created'] }} and Last Updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "inventory-items" %}
+NetBox Giftwrap has transformed the NetBox Inventory Item API.
+The inventory item ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a label of {{ result['label'] }} and description of {{ result['description'] }}.
+The Asset Tag is {{ result['asset_tag'] }}. 
+The Component ID is {{ result['component_id'] }} with a Type {{ result['component_type'] }} named {{ result['component']['name'] }} with a display of {{ result['component']['display'] }}.
+Is the component Occupied? {{ result['component']['_occupied'] }}
+The component cable is {{ result['component']['cable'] }}.
+The component Device ID is {{ result['component']['device']['id'] }} named {{ result['component']['device']['name'] }} with a display of {{ result['component']['device']['display'] }}
+The Device ID is {{ result['device']['id'] }} named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+Was the inventory item Discovered? {{ result['discovered'] }}.
+The manufacturer is {{ result['manufacturer'] }}.
+The Part ID is {{ result['part_id'] }}.
+The Role is {{ result['role'] }}.
+The Serial Number is {{ result['serial'] }}.
+The inventory item was Created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "locations" %}
+NetBox Giftwrap has transformed the NetBox Location API.
+The location ID is {{ result['id'] }} with a display of {{ result['display'] }}, named {{ result['name'] }} with a description of {{ result['description'] }} and slug {{ result['slug'] }}.
+The depth is {{ result['_depth'] }}.
+There are {{ result['device_count'] }} devices and {{ result['rack_count'] }} racks at this location.
+The Tenant ID is {{ result['tenant']['id'] }} and is named {{ result['tenant']['name']}}. The display is {{ result['tenant']['display'] }} and slug is {{ result['tenant']['slug'] }}.
+The Site ID is {{ result['site']['id'] }}, named {{ result['site']['name'] }}, with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The location was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "manufacturers" %}
+NetBox Giftwrap has transformed the NetBox Manufacturer API.
+The manufacturer ID is {{ result['id'] }} with a display of {{ result['display'] }}, named {{ result['name'] }}, with a description of {{ result['description'] }} and slug {{ result['slug'] }}.
+There are {{ result['devicetype_count'] }} Device Types, {{ result['inventoryitem_count'] }} Inventory Items, and {{ result['platform_count'] }} Platforms for this manufacturer.
+The manufacturer was created on {{ result['created'] }} and last updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "module-bay-templates" %}
+NetBox Giftwrap has transformed the NetBox Module Bay Template API.
+The module bay template ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description of {{ result['description'] }} and label {{ result['label'] }}.
+The position is {{ result['position'] }}.
+The Device Type ID is {{ result['device_type']['id'] }} with a display of {{ result['device_type']['display'] }}. The model is {{ result['device_type']['model'] }} and slug is {{ result['device_type']['slug'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }} named {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}.
+The module bay template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "module-bays" %}
+NetBox Giftwrap has transformed the NetBox Module Bay API.
+The module bay ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description of {{ result['description'] }} and label {{ result['label'] }}.
+The position is {{ result['position'] }}.
+The Device ID is {{ result['device']['id'] }}, named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+The module bay was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "module-types" %}
+NetBox Giftwrap has transformed the NetBox Module Type API.
+The Module Type ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The Model is a {{ result['model'] }} with Part Number {{ result['part_number'] }} and the following comments {{ result['comments'] }}.
+The Manufacturer ID is {{ result['manufacturer']['id'] }} named {{ result['manufacturer']['name'] }} with a display of {{ result['manufacturer']['display'] }} and slug {{ result['manufacturer']['slug'] }}.
+The module type was Created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "modules" %}
+NetBox Giftwrap has transformed the NetBox Module API.
+The module ID is {{ result['id'] }} with a display of {{ result['display'] }} with the following Comments {{ result['comments'] }}.
+The Asset Tag is {{ result['asset_tag'] }} and Serial Number is {{ result['serial'] }}.
+The Device ID is {{ result['device']['id'] }}, named {{ result['device']['name'] }}, with a display of {{ result['device']['display'] }}.
+The Module Bay ID is {{ result['module_bay']['id'] }} named {{ result['module_bay']['name'] }} with a display of {{ result['module_bay']['display'] }}.
+The Module Type ID is {{ result['module_type']['id'] }} with a display of {{ result['module_type']['display'] }} and model {{ result['module_type']['model'] }}.
+{%- if result['module_type']['manufacturer'] is defined %}
+The Manufacturer ID is {{ result['module_type']['manufacturer']['id'] }} named {{ result['module_type']['manufacturer']['name'] }} with a display of {{ result['module_type']['manufacturer']['display'] }} and slug {{ result['module_type']['manufacturer']['slug'] }}.
+{%- endif %}
+The module was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "platforms" %}
+NetBox Giftwrap has transformed the NetBox Platform API.
+The platform ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with the slug {{ result['slug'] }}.
+There are {{ result['device_count'] }} physical devices and {{ result['virtualmachine_count'] }} virtual machines for this platform.
+The Manufacturer ID is {{ result['manufacturer']['id'] }} named {{ result['manufacturer']['name'] }} with a display of {{ result['manufacturer']['display'] }} and slug {{ result['manufacturer']['slug'] }}.
+The Napalm Driver is {{ result['napalm_driver'] }} with the following napalm arguments: {{ result['napalm_args'] }}.
+The platform was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-feeds" %}
+NetBox Giftwrap has transformed the NetBox Power Feed API.
+The power feed ID is {{ result['id'] }} with a display of {{ result['display'] }} and named {{ result['name'] }} with the comments {{ result['comments'] }}.
+Is the power feed occupied? {{ result['_occupied'] }}.
+The Power Amperage is {{ result['amperage'] }}, voltage is {{ result['voltage'] }} and Maximum Utilization is {{ result['max_utilization'] }}.
+The power Phase Label is {{ result['phase']['label'] }} and value is {{ result['phase']['value'] }}.
+The power supply label is {{ result['supply']['label'] }} and value is {{ result['supply']['value'] }}.
+Is the power feed Mark Connected? {{ result['mark_connected'] }}.
+The Panel ID is {{ result['power_panel']['id'] }}, named {{ result['power_panel']['name'] }} with a display of {{ result['power_panel']['display'] }}.
+The Rack ID is {{ result['rack']['id'] }} named {{ result['rack']['name'] }} with a display of {{ result['rack']['display'] }}.
+The Status Label is {{ result['status']['label'] }} and Value is {{ result['status']['value'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The power feed was created on {{ result['created'] }} and last updated on {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-outlet-templates" %}
+NetBox Giftwrap has transformed the NetBox Power Outlet Template API.
+The power outlet template ID {{ result['id'] }} has a display of {{ result['display'] }}, named {{ result['name'] }}, with a description {{ result['description'] }} and label {{ result['label'] }}.
+The Feed Leg is {{ result['feed_leg'] }}.
+The Device Type ID is {{ result['device_type']['id'] }} with a display of {{ result['device_type']['display'] }} and is a model {{ result['device_type']['model'] }} with slug {{ result['device_type']['slug'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }}, named {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}.
+The Power Port ID is {{ result['power_port']['id'] }} named {{ result['power_port']['name'] }} with a display of {{ result['power_port']['display'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The power outlet template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-outlets" %}
+NetBox Giftwrap has transformed the NetBox Power Outlet API.
+The power outlet ID is {{ result['id'] }} with a Display of {{ result['display'] }}, named {{ result['name'] }}, with a description of {{ result['description'] }} and label {{ result['label'] }}.
+Is the power outlet Occupied? {{ result['_occupied'] }}
+The Feed Leg is {{ result['feed_leg'] }}.
+The Device ID is {{ result['device']['id'] }} with a display of {{ result['device']['display'] }} named {{ result['device']['name'] }}.
+The Power Port ID is {{ result['power_port']['id'] }} named {{ result['power_port']['name'] }} with a display of {{ result['power_port']['display'] }}.
+Is the power port Occupied? {{ result['power_port']['_occupied'] }}
+The power port Cable is {{ result['power_port']['cable'] }}.
+{%- if result['power_port']['device'] is defined %}
+The port port Device ID is {{ result['power_port']['device']['id'] }}, named {{ result['power_port']['device']['name'] }} with a display of {{ result['power_port']['device']['display'] }}.
+{%- endif %}
+The Type Label is {{ result['type']['label'] }} and Value is {{ result['type']['value'] }}.
+The Cable ID is {{ result['cable']['id'] }} has a display of {{ result['cable']['display'] }} and label {{ result['cable']['label'] }}.
+The Connected Endpoint ID is {{ result['connected_endpoint']['id'] }} named {{ result['connected_endpoint']['name'] }} with a display of {{ result['connected_endpoint']['display'] }}.
+Is the connected endpoint Occupied? {{ result['connected_endpoint']['_occupied'] }}.
+The connected endpoint Cable is {{ result['connected_endpoint']['cable'] }}.
+{%- if result['connected_endpoint']['device'] is defined %}
+The connected endpoint Device ID is {{ result['connected_endpoint']['device']['id'] }}, named {{ result['connected_endpoint']['device']['name'] }} with a display of {{ result['connected_endpoint']['device']['display'] }}.
+{%- endif %}
+Is the connected endpoint Reachable? {{ result['connected_endpoint_reachable'] }}
+The connected endpoint Type is {{ result['connected_endpoint_type'] }}.
+The Link Peer ID is {{ result['link_peer']['id'] }} named {{ result['link_peer']['name'] }} with a display of {{ result['link_peer']['display'] }}.
+Is the link peer Occupied? {{ result['link_peer']['_occupied'] }}.
+The link peer Cable is {{ result['link_peer']['cable'] }}.
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }} named {{ result['link_peer']['device']['name'] }} with a display of {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The link peer Type is {{ result['link_peer_type'] }}.
+Is the power outlet Mark Connected? {{ result['mark_connected'] }}.
+The power outlet was Created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-panels" %}
+NetBox Giftwrap has transformed the NetBox Power Panel API.
+The power panel ID is {{ result['id'] }} with a display of {{ result['display'] }} and named {{ result['name'] }}.
+The Location is {{ result['location'] }}.
+There are {{ result['powerfeed_count'] }} Power Feeds on this power panel.
+The Site ID is {{ result['site']['id'] }}, named {{ result['site']['name'] }}, with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The power panel was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-port-templates" %}
+NetBox Giftwrap has transformed the NetBox Power Port Template API.
+The power port template ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description of {{ result['description'] }} and label {{ result['label'] }}.
+The Allocated draw is {{ result['allocated_draw'] }} and maximum draw is {{ result['maximum_draw'] }}.
+The Module Type is {{ result['module_type'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The Device Type ID is {{ result['device_type']['id'] }} with a display of {{ result['device_type']['display'] }} model of {{ result['device_type']['model'] }} and slug {{ result['device_type']['slug'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }} named {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}.
+The power port template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "power-ports" %}
+NetBox Giftwrap has transformed the NetBox Power Port API.
+The power port ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and label {{ result['label'] }}.
+The Allocated Draw is {{ result['allocated_draw'] }} and Maximum draw is {{ result['maximum_draw'] }}.
+The Module is {{ result['module'] }}.
+The Type Label is {{ result['type']['label'] }} and Value is {{ result['type']['value'] }}.
+The Device ID is {{ result['device']['id'] }} with a display of {{ result['device']['display'] }} and named {{ result['device']['name'] }}.
+Is the port port Occupied? {{ result['_occupied'] }}.
+The Cable ID is {{ result['cable']['id'] }} with a Display of {{ result['cable']['display'] }} and label {{ result['cable']['label'] }}.
+The Connected Endpoint ID is {{ result['connected_endpoint']['id'] }} named {{ result['connected_endpoint']['name'] }} with a display of {{ result['connected_endpoint']['display'] }}.
+Is the connected endpoint Occupied? {{ result['connected_endpoint']['_occupied'] }}.
+The connected endpoint Cable is {{ result['connected_endpoint']['cable'] }}.
+{%- if result['connected_endpoint']['device'] is defined %}
+The connected endpoint Device ID is {{ result['connected_endpoint']['device']['id'] }} named {{ result['connected_endpoint']['device']['name'] }} with a display of {{ result['connected_endpoint']['device']['display'] }}.
+{%- endif %}
+Is the connected endpoint Reachable? {{ result['connected_endpoint_reachable'] }}
+The connected endpoint Type is {{ result['connected_endpoint_type'] }}.
+The Link Peer ID is {{ result['link_peer']['id'] }} named {{ result['link_peer']['name'] }} with a display of {{ result['link_peer']['display'] }}.
+Is the link peer Occupied? {{ result['link_peer']['_occupied'] }}.
+The link peer Cable is {{ result['link_peer']['cable'] }}.
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }} named {{ result['link_peer']['device']['name'] }} with a display of {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The link peer Type is {{ result['link_peer_type'] }}.
+Is the power port Marked Connected? {{ result['mark_connected'] }}.
+The power port was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "rack-reservations" %}
+NetBox Giftwrap has transformed the NetBox Rack Reservation API.
+The rack reservation ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The Rack ID is {{ result['rack']['id'] }} named {{ result['rack']['name'] }} with a display of {{ result['rack']['display'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} and is named {{ result['tenant']['name']}}. The display is {{ result['tenant']['display'] }} and slug is {{ result['tenant']['slug'] }}. 
+The following Units have been reserved {{ result['units']}}.
+The User ID is {{ result['user']['id'] }} with a display of {{ result['user']['display'] }} and username {{ result['user']['username'] }}.
+This reservation was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "rack-roles" %}
+NetBox Giftwrap has transformed the NetBox Rack Role API.
+The rack role ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }} named {{ result['name'] }} with the slug {{ result['slug'] }}.
+The Color is {{ result['color'] }}.
+There are {{ result['rack_count'] }} racks in this role.
+The rack role was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "racks" %}
+NetBox Giftwrap has transformed the NetBox Rack API.
+The Rack ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with comments {{ result['comments'] }}.
+The Asset Tag is {{ result['asset_tag'] }} and serial number is {{ result['serial'] }}.
+The Desc Units are {{ result['desc_units'] }}.
+The Facility ID is {{ result['facility_id'] }}.
+The Location ID is {{ result['location']['id'] }}, named {{ result['location']['name'] }} with a display of {{ result['location']['display'] }}, slug {{ result['location']['slug'] }} and depth {{ result['location']['_depth'] }}.
+The Role ID is {{ result['role']['id'] }}, named {{ result['role']['name'] }} with a display of {{ result['role']['display'] }} and slug {{ result['role']['slug'] }}.
+The Site ID is {{ result['site']['id'] }}, named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The Tenant ID is {{ result['tenant']['id'] }}, named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+The Status Label is {{ result['status']['label'] }} and Value is {{ result['status']['value'] }}.
+There are {{ result['device_count'] }} devices and { result['powerfeed_count'] }} power feeds in this rack.
+The rack Dimensions are as follows. The Outer Depth is {{ result['outer_depth'] }}, outer unit is {{ result['outer_unit'] }}, and outer width is {{ result['outer_width'] }}.
+The rack is {{ result['u_height'] }} U Height. The rack Width Label is {{ result['width']['label'] }} and value is {{ result['width']['value'] }}.
+The rack was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "rear-port-templates" %}
+NetBox Giftwrap has transformed the NetBox Rear Port Template API.
+The Rear Port Template ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a label of {{ result['label'] }} and module type {{ result['module_type'] }}.
+The Color is {{ result['color'] }}.
+The Device Type ID is {{ result['device_type']['id'] }} with a display of {{ result['device_type']['display'] }} and slug {{ result['device_type']['slug'] }} and model {{ result['device_type']['model'] }}.
+The Manufacturer ID is {{ result['device_type']['manufacturer']['id'] }}, named {{ result['device_type']['manufacturer']['name'] }} with a display of {{ result['device_type']['manufacturer']['display'] }} and slug {{ result['device_type']['manufacturer']['slug'] }}.
+The Type Label is {{ result['type']['label'] }} and value is {{ result['type']['value'] }}.
+There are {{ result['positions'] }} positions.
+The rear port template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "rear-ports" %}
+NetBox Giftwrap has transformed the NetBox Rear Port API.
+The rear port ID {{ result['id'] }} has a display of {{ result['display'] }} named {{ result['name'] }} with a label {{ result['label'] }} and description {{ result['description'] }}.
+Is the rear port Occupied? {{ result['_occupied'] }}.
+The Cable ID is {{ result['cable']['id'] }} with a display of {{ result['cable']['display'] }} and label {{ result['cable']['label'] }}.
+The rear port color is {{ result['color'] }}.
+The Device ID is {{ result['device']['id'] }} named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+The Link Peer ID is {{ result['link_peer']['id'] }} named {{ result['link_peer']['name'] }} with a display of {{ result['link_peer']['display'] }}.
+The link peer Cable is {{ result['link_peer']['cable'] }}.
+Is the link peer Occupied? {{ result['link_peer']['_occupied'] }}.
+{%- if result['link_peer']['device'] is defined %}
+The link peer Device ID is {{ result['link_peer']['device']['id'] }} named {{ result['link_peer']['device']['name'] }} with a display of {{ result['link_peer']['device']['display'] }}.
+{%- endif %}
+The link peer type is {{ result['link_peer_type'] }}.
+Is the rear port Marked Connected? {{ result['mark_connected'] }}.
+The Module is {{ result['module'] }}.
+There are {{ result['positions'] }} positions.
+The Type Label is {{ result['type']['label'] }} with a value of {{ result['type']['value'] }}.
+The rear port was created on {{ result['created'] }} and Last Updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "regions" %}
+NetBox Giftwrap has transformed the NetBox Region API.
+The region ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+The region depth is {{ result['_depth'] }}.
+There are {{ result['site_count'] }} sites in the region.
+The region Parent ID is {{ result['parent']['id'] }} named {{ result['parent']['name'] }} with a display of {{ result['parent']['display'] }}, slug {{ result['parent']['slug'] }} and depth {{ result['parent']['_depth'] }}.
+The region was created on {{ result['created'] }} and last updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "site-groups" %}
+NetBox Giftwrap has transformed the NetBox Site Group API.
+The site group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+The site group depth is {{ result['_depth'] }}.
+There are {{ result['site_count'] }} sites in the region.
+The site group Parent ID is {{ result['parent']['id'] }} named {{ result['parent']['name'] }} with a display of {{ result['parent']['display'] }}, slug {{ result['parent']['slug'] }} and depth {{ result['parent']['_depth'] }}.
+The site group was created on {{ result['created'] }} and last updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "sites" %}
+NetBox Giftwrap has transformed the NetBox Site API.
+The site ID is {{ result['id'] }} with a display of {{ result['display'] }}, named {{ result['name'] }} with a description {{ result['description'] }}, slug {{ result['slug'] }} and comments {{ result['comments'] }}.
+{%-         if result['asns'] %}
+The site has the following Autonomous System Numbers
+    {%-         for asn in result['asns'] %}
+ID {{ asn['id'] }}, ASN {{ asn['asn'] }}, with a display of {{ asn['display'] }}.
+    {%-          endfor %}
+{%-         endif %}
+The site Facility is {{ result['facility'] }}.
+The site Group ID is {{ result['group']['id'] }}, named {{ result['group']['name'] }}, with a display of {{ result['group']['display'] }} and slug {{ result['group']['slug'] }} and depth {{ result['group']['_depth'] }}.
+The site Location Latitude is {{ result['latitude'] }} and Longitude is {{ result['longitude'] }}. The Time Zone is {{ result['time_zone'] }}. 
+The Physical Address is {{ result['physical_address'] | replace("\r\n"," ") }} and shipping address is {{ result['shipping_address'] | replace("\r\n"," ") }}.
+The Region ID is {{ result['region']['id'] }}, named {{ result['region']['name'] }} with a display of {{ result['region']['display'] }} slug {{ result['region']['slug'] }} and depth {{ result['region']['_depth'] }}.
+There are {{ result['prefix_count'] }} prefixes, {{ result['rack_count'] }} racks, {{ result['circuit_count'] }} circuits, {{ result['device_count'] }} devices, {{ result['virtualmachine_count'] }} virtual machines, and {{ result['vlan_count'] }} Vee LANs at this stie.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The site was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "virtual-chassis"%}
+NetBox Giftwrap has transformed the NetBox Virtual Chassis API.
+The virtual chassis ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }}.
+The domain is {{ result['domain'] }}.
+There are {{ result['member_count'] }} members of this virtual chassis.
+The Master ID is {{ result['master']['id'] }} named {{ result['master']['name'] }} with a display of {{ result['master']['display'] }}.
+The virtual chassis was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "status" %}
+NetBox Giftwrap has transformed the NetBox Status API.
+The NetBox version is {{ data_to_template['netbox-version'] }}.
+The Django version is {{ data_to_template['django-version'] }}.
+The Python version is {{ data_to_template['python-version'] }}.
+There are {{ data_to_template['rq-workers-running'] }} RQ Workers Running.
+The following Applications are installed
+{%-     for app in data_to_template['installed-apps'] %}
+{{ app }}
+{%-     endfor %}
+The following Plugins are installed
+{%-     for plugin in data_to_template['plugins'] %}
+{{ plugin }}
+{%-     endfor %}
+{%- else %}
+{%- if api == "aggregates" %}
+NetBox Giftwrap has transformed the NetBox Aggregate API.
+The aggregate ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} and is named {{ result['tenant']['name']}}. The display is {{ result['tenant']['display'] }} and slug is {{ result['tenant']['slug'] }}.
+The Prefix is {{ result['prefix'] }}.
+The Family Label is {{ result['family']['label'] }} and value is {{ result['family']['value'] }}.
+The RIR ID is {{ result['rir']['id'] }} named {{ result['rir']['name'] }} with a display of {{ result['rir']['display'] }} and slug {{ result['rir']['slug'] }}.
+The aggregate was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "asns" %}
+NetBox Giftwrap has transformed the NetBox Autonomous System Number API.
+The Autonomous System Number ID is {{ result['id'] }} with a display {{ result['display'] }} and description {{ result['description'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The Autonomous System Number is {{ result['asn'] }}.
+There are {{ result['provider_count'] }} providers and {{ result['site_count'] }} sites for this Autonomous System Number.
+The RIR is {{ result['rir'] }}.
+The Autonomous System Number was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "ip-addresses" %}
+NetBox Giftwrap has transformed the NetBox IP Address API.
+The IP Address ID is {{ result['id'] }} with a display {{ result['display'] }} and description {{ result['description'] }}.
+The Address is {{ result['address'] }}.
+The Assigned Object ID is {{ result['assigned_object_id'] }} with a type {{ result['assigned_object_type'] }} and object {{ result['assigned_object'] }}.
+The DNS Name is {{ result['dns_name'] }}.
+The Address Family Label is {{ result['family']['label'] }} and value {{ result['family']['value'] }}.
+The Inside NAT address is {{ result['nat_inside'] }} and outside NAT address is {{ result['nat_outside'] }}.
+The Role is {{ result['role'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The VRF ID is {{ result['vrf']['id'] }} named {{ result['vrf']['name'] }} with a display of {{ result['vrf']['display'] }} and RD {{ result['vrf']['rd'] }}.
+The IP Address was created on {{ result['created'] }} and Last Updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "ip-ranges" %}
+NetBox Giftwrap has transformed the NetBox IP Range API.
+The IP Range ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The IP Range Start Address is {{ result['start_address'] }} and End Address is {{ result['end_address'] }}.
+The address Family label is {{ result['family']['label'] }} and value is {{ result['family']['value'] }}.
+The Role is {{ result['role'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The VRF ID is {{ result['vrf']['id'] }} named {{ result['vrf']['name'] }} with a display of {{ result['vrf']['display'] }} and RD {{ result['vrf']['rd'] }}.
+The IP Range was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "prefixes" %}
+NetBox Giftwrap has transformed the NetBox Prefix API.
+The prefix ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The Prefix is {{ result['prefix'] }}.
+The Depth is {{ result['_depth'] }}.
+There are {{ result['children'] }} Children for this prefix.
+Is the prefix a Pool? {{ result['is_pool'] }}.
+Is the prefix Marked Utilized? {{ result['mark_utilized'] }}.
+The address Family Label is {{ result['family']['label'] }} and value is {{ result['family']['value'] }}.
+The Role ID is {{ result['role']['id'] }} named {{ result['role']['name'] }} with a display of {{ result['role']['display'] }} and slug {{ result['role']['slug'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The Site ID is {{ result['site']['id'] }} named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The VRF ID is {{ result['vrf']['id'] }} named {{ result['vrf']['name'] }} with a display of {{ result['vrf']['display'] }} and RD {{ result['vrf']['rd'] }}.
+The VLAN ID is {{ result['vlan']['id'] }} named {{ result['vlan']['name'] }} with a display of {{ result['vlan']['display'] }} and VID {{ result['vlan']['vid'] }}.
+The prefix was created on {{ result['created'] }} and Last Updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "rirs" %}
+NetBox Giftwrap has transformed the NetBox RIR API.
+The R I R ID is {{ result['id'] }} with a display {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+There are {{ result['aggregate_count'] }} Aggregates.
+Is the R I R Private? {{ result['is_private'] }}?
+The R I R was created on {{ result['created'] }} and last updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "roles" %}
+NetBox Giftwrap has transformed the NetBox Role API.
+The role ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+There are {{ result['prefix_count'] }} Prefixes and {{ result['vlan_count'] }} VLANs for this role.
+The role Weight is {{ result['weight'] }}.
+The role was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "route-targets" %}
+NetBox Giftwrap has transformed the NetBox Route Target API.
+The route target ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} and a description {{ result['description'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The route target was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "service-templates" %}
+NetBox Giftwrap has transformed the NetBox Service Template API.
+The service template ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }}.
+The service template Ports are 
+{%- for port in result['ports'] %}
+ {{ port }}
+{%- endfor %}
+The Protocol Label is {{ result['protocol']['label'] }} and value is {{ result['protocol']['value'] }}.
+The service template was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "services" %}
+NetBox Giftwrap has transformed the NetBox Service API.
+The service ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }}.
+The service Ports are
+{%- for port in result['ports'] %}
+ {{ port }}
+{%- endfor %}
+The service Protocol Label is {{ result['protocol']['label'] }} and value is {{ result['protocol']['value'] }}.
+The service IP Addresses are
+{%- for ip in result['ipaddresses'] %}
+ {{ ip }}
+{%- endfor %}
+The Device ID is {{ result['device']['id'] }} named {{ result['device']['name'] }} with a display of {{ result['device']['display'] }}.
+The Virtual Machine ID is {{ result['virtual_machine']['id'] }} named {{ result['virtual_machine']['name'] }} with a display of {{ result['virtual_machine']['display'] }}.
+The service was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "vlan-groups "%}
+NetBox Giftwrap has transformed the NetBox V LAN Group API.
+The v lan group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+The V I D Max is {{ result['max_vid'] }} and Min is {{ result['min_vid'] }}.
+The Scope ID is {{ result['scope']['id'] }} named {{ result['scope']['name'] }} with a display of {{ result['scope']['display'] }} and slug {{ result['scope']['slug'] }}.
+The scope type is {{ result['scope_type'] }}.
+There are {{ result['vlan_count'] }} V LANs in this group.
+The V LAN group was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "vlans" %}
+NetBox Giftwrap has transformed the NetBox V LAN API.
+The V LAN ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description of {{ result['description'] }} and V I D {{ result['vid'] }}.
+The V LAN Prefix Count is {{ result['prefix_count'] }}.
+The Group ID is {{ result['group']['id'] }} named {{ result['group']['name'] }} with a display of {{ result['group']['display'] }} and slug {{ result['group']['slug'] }}.
+The Role ID is {{ result['role']['id'] }} named {{ result['role']['name'] }} with a display of {{ result['role']['display'] }} and slug {{ result['role']['slug'] }}.
+The Site ID is {{ result['site']['id'] }} named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The V LAN was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "vrfs" %}
+NetBox Giftwrap has transformed the NetBox V R F API.
+The V R F ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }}.
+Is the V R F Enforce Unique? {{ result['enforce_unique'] }}
+There are {{ result['ipaddress_count'] }} IP Addresses and {{ result['prefix_count'] }} Prefixes for this V R F.
+The R D is {{ result['rd'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The Export Targets are 
+{%-    for export_target in result['export_targets'] %}
+ID {{ export_target['id'] }} named {{ export_target['name'] }} with a display of {{ export_target['display'] }}.
+{%-    endfor %}
+The Import Targets are
+{%-    for import_target in result['import_targets'] %}
+ID {{ import_target['id'] }} named {{ import_target['name'] }} with a display of {{ import_target['display'] }}.
+{%-    endfor %}
+The V R F was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.\
+{%- else %}
+{%- if api == "contact-assignments" %}
+NetBox Giftwrap has transformed the NetBox Contact Assignment API.
+The contact assignment ID is {{ result['id'] }} with a display of {{ result['display'] }}.
+The Contact ID is {{ result['contact']['id'] }} named {{ result['contact']['name'] }} with a display of {{ result['contact']['display'] }}.
+The Content Type is {{ result['content_type'] }}.
+The Object ID is {{ result['object']['id'] }} named {{ result['object']['name'] }} with a display of {{ result['object']['display'] }} and slug {{ result['object']['slug'] }}.
+The Priority Label is {{ result['priority']['label'] }} with a value {{ result['priority']['value'] }}.
+The Role ID is {{ result['role']['id'] }} named {{ result['role']['name'] }} with a display of {{ result['role']['display'] }} and slug {{ result['role']['slug'] }}.
+The contact assignment was created on {{ result['created'] }} and last updated: {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "contact-groups" %}
+NetBox Giftwrap has transformed the NetBox Contact Group API.
+The contact group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} slug {{ result['slug'] }} and depth {{ result['_depth'] }}.
+There are {{ result['contact_count'] }} contacts in this group.
+The Parent ID is {{ result['parent']['id'] }} named {{ result['parent']['name'] }} with a display {{ result['parent']['display'] }} slug {{ result['parent']['slug'] }} and depth {{ result['parent']['_depth'] }}.
+This contact group was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "contact-roles" %}
+NetBox Giftwrap has transformed the NetBox Contact Role API.
+The contact role ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} and a description {{ result['description'] }}.
+The contact role was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "contacts" %}
+NetBox Giftwrap has transformed the NetBox Contact API.
+The contact ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with comments {{ result['comments'] }}.
+The contact Title is {{ result['title'] }}, address is {{ result['address'] | replace("\r\n"," ") }}, email is {{ result['email'] }}, phone number is {{ result['phone'] }} and link is {{ result['link'] }}.
+The Group ID is {{ result['group']['id'] }} named {{ result['group']['name'] }} with a display of {{ result['group']['display'] }} slug {{ result['group']['slug'] }} and depth {{ result['group']['_depth'] }}.
+The contact was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "tenant-groups" %}
+NetBox Giftwrap has transformed the NetBox Tenant Group API.
+The tenant group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }}, slug {{ result['slug'] }} and depth {{ result['_depth'] }}.
+There are {{ result['tenant_count'] }} tenants in this group.
+The Parent ID is {{ result['parent']['id'] }} named {{ result['parent']['name'] }} with a display of {{ result['parent']['display'] }}, slug {{ result['parent']['slug'] }}, and depth {{ result['parent']['_depth'] }}.
+The tenant group was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "groups" %}
+NetBox Giftwrap has transformed the NetBox User Group API.
+The user group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }}.
+This group has {{ result['user_count'] }} users.
+{%- else %}
+{%- if api == "tokens" %}
+NetBox Giftwrap has transformed the NetBox User Token API.
+The user token ID is {{ result['id'] }} with a display of {{ result['display'] }} and description {{ result['description'] }}.
+The Key is {{ result['key'] }}.
+Is Write Enabled? {{ result['write_enabled'] }}.
+The User ID is {{ result['user']['id'] }} with a display of {{ result['user']['display'] }} and user name {{ result['user']['username'] }}.
+The token was created on {{ result['created'] }} and expires {{ result['expires'] }}.
+{%- else %}
+{%- if api == "users" %}
+NetBox Giftwrap has transformed the NetBox User API.
+The user ID is {{ result['id'] }} with a display of {{ result['display'] }} user name {{ result['username'] }} first name: {{ result['first_name'] }} and last name {{ result['last_name'] }}.
+The user email is {{ result['email'] }}.
+Is the user Active? {{ result['is_active'] }}.
+Is the user on Staff? {{ result['is_staff'] }}.
+The user Joined on {{ result['date_joined'] }}.
+The user is part of the following Groups:
+{%-     for group in result['groups'] %}
+ID {{ group['id'] }} named {{ group['name'] }} with a display {{ group['display'] }}.
+{%-     endfor %}
+{%- else %}
+{%- if api == "cluster-groups" %}
+NetBox Giftwrap has transformed the NetBox Cluster Groups API.
+The cluster group ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+There are {{ result['cluster_count'] }} clusters in this group.
+The cluster group was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "cluster-types" %}
+NetBox Giftwrap has transformed the NetBox Cluster Types API.
+The cluster type ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and slug {{ result['slug'] }}.
+There are {{ result['cluster_count'] }} clusters of this type.
+The cluster type was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "clusters" %}
+NetBox Giftwrap has transformed the NetBox Cluster API.
+The cluster ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} with a description {{ result['description'] }} and comments {{ result['comments'] }}.
+There are {{ result['device_count'] }} Devices and {{ result['virtualmachine_count'] }} Virtual Machines in this cluster.
+The Type ID is {{ result['type']['id'] }} named {{ result['type']['name'] }} with a display of {{ result['type']['display'] }} and slug {{ result['type']['slug'] }}.
+The Group ID is {{ result['group']['id'] }} named {{ result['group']['name'] }} with a display of {{ result['group']['display'] }} and slug {{ result['group']['slug'] }}.
+The Site ID is {{ result['site']['id'] }} named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The cluster was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "virtual-interfaces" %}
+NetBox Giftwrap has transformed the NetBox Virtual Interface API.
+The virtual interface ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} and the description {{ result['description'] }}.
+The virtual interface Bridge is {{ result['bridge'] }}.
+There are {{ result['count_fhrp_groups'] }} FHRP Groups and {{ result['count_ipaddresses'] }} IP Addresses for this virtual interface.
+Is the virtual interface Enabled? {{ result['enabled'] }}.
+The MAC Address is {{ result['mac_address'] }}.
+The Mode is {{ result['mode'] }}.
+The MTU is {{ result['mtu'] }}.
+The following V LANs are Tagged:
+{%- for vlan in result['tagged_vlans'] %} 
+{{ vlan }}
+{%- endfor %}
+The following V LAN is Untagged: {{ result['untagged_vlan'] }}.
+The VRF is {{ result['vrf'] }}.
+The Virtual Machine ID is {{ result['virtual_machine']['id'] }} named {{ result['virtual_machine']['name'] }} with a display of {{ result['virtual_machine']['display'] }}.
+The virtual interface was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- else %}
+{%- if api == "virtual-machines" %}
+NetBox Giftwrap has transformed the NetBox Virtual Machines API.
+The virtual machine ID is {{ result['id'] }} with a display of {{ result['display'] }} named {{ result['name'] }} and comments {{ result['comments'] }}.
+The Disk is {{ result['disk'] }}.
+The Memory is {{ result['memory'] }}.
+The Primary I P Address is {{ result['primary_ip'] }}, Primary I P v 4 address is {{ result['primary_ipv4'] }} and Primary IP v 6 I P is {{ result['primary_ipv6'] }}.
+The Status Label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
+The Cluster ID is {{ result['cluster']['id'] }} named {{ result['cluster']['name'] }} with a display of {{ result['cluster']['display'] }}.
+The Platform ID is {{ result['platform']['id'] }} named {{ result['platform']['name'] }} with a display of {{ result['platform']['display'] }} and slug {{ result['platform']['slug'] }}.
+The Role ID is {{ result['role']['id'] }} named {{ result['role']['name'] }} with a display of {{ result['role']['display'] }} and slug {{ result['role']['slug'] }}.
+The Site ID is {{ result['site']['id'] }} named {{ result['site']['name'] }} with a display of {{ result['site']['display'] }} and slug {{ result['site']['slug'] }}.
+The Tenant ID is {{ result['tenant']['id'] }} named {{ result['tenant']['name'] }} with a display of {{ result['tenant']['display'] }} and slug {{ result['tenant']['slug'] }}.
+The virtual machine was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
+{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}

@@ -1,0 +1,4602 @@
+{%- if api == "circuit-terminations" %}
+{%- include 'datatable_header.j2' %}
+<h1>Circuit Terminations</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Description</th>
+    <th>Display</th>
+    <th>Occupied</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>CID</th>
+    <th>Circuit Display</th>
+    <th>Circuit ID</th>
+    <th>URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Port Speed</th>
+    <th>PP Info</th>
+    <th>Provider Network ID</th>
+    <th>Provider Network Name</th>
+    <th>Provider Network Display</th>
+    <th>Provider Network URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Term Side</th>
+    <th>Upstream Speed</th>
+    <th>URL</th>
+    <th>XConnect ID</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td>{{ result['cable']['url'] }}</td>
+    <td>{{ result['circuit']['cid'] }}</td>
+    <td>{{ result['circuit']['display'] }}</td>
+    <td>{{ result['circuit']['id'] }}</td>
+    <td><a href="{{ result['circuit']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] | default("False") }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+{%- if result['link_peer']['device'] is defined %}<td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['port_speed'] }}</td>
+    <td>{{ result['pp_info'] }}</td>
+    <td>{{ result['provider_network']['id'] }}</td>
+    <td>{{ result['provider_network']['name'] }}</td>
+    <td>{{ result['provider_network']['display'] }}</td>
+    <td><a href="{{ result['provider_network']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['term_side'] }}</td>
+    <td>{{ result['upstream_speed'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+    <td>{{ result['xconnect_id'] }}</td>
+</tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "circuit-types" %}
+{%- include 'datatable_header.j2' %}
+<h1>Circuit Types</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Circuit Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['circuit_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+</tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "circuits" %}
+{%- include 'datatable_header.j2' %}
+<h1>Circuit Terminations</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>CID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Comments</th>
+    <th>Commit Rate</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Type ID</th>
+    <th>Type Name</th>
+    <th>Type Display</th>
+    <th>Type Slug</th>
+    <th>Type URL</th>
+    <th>Provider ID</th>
+    <th>Provider Name</th>
+    <th>Provider Display</th>
+    <th>Provider Slug</th>
+    <th>Provider URL</th>
+    <th>Termination A ID</th>
+    <th>Termination A Display</th>
+    <th>Termination A Port Speed</th>
+    <th>Termination A Site ID</th>
+    <th>Termination A Site Name</th>
+    <th>Termination A Site Display</th>
+    <th>Termination A Site Slug</th>
+    <th>Termination A Site URL</th>
+    <th>Termination A Upstream Speed</th>
+    <th>Termination A Provider Network ID</th>
+    <th>Termination A Provider Network Name</th>
+    <th>Termination A Provider Network Display</th>
+    <th>Termination A Provider Network URL</th>
+    <th>Termination A URL</th>
+    <th>Termination A XConnect ID</th>
+    <th>Termination Z ID</th>
+    <th>Termination Z Display</th>
+    <th>Termination Z Port Speed</th>
+    <th>Termination Z Site ID</th>
+    <th>Termination Z Site Name</th>
+    <th>Termination Z Site Display</th>
+    <th>Termination Z Site Slug</th>
+    <th>Termination Z Site URL</th>
+    <th>Termination Z Upstream Speed</th>
+    <th>Termination Z Provider Network ID</th>
+    <th>Termination Z Provider Network Name</th>
+    <th>Termination Z Provider Network Display</th>
+    <th>Termination Z Provider Network URL</th>
+    <th>Termination Z URL</th>
+    <th>Termination Z XConnect ID</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>Install Date</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['cid'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['commit_rate'] }}</td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['type']['id'] }}</td>
+    <td>{{ result['type']['name'] }}</td>
+    <td>{{ result['type']['display'] }}</td>
+    <td>{{ result['type']['slug'] }}</td>
+    <td><a href="{{ result['type']['url'] }}">URL</a></td>
+    <td>{{ result['provider']['id'] }}</td>
+    <td>{{ result['provider']['name'] }}</td>
+    <td>{{ result['provider']['display'] }}</td>
+    <td>{{ result['provider']['slug'] }}</td>
+    <td><a href="{{ result['provider']['url'] }}">URL</a></td>
+    <td>{{ result['termination_a']['id'] }}</td>
+    <td>{{ result['termination_a']['display'] }}</td>
+    <td>{{ result['termination_a']['port_speed'] }}</td>
+  {%- if result['termination_a']['site'] is defined %}
+    <td>{{ result['termination_a']['site']['id'] }}</td>
+    <td>{{ result['termination_a']['site']['name'] }}</td>
+    <td>{{ result['termination_a']['site']['display'] }}</td>
+    <td>{{ result['termination_a']['site']['slug'] }}</td>
+    <td><a href="{{ result['termination_a']['site']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td>{{ result['termination_a']['upstream_speed'] }}</td>
+  {%- if result['termination_a']['provider_network'] is defined %}
+    <td>{{ result['termination_a']['provider_network']['id'] }}</td>
+    <td>{{ result['termination_a']['provider_network']['name'] }}</td>
+    <td>{{ result['termination_a']['provider_network']['display'] }}</td>
+    <td><a href="{{ result['termination_a']['provider_network']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td><a href="{{ result['termination_a']['url'] }}">URL</a></td>
+    <td>{{ result['termination_a']['xconnect_id'] }}</td>
+    <td>{{ result['termination_z']['id'] }}</td>
+    <td>{{ result['termination_z']['display'] }}</td>
+    <td>{{ result['termination_z']['port_speed'] }}</td>
+  {%- if result['termination_z']['site'] is defined %}
+    <td>{{ result['termination_z']['site']['id'] }}</td>
+    <td>{{ result['termination_z']['site']['name'] }}</td>
+    <td>{{ result['termination_z']['site']['display'] }}</td>
+    <td>{{ result['termination_z']['site']['slug'] }}</td>
+    <td><a href="{{ result['termination_z']['site']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td>{{ result['termination_z']['upstream_speed'] }}</td>
+  {%- if result['termination_z']['provider_network'] is defined %}
+    <td>{{ result['termination_z']['provider_network']['id'] }}</td>
+    <td>{{ result['termination_z']['provider_network']['name'] }}</td>
+    <td>{{ result['termination_z']['provider_network']['display'] }}</td>
+    <td><a href="{{ result['termination_z']['provider_network']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td><a href="{{ result['termination_z']['url'] }}">URL</a></td>
+    <td>{{ result['termination_z']['xconnect_id'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td>{{ result['install_date'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+</tr>
+  {%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "provider-networks" %}
+{%- include 'datatable_header.j2' %}
+<h1>Provider Networks</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Comments</th>
+    <th>Service ID</th>
+    <th>Provider ID</th>
+    <th>Provider Name</th>
+    <th>Provider Display</th>
+    <th>Provider Slug</th>
+    <th>Provider URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['service_id'] }}</td>
+    <td>{{ result['provider']['id'] }}</td>
+    <td>{{ result['provider']['name'] }}</td>
+    <td>{{ result['provider']['display'] }}</td>
+    <td>{{ result['provider']['slug'] }}</td>
+    <td><a href="{{ result['provider']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+</tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "providers" %}
+{%- include 'datatable_header.j2' %}
+<h1>Providers</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Display</th>
+    <th>Account</th>
+    <th>Admin Contact</th>
+    <th>NOC Contact</th>
+    <th>ASN</th>
+    <th>Circuit Count</th>
+    <th>Comments</th>
+    <th>Slug</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>Portal URL</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['account'] }}</td>
+    <td>{{ result['admin_contact'] }}</td>
+    <td>{{ result['noc_contact'] }}</td>
+    <td>{{ result['asn'] }}</td>
+    <td>{{ result['circuit_count'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['portal_url'] }}">URL</a></td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+</tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "cables" %}
+{%- include 'datatable_header.j2' %}
+<h1>Cables</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Label</th>
+    <th>Type</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Color</th>
+    <th>Length</th>
+    <th>Length Unit</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Termination A ID</th>
+    <th>Termination A Type</th>
+    <th>Termination A Display</th>
+    <th>Termination A Cable</th>
+    <th>Termination A Occupied</th>
+    <th>Termination A Term Side</th>
+    <th>Termination A Circuit ID</th>
+    <th>Termination A Circuit CID</th>
+    <th>Termination A Circuit Display</th>
+    <th>Termination A Circuit URL</th>
+    <th>Termination A URL</th>
+    <th>Termination B ID</th>
+    <th>Termination B Type</th>
+    <th>Termination B Display</th>
+    <th>Termination B Cable</th>
+    <th>Termination B Occupied</th>
+    <th>Termination B Term Side</th>
+    <th>Termination B Circuit ID</th>
+    <th>Termination B Circuit CID</th>
+    <th>Termination B Circuit Display</th>
+    <th>Termination B Circuit URL</th>
+    <th>Termination B URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+<tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['type'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['length'] }}</td>
+    <td>{{ result['length_unit'] }}</td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['termination_a_id'] }}</td>
+    <td>{{ result['termination_a_type'] }}</td>
+    <td>{{ result['termination_a']['display'] }}</td>
+    <td>{{ result['termination_a']['cable'] }}</td>
+    <td>{{ result['termination_a']['_occupied'] }}</td>
+    <td>{{ result['termination_a']['term_side'] }}</td>
+{%- if result['termination_a']['circuit'] is defined %}
+    <td>{{ result['termination_a']['circuit']['id'] }}</td>
+    <td>{{ result['termination_a']['circuit']['cid'] }}</td>
+    <td>{{ result['termination_a']['circuit']['display'] }}</td>
+    <td><a href="{{ result['termination_a']['circuit']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['termination_a']['url'] }}">URL</a></td>
+    <td>{{ result['termination_b_id'] }}</td>
+    <td>{{ result['termination_b_type'] }}</td>
+    <td>{{ result['termination_b']['display'] }}</td>
+    <td>{{ result['termination_b']['cable'] }}</td>
+    <td>{{ result['termination_b']['_occupied'] }}</td>
+    <td>{{ result['termination_b']['term_side'] }}</td>
+{%- if result['termination_b']['circuit'] is defined %}
+    <td>{{ result['termination_b']['circuit']['id'] }}</td>
+    <td>{{ result['termination_b']['circuit']['cid'] }}</td>
+    <td>{{ result['termination_b']['circuit']['display'] }}</td>
+    <td><a href="{{ result['termination_b']['circuit']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['termination_b']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+</tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "console-port-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Console Port Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Module Type ID</th>
+    <th>Module Type Display</th>
+    <th>Module Type Model</th>
+    <th>Module Type Manufacturer ID</th>
+    <th>Module Type Manufacturer Name</th>
+    <th>Module Type Manufacturer Display</th>
+    <th>Module Type Manufacturer Slug</th>
+    <th>Module Type Manufacturer URL</th>
+    <th>Module Type URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Model</th>
+    <th>Device Type Slug</th>
+    <th>Device Type URL</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['module_type']['id'] }}</td>
+    <td>{{ result['module_type']['display'] }}</td>
+    <td>{{ result['module_type']['model'] }}</td>
+  {%- if result['module_type']['manufacturer'] is defined %}
+    <td>{{ result['module_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['module_type']['manufacturer']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td><a href="{{ result['module_type']['url'] }}">URL</a></td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+  {%- if result['device_type']['manufacturer'] is defined %}
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "console-ports" %}
+{%- include 'datatable_header.j2' %}
+<h1>Console Ports</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Occupied</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Connected Endpoint</th>
+    <th>Connected Endpoint Reachable</th>
+    <th>Connected Endpoint Type</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Module ID</th>
+    <th>Module Display</th>
+    <th>Module Device</th>
+    <th>Module Bay ID</th>
+    <th>Module Bay Name</th>
+    <th>Module Bay Display</th>
+    <th>Module Bay URL</th>
+    <th>Module URL</th>
+    <th>Speed</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+{%- if result['device'] is defined %}
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['connected_endpoint'] }}</td>
+    <td>{{ result['connected_endpoint_reachable'] }}</td>
+    <td>{{ result['connected_endpoint_type'] }}</td>
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['module']['id'] }}</td>
+    <td>{{ result['module']['display'] }}</td>
+    <td>{{ result['module']['device'] }}</td>
+{% if result['module']['module_bay'] is defined %}
+    <td>{{ result['module']['module_bay']['id'] }}</td>
+    <td>{{ result['module']['module_bay']['name'] }}</td>
+    <td>{{ result['module']['module_bay']['display'] }}</td>
+    <td><a href="{{ result['module']['module_bay']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['module']['url'] }}">URL</a></td>
+    <td>{{ result['speed'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated']}}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "device-bay-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Device Bay Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Slug</th>
+    <th>Device Type Model</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Device Type URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['created']}}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "device-bays" %}
+{%- include 'datatable_header.j2' %}
+<h1>Device Bays</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Device ID</th>
+    <th>Device Display</th>
+    <th>Device Name</th>
+    <th>Device URL</th>
+    <th>Installed Device</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['installed_device'] }}</td>
+    <td>{{ result['created']}}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "device-roles" %}
+{%- include 'datatable_header.j2' %}
+<h1>Device Roles</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Device Count</th>
+    <th>Virtual Machine Count</th>
+    <th>VM Role</th>
+    <th>Color</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['virtualmachine_count'] }}</td>
+    <td>{{ result['vm_role'] }}</td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "device-types" %}
+{%- include 'datatable_header.j2' %}
+<h1>Device Types</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Slug</th>
+    <th>Comments</th>
+    <th>Model</th>
+    <th>Part Number</th>
+    <th>Device Count</th>
+    <th>Subdevice Role Label</th>
+    <th>Subdevice Role Value</th>
+    <th>Manufacturer ID</th>
+    <th>Manufacturer Name</th>
+    <th> Manufacturer Display</th>
+    <th>Manufacturer Slug</th>
+    <th>Manufacturer URL</th>
+    <th>Rack Unit Height</th>
+    <th>Full Depth</th>
+    <th>Front Image</th>
+    <th>Rear Image</th>
+    <th>Airflow</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>    
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['model'] }}</td>
+    <td>{{ result['part_number'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['subdevice_role']['label'] }}</td>
+    <td>{{ result['subdevice_role']['value'] }}</td>
+    <td>{{ result['manufacturer']['id'] }}</td>
+    <td>{{ result['manufacturer']['name'] }}</td>
+    <td>{{ result['manufacturer']['display'] }}</td>
+    <td>{{ result['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['manufacturer']['url'] }}">URL</a></td>
+    <td>{{ result['u_height'] }}</td>
+    <td>{{ result['is_full_depth'] }}</td>
+    <td><a href="{{ result['front_image']}}">URL</a></td>
+    <td><a href="{{ result['rear_image']}}">URL</a></td>
+    <td>{{ result['airflow']}}</td>
+    <td>{{ result['created']}}</td>
+    <td>{{ result['last_updated']}}</td>
+    <td><a href="{{ result['url']}}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "devices" %}
+{%- include 'datatable_header.j2' %}
+<h1>Devices</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Comments</th>
+    <th>Asset Tag</th>
+    <th>Serial Number</th>
+    <th>Location ID</th>
+    <th>Location Name</th>
+    <th>Location Display</th>
+    <th>Location Slug</th>
+    <th>Location Depth</th>
+    <th>Location URL</th>
+    <th>Platform ID</th>
+    <th>Platform Name</th>
+    <th>Platform Display</th>
+    <th>Platform Slug</th>
+    <th>Platform URL</th>
+    <th>Parent Device</th>
+    <th>Cluster</th>
+    <th>Position</th>
+    <th>Airflow</th>
+    <th>Device Role ID</th>
+    <th>Device Role Name</th>
+    <th>Device Role Display</th>
+    <th>Device Role Slug</th>
+    <th>Device Role URL</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Slug</th>
+    <th>Device Type Model</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Device Type URL</th>
+    <th>Face Label</th>
+    <th>Face Value</th>
+    <th>Rack ID</th>
+    <th>Rack Name</th>
+    <th>Rack Display</th>
+    <th>Rack URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Primary IP</th>
+    <th>Primary IPv4</th>
+    <th>Primary IPv6</th>
+    <th>VC Position</th>
+    <th>VC Priority</th>
+    <th>Virtual Chassis</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['asset_tag'] }}</td>
+    <td>{{ result['serial'] }}</td>
+    <td>{{ result['location']['id'] }}</td>
+    <td>{{ result['location']['name'] }}</td>
+    <td>{{ result['location']['display'] }}</td>
+    <td>{{ result['location']['slug'] }}</td>
+    <td>{{ result['location']['_depth'] }}</td>
+    <td><a href="{{ result['location']['url'] }}">URL</a></td>
+    <td>{{ result['platform']['id'] }}</td>
+    <td>{{ result['platform']['name'] }}</td>
+    <td>{{ result['platform']['display'] }}</td>
+    <td>{{ result['platform']['slug'] }}</td>
+    <td><a href="{{ result['platform']['url'] }}">URL</a></td>
+    <td>{{ result['parent_device'] }}</td>
+    <td>{{ result['cluster'] }}</td>
+    <td>{{ result['position'] }}</td>
+    <td>{{ result['airflow'] }}</td>
+    <td>{{ result['device_role']['id'] }}</td>
+    <td>{{ result['device_role']['name'] }}</td>
+    <td>{{ result['device_role']['display'] }}</td>
+    <td>{{ result['device_role']['slug'] }}</td>
+    <td><a href="{{ result['device_role']['url'] }}">URL</a></td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+  {%- if result['device_type']['manufacturer'] is defined %}
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+  {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['face']['label'] }}</td>
+    <td>{{ result['face']['value'] }}</td>
+    <td>{{ result['rack']['id'] }}</td>
+    <td>{{ result['rack']['name'] }}</td>
+    <td>{{ result['rack']['display'] }}</td>
+    <td><a href="{{ result['rack']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['primary_ip'] }}</td>
+    <td>{{ result['primary_ip4'] }}</td>
+    <td>{{ result['primary_ip6'] }}</td>
+    <td>{{ result['vc_position'] }}</td>
+    <td>{{ result['vc_priority'] }}</td>
+    <td>{{ result['virtual_chassis'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "front-port-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Front Ports Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Module Type</th>
+    <th>Color</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Slug</th>
+    <th>Device Type Model</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Device Type URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Rear Port ID</th>
+    <th>Rear Port Name</th>
+    <th>Rear Port Display</th>
+    <th>Rear Port URL</th>
+    <th>Rear Port Position</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['module_type'] }}</td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['rear_port']['id'] }}</td>
+    <td>{{ result['rear_port']['name'] }}</td>
+    <td>{{ result['rear_port']['display'] }}</td>
+    <td><a href="{{ result['rear_port']['url'] }}">URL</a></td>
+    <td>{{ result['rear_port_position'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "front-ports" %}
+{%- include 'datatable_header.j2' %}
+<h1>Front Ports</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>Occupied</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Color</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Module</th>
+    <th>Rear Port ID</th>
+    <th>Rear Port Name</th>
+    <th>Rear Port Display</th>
+    <th>Rear Port Label</th>
+    <th>Rear Port URL</th>
+    <th>Rear Port Position</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['module'] }}</td>
+    <td>{{ result['rear_port']['id'] }}</td>
+    <td>{{ result['rear_port']['name'] }}</td>
+    <td>{{ result['rear_port']['display'] }}</td>
+    <td>{{ result['rear_port']['label'] }}</td>
+    <td><a href="{{ result['rear_port']['url'] }}">URL</a></td>
+    <td>{{ result['rear_port_position'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "interface-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Interface Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>Management Only</th>
+    <th>Module Type ID</th>
+    <th>Module Type Display</th>
+    <th>Module Type Model</th>
+    <th>Module Type URL</th>
+    <th>Module Type Manufacturer ID</th>
+    <th>Module Type Manufacturer Name</th>
+    <th>Module Type Manufacturer Display</th>
+    <th>Module Type Manufacturer Slug</th>
+    <th>Module Type Manufacturer URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Model</th>
+    <th>Device Type Slug</th>
+    <th>Device Type URL</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['mgmt_only'] }}</td>
+    <td>{{ result['module_type']['id'] }}</td>
+    <td>{{ result['module_type']['display'] }}</td>
+    <td>{{ result['module_type']['model'] }}</td>
+    <td><a href="{{ result['module_type']['url'] }}">URL</a></td>
+{%- if result['module_type']['manufacturer'] is defined %}
+    <td>{{ result['module_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['module_type']['manufacturer']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+{%- if result['device_type']['manufacturer'] is defined %}
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "interfaces" %}
+{%- include 'datatable_header.j2' %}
+<h1>Interfaces</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>Management Only</th>
+    <th>Module ID</th>
+    <th>Module Display</th>
+    <th>Module Device</th>
+    <th>Module Slot</th>
+    <th>Module URL</th>
+    <th>Module Bay ID</th>
+    <th>Module Bay Name</th>
+    <th>Module Bay Display</th>
+    <th>Module Bay URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Device Type ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Occupied</th>
+    <th>Bridge</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Connected Endpoint ID</th>
+    <th>Connected Endpoint Name</th>
+    <th>Connected Endpoint Display</th>
+    <th>Connected Endpoint Occupied</th>
+    <th>Connected Endpoint Cable</th>
+    <th>Connected Endpoint URL</th>
+    <th>Connected Endpoint Device ID</th>
+    <th>Connected Endpoint Device Name</th>
+    <th>Connected Endpoint Device Display</th>
+    <th>Connected Endpoint Device URL</th>
+    <th>Connected Endpoint Reachable</th>
+    <th>Connected Endpoint Type</th>
+    <th>FHRP Groups Count</th>
+    <th>IP Address Count</th>
+    <th>Duplex</th>
+    <th>Enabled</th>
+    <th>Lag ID</th>
+    <th>Lag Name</th>
+    <th>Lag Display</th>
+    <th>Lag Occupied</th>
+    <th>Lag Cable</th>
+    <th>Lag URL</th>
+    <th>Lag Device ID</th>
+    <th>Lag Device Name</th>
+    <th>Lag Device Display</th>
+    <th>Lag Device URL</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer Type</th>
+    <th>MAC Address</th>
+    <th>Mark Connected</th>
+    <th>Mode</th>
+    <th>MTU</th>
+    <th>RF Channel</th>
+    <th>RF Channel Frequency</th>
+    <th>RF Channel Width</th>
+    <th>RF Role</th>
+    <th>Speed</th>
+    <th>Tagged VLANs</th>
+    <th>Untagged VLAN</th>
+    <th>TX Power</th>
+    <th>VRF</th>
+    <th>Wirless LANs</th>
+    <th>Wireless Link</th>
+    <th>WWN</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['mgmt_only'] }}</td>
+    <td>{{ result['module']['id'] }}</td>
+    <td>{{ result['module']['display'] }}</td>
+    <td>{{ result['module']['device'] }}</td>
+    <td>{{ result['module']['slot'] }}</td>
+    <td><a href="{{ result['module']['url'] }}">URL</a></td>
+{%- if result['module']['module_bay'] is defined %}
+    <td>{{ result['module']['module_bay']['id'] }}</td>
+    <td>{{ result['module']['module_bay']['name'] }}</td>
+    <td>{{ result['module']['module_bay']['display'] }}</td>
+    <td><a href="{{ result['module']['module_bay']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{% endif %}
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['bridge'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['connected_endpoint']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['display'] }}</td>
+    <td>{{ result['connected_endpoint']['_occupied'] }}</td>
+    <td>{{ result['connected_endpoint']['cable'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['url'] }}">URL</a></td>
+{%- if result['connected_endpoint']['device'] is defined %}
+    <td>{{ result['connected_endpoint']['device']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['display'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['connected_endpoint_reachable'] }}</td>
+    <td>{{ result['connected_endpoint_type'] }}</td>
+    <td>{{ result['count_fhrp_groups'] }}</td>
+    <td>{{ result['count_ipaddresses'] }}</td>
+    <td>{{ result['duplex'] }}</td>
+    <td>{{ result['enabled'] }}</td>
+    <td>{{ result['lag']['id'] }}</td>
+    <td>{{ result['lag']['name'] }}</td>
+    <td>{{ result['lag']['display'] }}</td>
+    <td>{{ result['lag']['_occupied'] }}</td>
+    <td>{{ result['lag']['cable'] }}</td>
+    <td><a href="{{ result['lag']['url'] }}">URL</a></td>
+{%- if result['lag']['device'] is defined %}
+    <td>{{ result['lag']['device']['id'] }}</td>
+    <td>{{ result['lag']['device']['name'] }}</td>
+    <td>{{ result['lag']['device']['display'] }}</td>
+    <td><a href="{{ result['lag']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mac_address'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['mode'] }}</td>
+    <td>{{ result['mtu'] }}</td>
+    <td>{{ result['rf_channel'] }}</td>
+    <td>{{ result['rf_channel_frequency'] }}</td>
+    <td>{{ result['rf_channel_width'] }}</td>
+    <td>{{ result['rf_role'] }}</td>
+    <td>{{ result['speed'] }}</td>
+    <td>{{ result['tagged_vlans'] }}</td>
+    <td>{{ result['untagged_vlan'] }}</td>
+    <td>{{ result['tx_power'] }}</td>
+    <td>{{ result['vrf'] }}</td>
+    <td>{{ result['wireless_lans'] }}</td>
+    <td>{{ result['wireless_link'] }}</td>
+    <td>{{ result['wwn'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "inventory-items" %}
+{%- include 'datatable_header.j2' %}
+<h1>Inventory Items</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>Asset Tag</th>
+    <th>Component ID</th>
+    <th>Component Type</th>
+    <th>Component Name</th>
+    <th>Component Display</th>
+    <th>Component Occupied</th>
+    <th>Component Cable</th>
+    <th>Component URL</th>
+    <th>Component Device ID</th>
+    <th>Component Device Name</th>
+    <th>Component Device Display</th>
+    <th>Component Device URL</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Discovered</th>
+    <th>Manufacturer</th>
+    <th>Part ID</th>
+    <th>Role</th>
+    <th>Serial Number</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['asset_tag'] }}</td>
+    <td>{{ result['component_id'] }}</td>
+    <td>{{ result['component_type'] }}</td>
+    <td>{{ result['component']['name'] }}</td>
+    <td>{{ result['component']['display'] }}</td>
+    <td>{{ result['component']['_occupied'] }}</td>
+    <td>{{ result['component']['cable'] }}</td>
+    <td><a href="{{ result['component']['url'] }}">URL</a></td>
+    <td>{{ result['component']['device']['id'] }}</td>
+    <td>{{ result['component']['device']['name'] }}</td>
+    <td>{{ result['component']['device']['display'] }}</td>
+    <td><a href="{{ result['component']['device']['url'] }}">URL</a></td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['discovered'] }}</td>
+    <td>{{ result['manufacturer'] }}</td>
+    <td>{{ result['part_id'] }}</td>
+    <td>{{ result['role'] }}</td>
+    <td>{{ result['serial'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "locations" %}
+{%- include 'datatable_header.j2' %}
+<h1>Locations</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Depth</th>
+    <th>Device Count</th>
+    <th>Rack Count</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  <tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['rack_count'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "manufacturers" %}
+{%- include 'datatable_header.j2' %}
+<h1>Manufacturers</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Device Type Count</th>
+    <th>Inventory Type Count</th>
+    <th>Platform Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['devicetype_count'] }}</td>
+    <td>{{ result['inventoryitem_count'] }}</td>
+    <td>{{ result['platform_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "module-bay-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Module Bay Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Position</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Model</th>
+    <th>Device Type Slug</th>
+    <th>Device Type URL</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['position'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "module-bays" %}
+{%- include 'datatable_header.j2' %}
+<h1>Module Bays</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Position</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['position'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "module-types" %}
+{%- include 'datatable_header.j2' %}
+<h1>Module Types</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Model</th>
+    <th>Part Number</th>
+    <th>Comments</th>
+    <th>Manufacturer ID</th>
+    <th>Manufacturer Name</th>
+    <th>Manufacturer Display</th>
+    <th>Manufacturer Slug</th>
+    <th>Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['model'] }}</td>
+    <td>{{ result['part_number'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['manufacturer']['id'] }}</td>
+    <td>{{ result['manufacturer']['name'] }}</td>
+    <td>{{ result['manufacturer']['display'] }}</td>
+    <td>{{ result['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['manufacturer']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "modules" %}
+{%- include 'datatable_header.j2' %}
+<h1>Modules</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Asset Tag</th>
+    <th>Comments</th>
+    <th>Serial Number</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Module Bay ID</th>
+    <th>Module Bay Name</th>
+    <th>Module Bay Display</th>
+    <th>Module Bay URL</th>
+    <th>Module Type ID</th>
+    <th>Module Type Display</th>
+    <th>Module Type Model</th>
+    <th>Module Type URL</th>
+    <th>Module Type Manufacturer ID</th>
+    <th>Module Type Manufacturer Name</th>
+    <th>Module Type Manufacturer Display</th>
+    <th>Module Type Manufacturer Slug</th>
+    <th>Module Type Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['asset_tag'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['serial'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['module_bay']['id'] }}</td>
+    <td>{{ result['module_bay']['name'] }}</td>
+    <td>{{ result['module_bay']['display'] }}</td>
+    <td><a href="{{ result['module_bay']['url'] }}">URL</a></td>
+    <td>{{ result['module_type']['id'] }}</td>
+    <td>{{ result['module_type']['display'] }}</td>
+    <td>{{ result['module_type']['model'] }}</td>
+    <td><a href="{{ result['module_type']['url'] }}">URL</a></td>
+{%- if result['module_type']['manufacturer'] is defined %}
+    <td>{{ result['module_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['module_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['module_type']['manufacturer']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+  {%- endif %}
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "platforms" %}
+{%- include 'datatable_header.j2' %}
+<h1>Platforms</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Slug</th>
+    <th>Device Count</th>
+    <th>Virtual Machine Count</th>
+    <th>Manufacturer ID</th>
+    <th>Manufacturer Name</th>
+    <th>Manufacturer Display</th>
+    <th>Manufacturer Slug</th>
+    <th>Manufacturer URL</th>
+    <th>Napalm Driver</th>
+    <th>Napalm Arguments</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['virtualmachine_count'] }}</td>
+    <td>{{ result['manufacturer']['id'] }}</td>
+    <td>{{ result['manufacturer']['name'] }}</td>
+    <td>{{ result['manufacturer']['display'] }}</td>
+    <td>{{ result['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['manufacturer']['url'] }}">URL</a></td>
+    <td>{{ result['napalm_driver'] }}</td>
+    <td>{{ result['napalm_args'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-feeds" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Feeds</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Comments</th>
+    <th>Occupied</th>
+    <th>Amperage</th>
+    <th>Voltage</th>
+    <th>Mark Connected</th>
+    <th>Max Utilization</th>
+    <th>Phase Label</th>
+    <th>Phase Value</th>
+    <th>Power Panel ID</th>
+    <th>Power Panel Name</th>
+    <th>Power Panel Display</th>
+    <th>Power Panel URL</th>
+    <th>Rack ID</th>
+    <th>Rack Name</th>
+    <th>Rack Display</th>
+    <th>Rack URL</th>
+    <th>Status Label</th>
+    <th> Status Value</th>
+    <th>Supply Label</th>
+    <th>Supply Value</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['amperage'] }}</td>
+    <td>{{ result['voltage'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['max_utilization'] }}</td>
+    <td>{{ result['phase']['label'] }}</td>
+    <td>{{ result['phase']['value'] }}</td>
+    <td>{{ result['power_panel']['id'] }}</td>
+    <td>{{ result['power_panel']['name'] }}</td>
+    <td>{{ result['power_panel']['display'] }}</td>
+    <td><a href="{{ result['power_panel']['url'] }}">URL</a></td>
+    <td>{{ result['rack']['id'] }}</td>
+    <td>{{ result['rack']['name'] }}</td>
+    <td>{{ result['rack']['display'] }}</td>
+    <td><a href="{{ result['rack']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['supply']['label'] }}</td>
+    <td>{{ result['supply']['value'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-outlet-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Outlet Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Feed Leg</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Model</th>
+    <th>Device Type Slug</th>
+    <th>Device Type URL</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Power Port ID</th>
+    <th>Power Port Name</th>
+    <th>Power Port Display</th>
+    <th>Power Port URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['feed_leg'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+    <td>{{ result['power_port']['id'] }}</td>
+    <td>{{ result['power_port']['name'] }}</td>
+    <td>{{ result['power_port']['display'] }}</td>
+    <td><a href="{{ result['power_port']['url'] }}">URL</a></td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-outlets" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Outlets</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Occupied</th>
+    <th>Feed Leg</th>
+    <th>Device ID</th>
+    <th>Device Display</th>
+    <th>Device Name</th>
+    <th>Device URL</th>
+    <th>Power Port ID</th>
+    <th>Power Port Name</th>
+    <th>Power Port Display</th>
+    <th>Power Port Occupied</th>
+    <th>Power Port Cable</th>
+    <th>Power Port URL</th>
+    <th>Power Port Device ID</th>
+    <th>Power Port Device Name</th>
+    <th>Power Port Device Display</th>
+    <th>Power Port Device URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Connected Endpoint ID</th>
+    <th>Connected Endpoint Name</th>
+    <th>Connected Endpoint Display</th>
+    <th>Connected Endpoint Occupied</th>
+    <th>Connected Endpoint Cable</th>
+    <th>Connected Endpoint URL</th>
+    <th>Connected Endpoint Device ID</th>
+    <th>Connected Endpoint Device Name</th>
+    <th>Connected Endpoint Device Display</th>
+    <th>Connected Endpoint Device URL</th>
+    <th>Connected Endpoint Reachable</th>
+    <th>Connected Endpoint Type</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['feed_leg'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['power_port']['id'] }}</td>
+    <td>{{ result['power_port']['name'] }}</td>
+    <td>{{ result['power_port']['display'] }}</td>
+    <td>{{ result['power_port']['_occupied'] }}</td>
+    <td>{{ result['power_port']['cable'] }}</td>
+    <td><a href="{{ result['power_port']['url'] }}">URL</a></td>
+{%- if result['power_port']['device'] is defined %}
+    <td>{{ result['power_port']['device']['id'] }}</td>
+    <td>{{ result['power_port']['device']['name'] }}</td>
+    <td>{{ result['power_port']['device']['display'] }}</td>
+    <td><a href="{{ result['power_port']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['connected_endpoint']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['display'] }}</td>
+    <td>{{ result['connected_endpoint']['_occupied'] }}</td>
+    <td>{{ result['connected_endpoint']['cable'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['url'] }}">URL</a></td>
+{%- if result['connected_endpoint']['device'] is defined %}
+    <td>{{ result['connected_endpoint']['device']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['display'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['connected_endpoint_reachable'] }}</td>
+    <td>{{ result['connected_endpoint_type'] }}</td>
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-panels" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Panels</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Power Feed Count</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['location'] }}</td>
+    <td>{{ result['powerfeed_count'] }}</td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-port-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Port Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Allocated Draw</th>
+    <th>Maximum Draw</th>
+    <th>Module Type</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Model</th>
+    <th>Device Type Slug</th>
+    <th>Device Type URL</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['allocated_draw'] }}</td>
+    <td>{{ result['maximum_draw'] }}</td>
+    <td>{{ result['module_type'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}"">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "power-ports" %}
+{%- include 'datatable_header.j2' %}
+<h1>Power Ports</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Label</th>
+    <th>Allocated Draw</th>
+    <th>Maximum Draw</th>
+    <th>Module Type</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Device ID</th>
+    <th>Device Display</th>
+    <th>Device Name</th>
+    <th>Device URL</th>
+    <th>Occupied</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Connected Endpoint ID</th>
+    <th>Connected Endpoint Name</th>
+    <th>Connected Endpoint Display</th>
+    <th>Connected Endpoint Occupied</th>
+    <th>Connected Endpoint Cable</th>
+    <th>Connected Endpoint URL</th>
+    <th>Connected Endpoint Device ID</th>
+    <th>Connected Endpoint Device Name</th>
+    <th>Connected Endpoint Device Display</th>
+    <th>Connected Endpoint Device URL</th>
+    <th>Connected Endpoint Reachable</th>
+    <th>Connected Endpoint Type</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['allocated_draw'] }}</td>
+    <td>{{ result['maximum_draw'] }}</td>
+    <td>{{ result['module'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['connected_endpoint']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['display'] }}</td>
+    <td>{{ result['connected_endpoint']['_occupied'] }}</td>
+    <td>{{ result['connected_endpoint']['cable'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['url'] }}">URL</a></td>
+{%- if result['connected_endpoint']['device'] is defined %}
+    <td>{{ result['connected_endpoint']['device']['id'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['name'] }}</td>
+    <td>{{ result['connected_endpoint']['device']['display'] }}</td>
+    <td><a href="{{ result['connected_endpoint']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['connected_endpoint_reachable'] }}</td>
+    <td>{{ result['connected_endpoint_type'] }}</td>
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "rack-reservations" %}
+{%- include 'datatable_header.j2' %}
+<h1>Rack Reservations</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Rack ID</th>
+    <th>Rack Name</th>
+    <th>Rack Display</th>
+    <th>Rack URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Units</th>
+    <th>User ID</th>
+    <th>User Display</th>
+    <th>User Username</th>
+    <th>User URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['rack']['id'] }}</td>
+    <td>{{ result['rack']['name'] }}</td>
+    <td>{{ result['rack']['display'] }}</td>
+    <td><a href="{{ result['rack']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['units']}}</td>
+    <td>{{ result['user']['id'] }}</td>
+    <td>{{ result['user']['display'] }}</td>
+    <td>{{ result['user']['username'] }}</td>
+    <td><a href="{{ result['user']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "rack-roles" %}
+{%- include 'datatable_header.j2' %}
+<h1>Rack Roles</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Name</th>
+    <th>Slug</th>
+    <th>Color</th>
+    <th>Rack Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['rack_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "racks" %}
+{%- include 'datatable_header.j2' %}
+<h1>Racks</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Comments</th>
+    <th>Asset Tag</th>
+    <th>Serial Number</th>
+    <th>Desc Units</th>
+    <th>Facility ID</th>
+    <th>Location ID</th>
+    <th>Location Name</th>
+    <th>Location Display</th>
+    <th>Location Slug</th>
+    <th>Location Depth</th>
+    <th>Location URL</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Device Count</th>
+    <th>Outer Depth</th>
+    <th>Outer Unit</th>
+    <th>Outer Width</th>
+    <th>Power Feed Count</th>
+    <th>U Height</th>
+    <th>Width Label</th>
+    <th>Width Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['asset_tag'] }}</td>
+    <td>{{ result['serial'] }}</td>
+    <td>{{ result['desc_units'] }}</td>
+    <td>{{ result['facility_id'] }}</td>
+    <td>{{ result['location']['id'] }}</td>
+    <td>{{ result['location']['name'] }}</td>
+    <td>{{ result['location']['display'] }}</td>
+    <td>{{ result['location']['slug'] }}</td>
+    <td>{{ result['location']['_depth'] }}</td>
+    <td><a href="{{ result['location']['url'] }}">URL</a></td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['outer_depth'] }}</td>
+    <td>{{ result['outer_unit'] }}</td>
+    <td>{{ result['outer_width'] }}</td>
+    <td>{{ result['powerfeed_count'] }}</td>
+    <td>{{ result['u_height'] }}</td>
+    <td>{{ result['width']['label'] }}</td>
+    <td>{{ result['width']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "rear-port-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Rear Port Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Module Type</th>
+    <th>Color</th>
+    <th>Device Type ID</th>
+    <th>Device Type Display</th>
+    <th>Device Type Slug</th>
+    <th>Device Type Model</th>
+    <th>Device Type Manufacturer ID</th>
+    <th>Device Type Manufacturer Name</th>
+    <th>Device Type Manufacturer Display</th>
+    <th>Device Type Manufacturer Slug</th>
+    <th>Device Type Manufacturer URL</th>
+    <th>Device Type URL</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Positions</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['module_type'] }}</td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['device_type']['id'] }}</td>
+    <td>{{ result['device_type']['display'] }}</td>
+    <td>{{ result['device_type']['slug'] }}</td>
+    <td>{{ result['device_type']['model'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['id'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['name'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['display'] }}</td>
+    <td>{{ result['device_type']['manufacturer']['slug'] }}</td>
+    <td><a href="{{ result['device_type']['manufacturer']['url'] }}">URL</a></td>
+    <td><a href="{{ result['device_type']['url'] }}">URL</a></td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['positions'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "rear-ports" %}
+{%- include 'datatable_header.j2' %}
+<h1>Rear Ports</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Label</th>
+    <th>Description</th>
+    <th>Occupied</th>
+    <th>Cable ID</th>
+    <th>Cable Display</th>
+    <th>Cable Label</th>
+    <th>Cable URL</th>
+    <th>Color</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Link Peer ID</th>
+    <th>Link Peer Name</th>
+    <th>Link Peer Display</th>
+    <th>Link Peer Cable</th>
+    <th>Link Peer Occupied</th>
+    <th>Link Peer Device ID</th>
+    <th>Link Peer Device Name</th>
+    <th>Link Peer Device Display</th>
+    <th>Link Peer Device URL</th>
+    <th>Link Peer URL</th>
+    <th>Link Peer Type</th>
+    <th>Mark Connected</th>
+    <th>Module</th>
+    <th>Positions</th>
+    <th>Type Label</th>
+    <th>Type Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['label'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['_occupied'] }}</td>
+    <td>{{ result['cable']['id'] }}</td>
+    <td>{{ result['cable']['display'] }}</td>
+    <td>{{ result['cable']['label'] }}</td>
+    <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+    <td>{{ result['color'] }}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['link_peer']['id'] }}</td>
+    <td>{{ result['link_peer']['name'] }}</td>
+    <td>{{ result['link_peer']['display'] }}</td>
+    <td>{{ result['link_peer']['cable'] }}</td>
+    <td>{{ result['link_peer']['_occupied'] }}</td>
+{%- if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
+    <td>{{ result['link_peer']['device']['name'] }}</td>
+    <td>{{ result['link_peer']['device']['display'] }}</td>
+    <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+    <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+    <td>{{ result['link_peer_type'] }}</td>
+    <td>{{ result['mark_connected'] }}</td>
+    <td>{{ result['module'] }}</td>
+    <td>{{ result['positions'] }}</td>
+    <td>{{ result['type']['label'] }}</td>
+    <td>{{ result['type']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "regions" %}
+{%- include 'datatable_header.j2' %}
+<h1>Regions</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Depth</th>
+    <th>Site Count</th>
+    <th>Parent ID</th>
+    <th>Parent Name</th>
+    <th>Parent Display</th>
+    <th>Parent Slug</th>
+    <th>Parent Depth</th>
+    <th>Parent URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['site_count'] }}</td>
+    <td>{{ result['parent']['id'] }}</td>
+    <td>{{ result['parent']['name'] }}</td>
+    <td>{{ result['parent']['display'] }}</td>
+    <td>{{ result['parent']['slug'] }}</td>
+    <td>{{ result['parent']['_depth'] }}</td>
+    <td><a href="{{ result['parent']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "site-groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>Site Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Depth</th>
+    <th>Site Count</th>
+    <th>Parent ID</th>
+    <th>Parent Name</th>
+    <th>Parent Display</th>
+    <th>Parent Slug</th>
+    <th>Parent Depth</th>
+    <th>Parent URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['site_count'] }}</td>
+    <td>{{ result['parent']['id'] }}</td>
+    <td>{{ result['parent']['name'] }}</td>
+    <td>{{ result['parent']['display'] }}</td>
+    <td>{{ result['parent']['slug'] }}</td>
+    <td>{{ result['parent']['_depth'] }}</td>
+    <td><a href="{{ result['parent']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "sites" %}
+{%- include 'datatable_header.j2' %}
+<h1>Sites</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Comments</th>
+    <th>ASN ID</th>
+    <th>ASN</th>
+    <th>ASN Display</th>
+    <th>ASN URL</th>
+    <th>Facility</th>
+    <th>Group ID</th>
+    <th>Group Name</th>
+    <th>Group Display</th>
+    <th>Group Slug</th>
+    <th>Group Depth</th>
+    <th>Group URL</th>
+    <th>Latitude</th>
+    <th>Longitude</th>
+    <th>Time Zone</th>
+    <th>Physical Address</th>
+    <th>Shipping Address</th>
+    <th>Prefix Count</th>
+    <th>Rack Count</th>
+    <th>Circuit Count</th>
+    <th>Device Count</th>
+    <th>Virtual Machine Count</th>
+    <th>VLAN Count</th>
+    <th>Region ID</th>
+    <th>Region Name</th>
+    <th>Region Display</th>
+    <th>Region Slug</th>
+    <th>Region Depth</th>
+    <th>Region URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+{%-         if result['asns'] %}
+    {%-         for asn in result['asns'] %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ asn['id'] }}</td>
+    <td>{{ asn['asn'] }}</td>
+    <td>{{ asn['display'] }}</td>
+    <td><a href="{{ asn['url'] }}">URL</a></td>
+    <td>{{ result['facility'] }}</td>
+    <td>{{ result['group']['id'] }}</td>
+    <td>{{ result['group']['name'] }}</td>
+    <td>{{ result['group']['display'] }}</td>
+    <td>{{ result['group']['slug'] }}</td>
+    <td>{{ result['group']['_depth'] }}</td>
+    <td><a href="{{ result['group']['url'] }}">URL</a></td>
+    <td>{{ result['latitude'] }}</td>
+    <td>{{ result['longitude'] }}</td>
+    <td>{{ result['time_zone'] }}</td>
+    <td>{{ result['physical_address'] | replace("\r\n"," ") }}</td>
+    <td>{{ result['shipping_address'] | replace("\r\n"," ") }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['rack_count'] }}</td>
+    <td>{{ result['circuit_count'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['virtualmachine_count'] }}</td>
+    <td>{{ result['vlan_count'] }}</td>
+    <td>{{ result['region']['id'] }}</td>
+    <td>{{ result['region']['name'] }}</td>
+    <td>{{ result['region']['display'] }}</td>
+    <td>{{ result['region']['slug'] }}</td>
+    <td>{{ result['region']['_depth'] }}</td>
+    <td><a href="{{ result['region']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+    {%-          endfor %}
+{%-         else %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>{{ result['facility'] }}</td>
+    <td>{{ result['group']['id'] }}</td>
+    <td>{{ result['group']['name'] }}</td>
+    <td>{{ result['group']['display'] }}</td>
+    <td>{{ result['group']['slug'] }}</td>
+    <td>{{ result['group']['_depth'] }}</td>
+    <td><a href="{{ result['group']['url'] }}">URL</a></td>
+    <td>{{ result['latitude'] }}</td>
+    <td>{{ result['longitude'] }}</td>
+    <td>{{ result['time_zone'] }}</td>
+    <td>{{ result['physical_address'] | replace("\r\n"," ") }}</td>
+    <td>{{ result['shipping_address'] | replace("\r\n"," ") }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['rack_count'] }}</td>
+    <td>{{ result['circuit_count'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['virtualmachine_count'] }}</td>
+    <td>{{ result['vlan_count'] }}</td>
+    <td>{{ result['region']['id'] }}</td>
+    <td>{{ result['region']['name'] }}</td>
+    <td>{{ result['region']['display'] }}</td>
+    <td>{{ result['region']['slug'] }}</td>
+    <td>{{ result['region']['_depth'] }}</td>
+    <td><a href="{{ result['region']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-         endif %}
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "virtual-chassis" %}
+{%- include 'datatable_header.j2' %}
+<h1>Virtual Chassis</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Domain</th>
+    <th>Member Count</th>
+    <th>Master ID</th>
+    <th>Master Name</th>
+    <th>Master Display</th>
+    <th>Master URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['domain'] }}</td>
+    <td>{{ result['member_count'] }}</td>
+    <td>{{ result['master']['id'] }}</td>
+    <td>{{ result['master']['name'] }}</td>
+    <td>{{ result['master']['display'] }}</td>
+    <td><a href="{{ result['master']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "status" %}
+{%- include 'datatable_header.j2' %}
+<h1>Status</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>Netbox Version</th>
+    <th>Django Version</th>
+    <th>Python Version</th>
+    <th>RQ Workers Running</th>
+    <th>Installed Applications</th>
+    <th>Plugins</th>
+  </tr>
+  </thead>
+  <tbody>  
+  <tr>
+    <td>{{ data_to_template['netbox-version'] }}</td>
+    <td>{{ data_to_template['django-version'] }}</td>
+    <td>{{ data_to_template['python-version'] }}</td>
+    <td>{{ data_to_template['rq-workers-running'] }}</td>
+    <td>{%- for app in data_to_template['installed-apps'] %} {{ app | replace(","," ") }} {%- endfor %}</td>
+    <td>{%- for plugin in data_to_template['plugins'] %} {{ plugin | replace(",", " ") }} {%- endfor %}</td>
+  </tr>
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "aggregates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Aggregates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Prefix</th>
+    <th>Family Label</th>
+    <th>Family Value</th>
+    <th>RIR ID</th>
+    <th>RIR Name</th>
+    <th>RIR Display</th>
+    <th>RIR Slug</th>
+    <th>RIR URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>   
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['prefix'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['rir']['id'] }}</td>
+    <td>{{ result['rir']['name'] }}</td>
+    <td>{{ result['rir']['display'] }}</td>
+    <td>{{ result['rir']['slug'] }}</td>
+    <td><a href="{{ result['rir']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "asns" %}
+{%- include 'datatable_header.j2' %}
+<h1>ASNs</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>ASN</th>
+    <th>Provider Count</th>
+    <th>Site Count</th>
+    <th>RIR</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['asn'] }}</td>
+    <td>{{ result['provider_count'] }}</td>
+    <td>{{ result['site_count'] }}</td>
+    <td>{{ result['rir'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "ip-addresses" %}
+{%- include 'datatable_header.j2' %}
+<h1>IP Addresses</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Address</th>
+    <th>Assigned Object</th>
+    <th>Assigned Object ID</th>
+    <th>Assigned Object Type</th>
+    <th>DNS Name</th>
+    <th>Family Label</th>
+    <th>Family Value</th>
+    <th>NAT Inside</th>
+    <th>NAT Outside</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>VRF ID</th>
+    <th>VRF Name</th>
+    <th>VRF Display</th>
+    <th>VRF RD</th>
+    <th>VRF URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['address'] }}</td>
+    <td>{{ result['assigned_object'] }}</td>
+    <td>{{ result['assigned_object_id'] }}</td>
+    <td>{{ result['assigned_object_type'] }}</td>
+    <td>{{ result['dns_name'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['nat_inside'] }}</td>
+    <td>{{ result['nat_outside'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['vrf']['id'] }}</td>
+    <td>{{ result['vrf']['name'] }}</td>
+    <td>{{ result['vrf']['display'] }}</td>
+    <td>{{ result['vrf']['rd'] }}</td>
+    <td><a href="{{ result['vrf']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "ip-ranges" %}
+{%- include 'datatable_header.j2' %}
+<h1>IP Ranges</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Start Address</th>
+    <th>End Address</th>
+    <th>Family Label</th>
+    <th>Family Value</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <td>Role Display</th>
+    <td>Role Slug</th>
+    <td>Role URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>VRF ID</th>
+    <th>VRF Name</th>
+    <th>VRF Display</th>
+    <th>VRF RD</th>
+    <th>VRF URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['start_address'] }}</td>
+    <td>{{ result['end_address'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['vrf']['id'] }}</td>
+    <td>{{ result['vrf']['name'] }}</td>
+    <td>{{ result['vrf']['display'] }}</td>
+    <td>{{ result['vrf']['rd'] }}</td>
+    <td><a href="{{ result['vrf']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "prefixes" %}
+{%- include 'datatable_header.j2' %}
+<h1>Prefixes</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Prefix</th>
+    <th>Depth</th>
+    <th>Children</th>
+    <th>Is Pool</th>
+    <th>Mark Utilized</th>
+    <th>Family Label</th>
+    <th>Family Value</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>VRF ID</th>
+    <th>VRF Name</th>
+    <th>VRF Display</th>
+    <th>VRF RD</th>
+    <th>VRF URL</th>
+    <th>VLAN ID</th>
+    <th>VLAN Name</th>
+    <th>VLAN Display</th>
+    <th>VLAN VID</th>
+    <th>VLAN URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['prefix'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['children'] }}</td>
+    <td>{{ result['is_pool'] }}</td>
+    <td>{{ result['mark_utilized'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['vrf']['id'] }}</td>
+    <td>{{ result['vrf']['name'] }}</td>
+    <td>{{ result['vrf']['display'] }}</td>
+    <td>{{ result['vrf']['rd'] }}</td>
+    <td><a href="{{ result['vrf']['url'] }}">URL</a></td>
+    <td>{{ result['vlan']['id'] }}</td>
+    <td>{{ result['vlan']['name'] }}</td>
+    <td>{{ result['vlan']['display'] }}</td>
+    <td>{{ result['vlan']['vid'] }}</td>
+    <td><a href="{{ result['vlan']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "rirs" %}
+{%- include 'datatable_header.j2' %}
+<h1>RIRs</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Aggregate Count</th>
+    <th>Is Private</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['aggregate_count'] }}</td>
+    <td>{{ result['is_private'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "roles" %}
+{%- include 'datatable_header.j2' %}
+<h1>Roles</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Prefix Count</th>
+    <th>VLAN Count</th>
+    <th>Weight</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['vlan_count'] }}</td>
+    <td>{{ result['weight'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "route-targets" %}
+{%- include 'datatable_header.j2' %}
+<h1>Route Targets</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "service-templates" %}
+{%- include 'datatable_header.j2' %}
+<h1>Service Templates</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Ports</th>
+    <th>Protocol Label</th>
+    <th>Protocol Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>   
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{%- for port in result['ports'] %} {{ port }} {%- endfor %}</td>
+    <td>{{ result['protocol']['label'] }}</td>
+    <td>{{ result['protocol']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "services" %}
+{%- include 'datatable_header.j2' %}
+<h1>Services</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Ports</th>
+    <th>Protocol Label</th>
+    <th>Protocol Value</th>
+    <th>IP Addresses</th>
+    <th>Device ID</th>
+    <th>Device Name</th>
+    <th>Device Display</th>
+    <th>Device URL</th>
+    <th>Virtual Machine ID</th>
+    <th>Virtual Machine Name</th>
+    <th>Virtual Machine Display</th>
+    <th>Virtual Machine URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{%- for port in result['ports'] %} {{ port }} {%- endfor %}</td>
+    <td>{{ result['protocol']['label'] }}</td>
+    <td>{{ result['protocol']['value'] }}</td>
+    <td>{%- for ip in result['ipaddresses'] %} {{ ip }} {%- endfor %}</td>
+    <td>{{ result['device']['id'] }}</td>
+    <td>{{ result['device']['name'] }}</td>
+    <td>{{ result['device']['display'] }}</td>
+    <td><a href="{{ result['device']['url'] }}">URL</a></td>
+    <td>{{ result['virtual_machine']['id'] }}</td>
+    <td>{{ result['virtual_machine']['name'] }}</td>
+    <td>{{ result['virtual_machine']['display'] }}</td>
+    <td><a href="{{ result['virtual_machine']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "vlan-groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>VLAN Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Max VID</th>
+    <th>Min VID</th>
+    <th>Scope ID</th>
+    <th>Scope Name</th>
+    <th>Scope Display</th>
+    <th>Scope Slug</th>
+    <th>Scope URL</th>
+    <th>Scope Type</th>
+    <th>VLAN Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody> 
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['max_vid'] }}</td>
+    <td>{{ result['min_vid'] }}</td>
+    <td>{{ result['scope']['id'] }}</td>
+    <td>{{ result['scope']['name'] }}</td>
+    <td>{{ result['scope']['display'] }}</td>
+    <td>{{ result['scope']['slug'] }}</td>
+    <td><a href="{{ result['scope']['url'] }}">URL</a></td>
+    <td>{{ result['scope_type'] }}</td>
+    <td>{{ result['vlan_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "vlans" %}
+{%- include 'datatable_header.j2' %}
+<h1>VLANs</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>VID</th>
+    <th>Prefix Count</th>
+    <th>Group ID</th>
+    <th>Group Name</th>
+    <th>Group Display</th>
+    <th>Group Slug</th>
+    <th>Group URL</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+  </thead>
+  <tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['vid'] }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['group']['id'] }}</td>
+    <td>{{ result['group']['name'] }}</td>
+    <td>{{ result['group']['display'] }}</td>
+    <td>{{ result['group']['slug'] }}</td>
+    <td><a href="{{ result['group']['url'] }}">URL</a></td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "vrfs" %}
+{%- include 'datatable_header.j2' %}
+<h1>VRFs</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Enforce Unique</th>
+    <th>IP Address Count</th>
+    <th>Prefix Count</th>
+    <th>RD</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Export Target ID</th>
+    <th>Export Target Name</th>
+    <th>Export Target Display</th>
+    <th>Export Target URL</th>
+    <th>Import Target ID</th>
+    <th>Import Target Name</th>
+    <th>Import Target Display</th>
+    <th>Import Target URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+{%-         for export_target in result['export_targets'] %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['enforce_unique'] }}</td>
+    <td>{{ result['ipaddress_count'] }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['rd'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href = "{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ export_target['id'] }}</td>
+    <td>{{ export_target['name'] }}</td>
+    <td>{{ export_target['display'] }}</td>
+    <td><a href="{{ export_target['url'] }}">URL</a></td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-         endfor %}
+{%-         for import_target in result['import_targets'] %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['enforce_unique'] }}</td>
+    <td>{{ result['ipaddress_count'] }}</td>
+    <td>{{ result['prefix_count'] }}</td>
+    <td>{{ result['rd'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>{{ import_target['id'] }}</td>
+    <td>{{ import_target['name'] }}</td>
+    <td>{{ import_target['display'] }}</td>
+    <td><a href="{{ import_target['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-         endfor %}
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "contact-assignments" %}
+{%- include 'datatable_header.j2' %}
+<h1>Contact Assignments</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Contact ID</th>
+    <th>Contact Name</th>
+    <th>Contact Display</th>
+    <th>Contact URL</th>
+    <th>Content Type</th>
+    <th>Object ID</th>
+    <th>Object Name</th>
+    <th>Object Display</th>
+    <th>Object Slug</th>
+    <th>Object URL</th>
+    <th>Priority Label</th>
+    <th>Priority Value</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['contact']['id'] }}</td>
+    <td>{{ result['contact']['name'] }}</td>
+    <td>{{ result['contact']['display'] }}</td>
+    <td><a href="{{ result['contact']['url'] }}">URL</a></td>
+    <td>{{ result['content_type'] }}</td>
+    <td>{{ result['object']['id'] }}</td>
+    <td>{{ result['object']['name'] }}</td>
+    <td>{{ result['object']['display'] }}</td>
+    <td>{{ result['object']['slug'] }}</td>
+    <td><a href="{{ result['object']['url'] }}">URL</a></td>
+    <td>{{ result['priority']['label'] }}</td>
+    <td>{{ result['priority']['value'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "contact-groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>Contact Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Depth</th>
+    <th>Contact Count</th>
+    <th>Parent ID</th>
+    <th>Parent Name</th>
+    <th>Parent Display</th>
+    <th>Parent Slug</th>
+    <th>Parent Depth</th>
+    <th>Parent URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['contact_count'] }}</td>
+    <td>{{ result['parent']['id'] }}</td>
+    <td>{{ result['parent']['name'] }}</td>
+    <td>{{ result['parent']['display'] }}</td>
+    <td>{{ result['parent']['slug'] }}</td>
+    <td>{{ result['parent']['_depth'] }}</td>
+    <td><a href="{{ result['parent']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "contact-roles" %}
+{%- include 'datatable_header.j2' %}
+<h1>Contact Roles</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "contacts" %}
+{%- include 'datatable_header.j2' %}
+<h1>Contacts</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Comments</th>
+    <th>Title</th>
+    <th>Address</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Link</th>
+    <th>Group ID</th>
+    <th>Group Name</th>
+    <th>Group Display</th>
+    <th>Group Slug</th>
+    <th>Group Depth</th>
+    <th>Group URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['title'] }}</td>
+    <td>{{ result['address'] | replace("\r\n"," ") }}</td>
+    <td>{{ result['email'] }}</td>
+    <td>{{ result['phone'] }}</td>
+    <td>{{ result['link'] }}</td>
+    <td>{{ result['group']['id'] }}</td>
+    <td>{{ result['group']['name'] }}</td>
+    <td>{{ result['group']['display'] }}</td>
+    <td>{{ result['group']['slug'] }}</td>
+    <td>{{ result['group']['_depth'] }}</td>
+    <td><a href="{{ result['group']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "tenant-groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>Tenant Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Depth</th>
+    <th>Tenant Count</th>
+    <th>Parent ID</th>
+    <th>Parent Name</th>
+    <th>Parent Display</th>
+    <th>Parent Slug</th>
+    <th>Parent Depth</th>
+    <th>Parent URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['_depth'] }}</td>
+    <td>{{ result['tenant_count'] }}</td>
+    <td>{{ result['parent']['id'] }}</td>
+    <td>{{ result['parent']['name'] }}</td>
+    <td>{{ result['parent']['display'] }}</td>
+    <td>{{ result['parent']['slug'] }}</td>
+    <td>{{ result['parent']['_depth'] }}</td>
+    <td><a href="{{ result['parent']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>User Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>User Count</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>  
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['user_count'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "tokens" %}
+{%- include 'datatable_header.j2' %}
+<h1>User Tokens</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Description</th>
+    <th>Key</th>
+    <th>Write Enabled</th>
+    <th>User ID</th>
+    <th>User Display</th>
+    <th>Username</th>
+    <th>User URL</th>
+    <th>Created</th>
+    <th>Expires</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['key'] }}</td>
+    <td>{{ result['write_enabled'] }}</td>
+    <td>{{ result['user']['id'] }}</td>
+    <td>{{ result['user']['display'] }}</td>
+    <td>{{ result['user']['username'] }}</td>
+    <td><a href="{{ result['user']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['expires'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "users" %}
+{%- include 'datatable_header.j2' %}
+<h1>Users</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Username</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Active</th>
+    <th>Staff</th>
+    <th>Date Joined</th>
+    <th>Group ID</th>
+    <th>Group Name</th>
+    <th>Group Display</th>
+    <th>Group URL</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+{%-         for group in result['groups'] %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['username'] }}</td>
+    <td>{{ result['first_name'] }}</td>
+    <td>{{ result['last_name'] }}</td>
+    <td>{{ result['email'] }}</td>
+    <td>{{ result['is_active'] }}</td>
+    <td>{{ result['is_staff'] }}</td>
+    <td>{{ result['date_joined'] }}</td>
+    <td>{{ group['id'] }}</td>
+    <td>{{ group['name'] }}</td>
+    <td>{{ group['display'] }}</td>
+    <td><a href="{{ group['url'] }}">URL</a></td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-         endfor %}
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "cluster-groups" %}
+{%- include 'datatable_header.j2' %}
+<h1>Cluster Groups</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Cluster Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['cluster_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "cluster-types" %}
+{%- include 'datatable_header.j2' %}
+<h1>Cluster Types</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Slug</th>
+    <th>Cluster Count</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['slug'] }}</td>
+    <td>{{ result['cluster_count'] }}</td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "clusters" %}
+{%- include 'datatable_header.j2' %}
+<h1>Clusters</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Comments</th>
+    <th>Device Count</th>
+    <th>Virtual Machine Count</th>
+    <th>Type ID</th>
+    <th>Type Name</th>
+    <th>Type Display</th>
+    <th>Type Slug</th>
+    <th>Type URL</th>
+    <th>Group ID</th>
+    <th>Group Name</th>
+    <th>Group Display</th>
+    <th>Group Slug</th>
+    <th>Group URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['device_count'] }}</td>
+    <td>{{ result['virtualmachine_count'] }}</td>
+    <td>{{ result['type']['id'] }}</td>
+    <td>{{ result['type']['name'] }}</td>
+    <td>{{ result['type']['display'] }}</td>
+    <td>{{ result['type']['slug'] }}</td>
+    <td><a href="{{ result['type']['url'] }}">URL</a></td>
+    <td>{{ result['group']['id'] }}</td>
+    <td>{{ result['group']['name'] }}</td>
+    <td>{{ result['group']['display'] }}</td>
+    <td>{{ result['group']['slug'] }}</td>
+    <td><a href="{{ result['group']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "virtual-interfaces" %}
+{%- include 'datatable_header.j2' %}
+<h1>Virtual Interfaces</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Bridge</th>
+    <th>FHRP Groups</th>
+    <th>IP Addresses</th>
+    <th>Enabled</th>
+    <th>MAC Address</th>
+    <th>Mode</th>
+    <th>MTU</th>
+    <th>Tagged VLANs</th>
+    <th>Untagged VLAN</th>
+    <th>VRF</th>
+    <th>Virtual Machine ID</th>
+    <th>Virtual Machine Name</th>
+    <th>Virtual Machine Display</th>
+    <th>Virtual Machine URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['bridge'] }}</td>
+    <td>{{ result['count_fhrp_groups'] }}</td>
+    <td>{{ result['count_ipaddresses'] }}</td>
+    <td>{{ result['enabled'] }}</td>
+    <td>{{ result['mac_address'] }}</td>
+    <td>{{ result['mode'] }}</td>
+    <td>{{ result['mtu'] }}</td>
+    <td>{%- for vlan in result['tagged_vlans'] %} {{ vlan }} {%- endfor %}</td>
+    <td>{{ result['untagged_vlan'] }}</td>
+    <td>{{ result['vrf'] }}</td>
+    <td>{{ result['virtual_machine']['id'] }}</td>
+    <td>{{ result['virtual_machine']['name'] }}</td>
+    <td>{{ result['virtual_machine']['display'] }}</td>
+    <td><a href="{{ result['virtual_machine']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- else %}
+{%- if api == "virtual-machines" %}
+{%- include 'datatable_header.j2' %}
+<h1>Clusters</h1>
+<table id = "datatable">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Display</th>
+    <th>Name</th>
+    <th>Comments</th>
+    <th>Disk</th>
+    <th>Memory</th>
+    <th>Primary IP</th>
+    <th>Primary IPv4</th>
+    <th>Primary IPv6</th>
+    <th>Status Label</th>
+    <th>Status Value</th>
+    <th>Cluster ID</th>
+    <th>Cluster Name</th>
+    <th>Cluster Display</th>
+    <th>Cluster URL</th>
+    <th>Platform ID</th>
+    <th>Platform Name</th>
+    <th>Platform Display</th>
+    <th>Platform Slug</th>
+    <th>Platform URL</th>
+    <th>Role ID</th>
+    <th>Role Name</th>
+    <th>Role Display</th>
+    <th>Role Slug</th>
+    <th>Role URL</th>
+    <th>Site ID</th>
+    <th>Site Name</th>
+    <th>Site Display</th>
+    <th>Site Slug</th>
+    <th>Site URL</th>
+    <th>Tenant ID</th>
+    <th>Tenant Name</th>
+    <th>Tenant Display</th>
+    <th>Tenant Slug</th>
+    <th>Tenant URL</th>
+    <th>Created</th>
+    <th>Last Updated</th>
+    <th>URL</th>
+  </tr>
+</thead>
+<tbody>
+{%-     for result in data_to_template %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['name'] }}</td>
+    <td>{{ result['comments'] }}</td>
+    <td>{{ result['disk'] }}</td>
+    <td>{{ result['memory'] }}</td>
+    <td>{{ result['primary_ip'] }}</td>
+    <td>{{ result['primary_ipv4'] }}</td>
+    <td>{{ result['primary_ipv6'] }}</td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['cluster']['id'] }}</td>
+    <td>{{ result['cluster']['name'] }}</td>
+    <td>{{ result['cluster']['display'] }}</td>
+    <td><a href="{{ result['cluster']['url'] }}">URL</a></td>
+    <td>{{ result['platform']['id'] }}</td>
+    <td>{{ result['platform']['name'] }}</td>
+    <td>{{ result['platform']['display'] }}</td>
+    <td>{{ result['platform']['slug'] }}</td>
+    <td><a href="{{ result['platform']['url'] }}">URL</a></td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['site']['id'] }}</td>
+    <td>{{ result['site']['name'] }}</td>
+    <td>{{ result['site']['display'] }}</td>
+    <td>{{ result['site']['slug'] }}</td>
+    <td><a href="{{ result['site']['url'] }}">URL</a></td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-     endfor %}
+  </tbody>  
+</table>
+{%- include 'datatable_footer.j2' %}
+{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}

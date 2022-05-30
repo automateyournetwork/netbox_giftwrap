@@ -1,0 +1,2187 @@
+{%- if api == "circuit-terminations" %}
+# Circuit Termination
+## ID: {{ result['id'] }}
+### Description: {{ result['description'] }}
+### Display: {{ result['display'] }}
+### Occupied: {{ result['_occupied'] }}
+{%- if result['cable'] %}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [Cable URL]({{ result['cable']['url'] }})
+{%- endif %}
+{%- if result['circuit'] %}
+### Circuit
+#### CID: {{ result['circuit']['cid'] }}
+#### Display: {{ result['circuit']['display'] }}
+#### ID: {{ result['circuit']['id'] }}
+#### [Circuit URL]({{ result['circuit']['url'] }})
+{%- endif %}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+{%- if result['link_peer'] %}
+### Link Peer
+#### Occupied: {{ result['link_peer']['_occupied'] | default("False") }}
+#### Cable: {{ result['link_peer']['cable'] }}
+{%-     if result['link_peer']['device'] is defined %}{{ result['link_peer']['device']['id'] }}
+#### Device Name: {{ result['link_peer']['device']['name'] }}
+#### Device Display: {{ result['link_peer']['device']['display'] }}
+#### [Device URL]({{ result['link_peer']['device']['url'] }})
+{%-     endif %}
+{%- endif %}
+#### Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Port Speed: {{ result['port_speed'] }}
+### PP Info: {{ result['pp_info'] }}
+{%- if result['provider_network'] %}
+### Provider Network
+#### ID: {{ result['provider_network']['id'] }}
+#### Name: {{ result['provider_network']['name'] }}
+#### Display: {{ result['provider_network']['display'] }}
+#### [Provider Network URL]({{ result['provider_network']['url'] }})
+{%- endif %}
+{%- if result['site'] %}
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [Site URL]({{ result['site']['url'] }})
+{%- endif %}
+### Term Side: {{ result['term_side'] }}
+### Upstream Speed: {{ result['upstream_speed'] }}
+### [URL]({{ result['url'] }})
+### X-Connect ID: {{ result['xconnect_id'] }}
+{%- else %}
+{%- if api == "circuit-types" %}
+# Circuit Type
+## ID: {{ result['id'] }}
+### Name: {{ result['name'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Circuit Count: {{ result['circuit_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "circuits" %}
+# Circuit
+## ID: {{ result['id'] }}
+### CID: {{ result['cid'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Comments: {{ result['comments'] }}
+### Commit Rate: {{ result['commit_rate'] }}
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name']}}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Type
+#### ID: {{ result['type']['id'] }}
+#### Name: {{ result['type']['name'] }}
+#### Display: {{ result['type']['display'] }}
+#### Slug: {{ result['type']['slug'] }}
+#### [URL]({{ result['type']['url'] }})
+### Provider
+#### ID: {{ result['provider']['id'] }}
+#### Name: {{ result['provider']['name'] }}
+#### Display: {{ result['provider']['display'] }}
+#### Slug: {{ result['provider']['slug'] }}
+#### [URL]({{ result['provider']['url'] }})
+### Termination A
+#### ID: {{ result['termination_a']['id'] }}
+#### Display: {{ result['termination_a']['display'] }}
+#### Port Speed: {{ result['termination_a']['port_speed'] }}
+{%- if result['termination_a']['site'] is defined %}
+#### Site
+##### ID: {{ result['termination_a']['site']['id'] }}
+##### Name: {{ result['termination_a']['site']['name'] }}
+##### Display: {{ result['termination_a']['site']['display'] }}
+##### Slug: {{ result['termination_a']['site']['slug'] }}
+##### [URL]({{ result['termination_a']['site']['url'] }})
+{%- endif %}
+#### Upstream Speed: {{ result['termination_a']['upstream_speed'] }}
+{%- if result['termination_a']['provider_network'] is defined %}
+#### Provider Network
+##### ID: {{ result['termination_a']['provider_network']['id'] }}
+##### Name: {{ result['termination_a']['provider_network']['name'] }}
+##### Display: {{ result['termination_a']['provider_network']['display'] }}
+##### [URL]({{ result['termination_a']['provider_network']['url'] }})
+{%- endif %}
+#### [URL]({{ result['termination_a']['url'] }})
+#### Cross Connect ID: {{ result['termination_a']['xconnect_id'] }}
+### Termination Z
+#### ID: {{ result['termination_z']['id'] }}
+#### Display: {{ result['termination_z']['display'] }}
+#### Port Speed: {{ result['termination_z']['port_speed'] }}
+{%- if result['termination_z']['site'] is defined %}
+#### Site
+##### ID: {{ result['termination_z']['site']['id'] }}
+##### Name: {{ result['termination_z']['site']['name'] }}
+##### Display: {{ result['termination_z']['site']['display'] }}
+##### Slug: {{ result['termination_z']['site']['slug'] }}
+##### [URL]({{ result['termination_z']['site']['url'] }})
+{%- endif %}
+#### Upstream Speed: {{ result['termination_z']['upstream_speed'] }}
+{%- if result['termination_z']['provider_network'] is defined %}
+#### Provider Network
+##### ID: {{ result['termination_z']['provider_network']['id'] }}
+##### Name: {{ result['termination_z']['provider_network']['name'] }}
+##### Display: {{ result['termination_z']['provider_network']['display'] }}
+##### [URL]({{ result['termination_z']['provider_network']['url'] }})
+{%- endif %}
+#### [URL]({{ result['termination_z']['url'] }})
+#### Cross Connect ID: {{ result['termination_z']['xconnect_id'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+#### Install Date: {{ result['install_date'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "provider-networks" %}
+# Provider Network
+## ID: {{ result['id'] }}
+### Name: {{ result['name'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Comments: {{ result['comments'] }}
+### Service ID: {{ result['service_id'] }}
+### Provider
+#### ID: {{ result['provider']['id'] }}
+#### Name: {{ result['provider']['name'] }}
+#### Display: {{ result['provider']['display'] }}
+#### Slug: {{ result['provider']['slug'] }}
+#### [URL]({{ result['provider']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "providers" %}
+# Provider
+## ID: {{ result['id'] }}
+### Name: {{ result['name'] }}
+### Display: {{ result['display'] }}
+### Account: {{ result['account'] }}
+### Contacts
+#### Admin: {{ result['admin_contact'] }}
+#### NOC: {{ result['noc_contact'] }}
+### ASN: {{ result['asn'] }}
+### Circuit Count: {{ result['circuit_count'] }}
+### Comments: {{ result['comments'] }}
+### Slug: {{ result['slug'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### URLs
+#### [Portal]({{ result['portal_url'] }})
+#### [URL]({{ result['url'] }})
+{% else %}
+{% if api == "cables" %}
+# Cable
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Label: {{ result['label'] }}
+### Type: {{ result['type'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name']}}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Color: {{ result['color'] }}
+### Length
+#### Length: {{ result['length'] }}
+#### Unit: {{ result['length_unit'] }}
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Termination A
+#### ID: {{ result['termination_a_id'] }}
+#### Type: {{ result['termination_a_type'] }}
+#### Display: {{ result['termination_a']['display'] }}
+#### Cable: {{ result['termination_a']['cable'] }}
+#### Occupied: {{ result['termination_a']['_occupied'] }}
+#### Term Side: {{ result['termination_a']['term_side'] }}
+{%- if result['termination_a']['circuit'] is defined %}
+#### Circuit
+##### ID: {{ result['termination_a']['circuit']['id'] }}
+##### CID: {{ result['termination_a']['circuit']['cid'] }}
+##### Display: {{ result['termination_a']['circuit']['display'] }}
+##### [URL]({{ result['termination_a']['circuit']['url'] }})
+{%- endif %}
+#### [URL]({{ result['termination_a']['url'] }})
+### Termination B
+#### ID: {{ result['termination_b_id'] }}
+#### Type: {{ result['termination_b_type'] }}
+#### Display: {{ result['termination_b']['display'] }}
+#### Cable: {{ result['termination_b']['cable'] }}
+#### Occupied: {{ result['termination_b']['_occupied'] }}
+#### Term Side: {{ result['termination_b']['term_side'] }}
+{%- if result['termination_b']['circuit'] is defined %}
+#### Circuit
+##### ID: {{ result['termination_b']['circuit']['id'] }}
+##### CID: {{ result['termination_b']['circuit']['cid'] }}
+##### Display: {{ result['termination_b']['circuit']['display'] }}
+##### [URL]({{ result['termination_b']['circuit']['url'] }})
+{%- endif %}
+#### [URL]({{ result['termination_b']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "console-port-templates" %}
+# Console Port Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Module Type
+#### ID: {{ result['module_type']['id'] }}
+#### Display: {{ result['module_type']['display'] }}
+#### Model: {{ result['module_type']['model'] }}
+{%- if result['module_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['module_type']['manufacturer']['id'] }}
+##### Name: {{ result['module_type']['manufacturer']['name'] }}
+##### Display: {{ result['module_type']['manufacturer']['display'] }}
+##### Slug: {{ result['module_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['module_type']['manufacturer']['url'] }})
+{%- endif %}
+#### [URL]({{ result['module_type']['url'] }})
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### [URL]({{ result['device_type']['url'] }})
+{%- if result['device_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+{%- endif %}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "console-ports" %}
+# Console Port
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Occupied: {{ result['_occupied'] }}
+{%- if result['device'] is defined %}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+{%- endif %}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Connected
+#### Endpoint: {{ result['connected_endpoint'] }}
+#### Reachable: {{ result['connected_endpoint_reachable'] }}
+#### Type: {{ result['connected_endpoint_type'] }}
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### [URL]({{ result['link_peer']['url'] }})
+### Link Peer Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Module
+#### ID: {{ result['module']['id'] }}
+#### Display: {{ result['module']['display'] }}
+#### Device: {{ result['module']['device'] }}
+{% if result['module']['module_bay'] is defined %}
+#### Module Bay
+##### ID: {{ result['module']['module_bay']['id'] }}
+##### Name: {{ result['module']['module_bay']['name'] }}
+##### Display: {{ result['module']['module_bay']['display'] }}
+##### [URL]({{ result['module']['module_bay']['url'] }})
+{%- endif %}
+#### [URL]({{ result['module']['url'] }})
+### Speed: {{ result['speed'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated']}}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "device-bay-templates"%}
+# Device Bay Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+#### [URL]({{ result['device_type']['url'] }})
+### Timestamps
+#### Created: {{ result['created']}}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "device-bays" %}
+# Device Bay
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Display: {{ result['device']['display'] }}
+#### Name: {{ result['device']['name'] }}
+#### [URL]({{ result['device']['url'] }})
+### Installed Device: {{ result['installed_device'] }}
+### Timestamps
+#### Created: {{ result['created']}}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }}")
+{%- else %}
+{%- if api == "device-roles" %}
+# Device Role
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Totals
+#### Device Count: {{ result['device_count'] }}
+#### Virtual Machine Count: {{ result['virtualmachine_count'] }}
+### VM Role: {{ result['vm_role'] }}
+### Color: {{ result['color'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }}")
+{%- else %}
+{%- if api == "device-types" %}
+# Device Type
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Slug: {{ result['slug'] }}
+### Comments: {{ result['comments'] }}
+### Model: {{ result['model'] }}
+### Part Number: {{ result['part_number'] }}
+### Device Count: {{ result['device_count'] }}
+### Sub Device Role
+#### Label: {{ result['subdevice_role']['label'] }}
+#### Value: {{ result['subdevice_role']['value'] }}
+### Manufacturer
+#### ID: {{ result['manufacturer']['id'] }}
+#### Name: {{ result['manufacturer']['name'] }}
+#### Display: {{ result['manufacturer']['display'] }}
+#### Slug: {{ result['manufacturer']['slug'] }}
+#### [URL]({{ result['manufacturer']['url'] }})
+### Rack Dimensions
+#### U Height: {{ result['u_height'] }}
+#### Full Depth: {{ result['is_full_depth'] }}
+### Images
+#### [Front]({{ result['front_image']}})
+#### [Rear]({{ result['rear_image']}})
+### Airflow: {{ result['airflow']}}
+### Timestamps
+#### Created: {{ result['created']}}
+#### Last Updated: {{ result['last_updated']}}
+### [URL]({{ result['url']}})
+{%- else %}
+{%- if api == "devices" %}
+# Device
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Comments: {{ result['comments'] }}
+### Asset Tag: {{ result['asset_tag'] }}
+### Serial: {{ result['serial'] }}
+### Location
+#### ID: {{ result['location']['id'] }}
+#### Name: {{ result['location']['name'] }}
+#### Display: {{ result['location']['display'] }}
+#### Slug: {{ result['location']['slug'] }}
+#### Depth: {{ result['location']['_depth'] }}
+#### [URL]({{ result['location']['url'] }})
+### Platform
+#### ID: {{ result['platform']['id'] }}
+#### Name: {{ result['platform']['name'] }}
+#### Display: {{ result['platform']['display'] }}
+#### Slug: {{ result['platform']['slug'] }}
+#### [URL]({{ result['platform']['url'] }})
+### Parent Device: {{ result['parent_device'] }}
+### Cluster: {{ result['cluster'] }}
+### Position: {{ result['position'] }}
+### Airflow: {{ result['airflow'] }}
+### Device Role
+#### ID: {{ result['device_role']['id'] }}
+#### Name: {{ result['device_role']['name'] }}
+#### Display: {{ result['device_role']['display'] }}
+#### Slug: {{ result['device_role']['slug'] }}
+#### [URL]({{ result['device_role']['url'] }})
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### Model: {{ result['device_type']['model'] }}
+{%- if result['device_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+{%- endif %}
+#### [URL]({{ result['device_type']['url'] }})
+### Face
+#### Label: {{ result['face']['label'] }}
+#### Value: {{ result['face']['value'] }}
+### Rack
+#### ID: {{ result['rack']['id'] }}
+#### Name: {{ result['rack']['name'] }}
+#### Display: {{ result['rack']['display'] }}
+#### [URL]({{ result['rack']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### IP Addresses
+#### Primary: {{ result['primary_ip'] }}
+#### Primary IPv4: {{ result['primary_ip4'] }}
+#### Primary IPv6: {{ result['primary_ip6'] }}
+### VC 
+#### Position: {{ result['vc_position'] }}
+#### Priority: {{ result['vc_priority'] }}
+### Virtual Chassis: {{ result['virtual_chassis'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "front-port-templates" %}
+# Front Port Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Module Type: {{ result['module_type'] }}
+### Color: {{ result['color'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+#### [URL]({{ result['device_type']['url'] }})
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Rear Port
+#### ID: {{ result['rear_port']['id'] }}
+#### Name: {{ result['rear_port']['name'] }}
+#### Display: {{ result['rear_port']['display'] }}
+#### [URL]({{ result['rear_port']['url'] }})
+#### Position: {{ result['rear_port_position'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "front-ports" %}
+# Front Port
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Description: {{ result['description'] }}
+### Occupied: {{ result['_occupied'] }}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Color: {{ result['color'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### [URL]({{ result['link_peer']['url'] }})
+#### Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Module: {{ result['module'] }}
+### Rear Port
+#### ID: {{ result['rear_port']['id'] }}
+#### Name: {{ result['rear_port']['name'] }}
+#### Display: {{ result['rear_port']['display'] }}
+#### Label: {{ result['rear_port']['label'] }}
+#### [URL]({{ result['rear_port']['url'] }})
+#### Position: {{ result['rear_port_position'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "interface-templates" %}
+# Interface Template 
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Description: {{ result['description'] }}
+### Management Only: {{ result['mgmt_only'] }}
+### Module Type
+#### ID: {{ result['module_type']['id'] }}
+#### Display: {{ result['module_type']['display'] }}
+#### Model: {{ result['module_type']['model'] }}
+#### [URL]({{ result['module_type']['url'] }})
+{%- if result['module_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['module_type']['manufacturer']['id'] }}
+##### Name: {{ result['module_type']['manufacturer']['name'] }}
+##### Display: {{ result['module_type']['manufacturer']['display'] }}
+##### Slug: {{ result['module_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['module_type']['manufacturer']['url'] }})
+{%- endif %}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### [URL]({{ result['device_type']['url'] }})
+{%- if result['device_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+{%- endif %}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "interfaces" %}
+# Interface
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Description: {{ result['description'] }}
+### Management Only: {{ result['mgmt_only'] }}
+### Module
+#### ID: {{ result['module']['id'] }}
+#### Display: {{ result['module']['display'] }}
+#### Device: {{ result['module']['device'] }}
+#### Slot: {{ result['module']['slot'] }}
+#### [URL]({{ result['module']['url'] }})
+{%- if result['module']['module_bay'] is defined %}
+#### Module Bay
+##### ID: {{ result['module']['module_bay']['id'] }}
+##### Name: {{ result['module']['module_bay']['name'] }}
+##### Display: {{ result['module']['module_bay']['display'] }}
+##### [URL]({{ result['module']['module_bay']['url'] }})
+{% endif %}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Occupied: {{ result['_occupied'] }}
+### Bridge: {{ result['bridge'] }}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Connected Endpoint
+#### ID: {{ result['connected_endpoint']['id'] }}
+#### Name: {{ result['connected_endpoint']['name'] }}
+#### Display: {{ result['connected_endpoint']['display'] }}
+#### Occupied: {{ result['connected_endpoint']['_occupied'] }}
+#### Cable: {{ result['connected_endpoint']['cable'] }}
+#### [URL]({{ result['connected_endpoint']['url'] }})
+{%- if result['connected_endpoint']['device'] is defined %}
+#### Device
+##### ID: {{ result['connected_endpoint']['device']['id'] }}
+##### Name: {{ result['connected_endpoint']['device']['name'] }}
+##### Display: {{ result['connected_endpoint']['device']['display'] }}
+##### [URL]({{ result['connected_endpoint']['device']['url'] }})
+{%- endif %}
+#### Reachable: {{ result['connected_endpoint_reachable'] }}
+#### Type: {{ result['connected_endpoint_type'] }}
+### Count
+#### FHRP Groups: {{ result['count_fhrp_groups'] }}
+#### IP Addresses: {{ result['count_ipaddresses'] }}
+### Duplex: {{ result['duplex'] }}
+### Enabled: {{ result['enabled'] }}
+### LAG
+#### ID: {{ result['lag']['id'] }}
+#### Name: {{ result['lag']['name'] }}
+#### Display: {{ result['lag']['display'] }}
+#### Occupied: {{ result['lag']['_occupied'] }}
+#### Cable: {{ result['lag']['cable'] }}
+#### [URL]({{ result['lag']['url'] }})
+{%- if result['lag']['device'] is defined %}
+#### Device
+##### ID: {{ result['lag']['device']['id'] }}
+##### Name: {{ result['lag']['device']['name'] }}
+##### Display: {{ result['lag']['device']['display'] }}
+##### [URL]({{ result['lag']['device']['url'] }})
+{%- endif %}
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### [URL]({{ result['link_peer']['url'] }})
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### Type: {{ result['link_peer_type'] }}
+### MAC Address: {{ result['mac_address'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Mode: {{ result['mode'] }}
+### MTU: {{ result['mtu'] }}
+### RF
+#### Channel
+##### {{ result['rf_channel'] }}
+##### Frequency: {{ result['rf_channel_frequency'] }}
+##### Width: {{ result['rf_channel_width'] }}
+#### Role: {{ result['rf_role'] }}
+### Speed: {{ result['speed'] }}
+### VLANs
+#### Tagged: {{ result['tagged_vlans'] }}
+#### Untagged: {{ result['untagged_vlan'] }}
+#### Wireless: {{ result['wireless_lans'] }}
+### TX Power: {{ result['tx_power'] }}
+### VRF: {{ result['vrf'] }}
+### Wireless Link: {{ result['wireless_link'] }}
+### WWN: {{ result['wwn'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "inventory-items" %}
+# Inventory Item
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Description: {{ result['description'] }}
+### Asset Tag: {{ result['asset_tag'] }}
+### Component
+#### ID: {{ result['component_id'] }}
+#### Type: {{ result['component_type'] }}
+#### Name: {{ result['component']['name'] }}
+#### Display: {{ result['component']['display'] }}
+#### Occupied: {{ result['component']['_occupied'] }}
+#### Cable: {{ result['component']['cable'] }}
+#### [URL]({{ result['component']['url'] }})
+#### Device
+##### ID: {{ result['component']['device']['id'] }}
+##### Name: {{ result['component']['device']['name'] }}
+##### Display: {{ result['component']['device']['display'] }}
+##### [URL]({{ result['component']['device']['url'] }})
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Discovered: {{ result['discovered'] }}
+### Manufacturer: {{ result['manufacturer'] }}
+### Part ID: {{ result['part_id'] }}
+### Role: {{ result['role'] }}
+### Serial Number: {{ result['serial'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "locations" %}
+# Location
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Depth: {{ result['_depth'] }}
+### Totals
+#### Device Count: {{ result['device_count'] }}
+#### Rack Count: {{ result['rack_count'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name']}}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "manufacturers" %}
+# Manufacturer
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Totals
+#### Device Type Count: {{ result['devicetype_count'] }}
+#### Inventory Item Count: {{ result['inventoryitem_count'] }}
+#### Platform Count: {{ result['platform_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "module-bay-templates" %}
+# Module Bay Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Position: {{ result['position'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### [URL]({{ result['device_type']['url'] }})
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "module-bays" %}
+# Module Bay
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Position: {{ result['position'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "module-types" %}    
+# Module Type    
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Model: {{ result['model'] }}
+### Part Number: {{ result['part_number'] }}
+### Comments: {{ result['comments'] }}
+### Manufacturer
+#### ID: {{ result['manufacturer']['id'] }}
+#### Name: {{ result['manufacturer']['name'] }}
+#### Display: {{ result['manufacturer']['display'] }}
+#### Slug: {{ result['manufacturer']['slug'] }}
+#### [URL]({{ result['manufacturer']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "modules" %}
+# Module
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Asset Tag: {{ result['asset_tag'] }}
+### Comments: {{ result['comments'] }}
+### Serial Number: {{ result['serial'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Module Bay
+#### ID: {{ result['module_bay']['id'] }}
+#### Name: {{ result['module_bay']['name'] }}
+#### Display: {{ result['module_bay']['display'] }}
+#### [URL]({{ result['module_bay']['url'] }})
+### Module Type
+#### ID: {{ result['module_type']['id'] }}
+#### Display: {{ result['module_type']['display'] }}
+#### Model: {{ result['module_type']['model'] }}
+#### [URL]({{ result['module_type']['url'] }})
+{%- if result['module_type']['manufacturer'] is defined %}
+#### Manufacturer
+##### ID: {{ result['module_type']['manufacturer']['id'] }}
+##### Name: {{ result['module_type']['manufacturer']['name'] }}
+##### Display: {{ result['module_type']['manufacturer']['display'] }}
+##### Slug: {{ result['module_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['module_type']['manufacturer']['url'] }})
+{%- endif %}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "platforms" %}
+# Platform
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Slug: {{ result['slug'] }}
+### Totals
+#### Device Count: {{ result['device_count'] }}
+#### Virtual Machine Count: {{ result['virtualmachine_count'] }}
+### Manufacturer
+#### ID: {{ result['manufacturer']['id'] }}
+#### Name: {{ result['manufacturer']['name'] }}
+#### Display: {{ result['manufacturer']['display'] }}
+#### Slug: {{ result['manufacturer']['slug'] }}
+#### [URL]({{ result['manufacturer']['url'] }})
+### Napalm
+#### Driver: {{ result['napalm_driver'] }}
+#### Arguments: {{ result['napalm_args'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-feeds" %}
+# Power Feed
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Comments: {{ result['comments'] }}
+### Occupied: {{ result['_occupied'] }}
+### Power
+#### Amperage: {{ result['amperage'] }}
+#### Voltage: {{ result['voltage'] }}
+#### Max Utilization: {{ result['max_utilization'] }}
+#### Phase
+##### Label: {{ result['phase']['label'] }}
+##### Value: {{ result['phase']['value'] }}
+#### Supply
+##### Label: {{ result['supply']['label'] }}
+##### Value: {{ result['supply']['value'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Panel
+#### ID: {{ result['power_panel']['id'] }}
+#### Name: {{ result['power_panel']['name'] }}
+#### Display: {{ result['power_panel']['display'] }}
+#### [URL]({{ result['power_panel']['url'] }})
+### Rack
+#### ID: {{ result['rack']['id'] }}
+#### Name: {{ result['rack']['name'] }}
+#### Display: {{ result['rack']['display'] }}
+#### [URL]({{ result['rack']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-outlet-templates" %}
+# Power Outlet Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Feed Leg: {{ result['feed_leg'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### [URL]({{ result['device_type']['url'] }})
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+### Power Port
+#### ID: {{ result['power_port']['id'] }}
+#### Name: {{ result['power_port']['name'] }}
+#### Display: {{ result['power_port']['display'] }}
+#### [URL]({{ result['power_port']['url'] }})
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-outlets" %}
+# Power Outlet
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Occupied: {{ result['_occupied'] }}
+### Feed Leg: {{ result['feed_leg'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Display: {{ result['device']['display'] }}
+#### Name: {{ result['device']['name'] }}
+#### [URL]({{ result['device']['url'] }})
+### Power Port
+#### ID: {{ result['power_port']['id'] }}
+#### Name: {{ result['power_port']['name'] }}
+#### Display: {{ result['power_port']['display'] }}
+#### Occupied: {{ result['power_port']['_occupied'] }}
+#### Cable: {{ result['power_port']['cable'] }}
+#### [URL]({{ result['power_port']['url'] }}
+{%- if result['power_port']['device'] is defined %}
+#### Device
+##### ID: {{ result['power_port']['device']['id'] }}
+##### Name: {{ result['power_port']['device']['name'] }}
+##### Display: {{ result['power_port']['device']['display'] }}
+##### [URL]({{ result['power_port']['device']['url'] }})
+{%- endif %}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Connected Endpoint
+#### ID: {{ result['connected_endpoint']['id'] }}
+#### Name: {{ result['connected_endpoint']['name'] }}
+#### Display: {{ result['connected_endpoint']['display'] }}
+#### Occupied: {{ result['connected_endpoint']['_occupied'] }}
+#### Cable: {{ result['connected_endpoint']['cable'] }}
+#### [URL]({{ result['connected_endpoint']['url'] }})
+{%- if result['connected_endpoint']['device'] is defined %}
+#### Device
+##### ID: {{ result['connected_endpoint']['device']['id'] }}
+##### Name: {{ result['connected_endpoint']['device']['name'] }}
+##### Display: {{ result['connected_endpoint']['device']['display'] }}
+##### [URL]({{ result['connected_endpoint']['device']['url'] }})
+{%- endif %}
+#### Reachable: {{ result['connected_endpoint_reachable'] }}
+#### Type: {{ result['connected_endpoint_type'] }}
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### [URL]({{ result['link_peer']['url'] }})
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-panels" %}
+# Power Panel
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Location: {{ result['location'] }}
+### Power Feed Count: {{ result['powerfeed_count'] }}
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-port-templates" %}
+# Power Port Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Draw
+#### Allocated: {{ result['allocated_draw'] }}
+#### Maximum: {{ result['maximum_draw'] }}
+### Module Type: {{ result['module_type'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### [URL]({{ result['device_type']['url'] }})
+### Manufacturer
+#### ID: {{ result['device_type']['manufacturer']['id'] }}
+#### Name: {{ result['device_type']['manufacturer']['name'] }}
+#### Display: {{ result['device_type']['manufacturer']['display'] }}
+#### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+#### [URL]({{ result['device_type']['manufacturer']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "power-ports" %}
+# Power Port
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Label: {{ result['label'] }}
+### Draw
+#### Allocated: {{ result['allocated_draw'] }}
+#### Maximum: {{ result['maximum_draw'] }}
+### Module: {{ result['module'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Display: {{ result['device']['display'] }}
+#### Name: {{ result['device']['name'] }}
+#### [URL]({{ result['device']['url'] }})
+### Occupied: {{ result['_occupied'] }}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Connected Endpoint
+#### ID: {{ result['connected_endpoint']['id'] }}
+#### Name: {{ result['connected_endpoint']['name'] }}
+#### Display: {{ result['connected_endpoint']['display'] }}
+#### Occupied: {{ result['connected_endpoint']['_occupied'] }}
+#### Cable: {{ result['connected_endpoint']['cable'] }}
+#### [URL]({{ result['connected_endpoint']['url'] }})
+{%- if result['connected_endpoint']['device'] is defined %}
+#### Device
+##### ID: {{ result['connected_endpoint']['device']['id'] }}
+##### Name: {{ result['connected_endpoint']['device']['name'] }}
+##### Display: {{ result['connected_endpoint']['device']['display'] }}
+##### [URL]({{ result['connected_endpoint']['device']['url'] }})
+{%- endif %}
+#### Reachable: {{ result['connected_endpoint_reachable'] }}
+#### Type: {{ result['connected_endpoint_type'] }}
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### [URL]({{ result['link_peer']['url'] }})
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "rack-reservations" %}
+# Rack Reservation
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Rack
+#### ID: {{ result['rack']['id'] }}
+#### Name: {{ result['rack']['name'] }}
+#### Display: {{ result['rack']['display'] }}
+#### [URL]({{ result['rack']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name']}}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Units: {{ result['units']}}
+### User
+#### ID: {{ result['user']['id'] }}
+#### Display: {{ result['user']['display'] }}
+#### Username: {{ result['user']['username'] }}
+#### [URL]({{ result['user']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "rack-roles" %}
+# Rack Role
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Name: {{ result['name'] }}
+### Slug: {{ result['slug'] }}
+### Color: {{ result['color'] }}
+### Rack Count: {{ result['rack_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "racks" %}
+# Rack
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Comments: {{ result['comments'] }}
+### Asset Tag: {{ result['asset_tag'] }}
+### Serial Number: {{ result['serial'] }}
+### Desc Units: {{ result['desc_units'] }}
+### Facility ID: {{ result['facility_id'] }}
+### Location
+#### ID: {{ result['location']['id'] }}
+#### Name: {{ result['location']['name'] }}
+#### Display: {{ result['location']['display'] }}
+#### Slug: {{ result['location']['slug'] }}
+#### Depth: {{ result['location']['_depth'] }}
+#### [URL]({{ result['location']['url'] }})
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Totals
+#### Device Count: {{ result['device_count'] }}
+#### Power Feed Count: {{ result['powerfeed_count'] }}
+### Dimensions
+#### Outer 
+##### Depth: {{ result['outer_depth'] }}
+##### Unit: {{ result['outer_unit'] }}
+##### Width: {{ result['outer_width'] }}
+#### U Height: {{ result['u_height'] }}
+#### Width
+##### Label: {{ result['width']['label'] }}
+##### Value: {{ result['width']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "rear-port-templates" %}
+# Rear Port Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Module Type: {{ result['module_type'] }}
+### Color: {{ result['color'] }}
+### Device Type
+#### ID: {{ result['device_type']['id'] }}
+#### Display: {{ result['device_type']['display'] }}
+#### Slug: {{ result['device_type']['slug'] }}
+#### Model: {{ result['device_type']['model'] }}
+#### Manufacturer
+##### ID: {{ result['device_type']['manufacturer']['id'] }}
+##### Name: {{ result['device_type']['manufacturer']['name'] }}
+##### Display: {{ result['device_type']['manufacturer']['display'] }}
+##### Slug: {{ result['device_type']['manufacturer']['slug'] }}
+##### [URL]({{ result['device_type']['manufacturer']['url'] }})
+#### [URL]({{ result['device_type']['url'] }})
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Positions: {{ result['positions'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "rear-ports" %}
+# Rear Port
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Label: {{ result['label'] }}
+### Description: {{ result['description'] }}
+### Occupied: {{ result['_occupied'] }}
+### Cable
+#### ID: {{ result['cable']['id'] }}
+#### Display: {{ result['cable']['display'] }}
+#### Label: {{ result['cable']['label'] }}
+#### [URL]({{ result['cable']['url'] }})
+### Color: {{ result['color'] }}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Link Peer
+#### ID: {{ result['link_peer']['id'] }}
+#### Name: {{ result['link_peer']['name'] }}
+#### Display: {{ result['link_peer']['display'] }}
+#### Cable: {{ result['link_peer']['cable'] }}
+#### Occupied: {{ result['link_peer']['_occupied'] }}
+{%- if result['link_peer']['device'] is defined %}
+#### Device
+##### ID: {{ result['link_peer']['device']['id'] }}
+##### Name: {{ result['link_peer']['device']['name'] }}
+##### Display: {{ result['link_peer']['device']['display'] }}
+##### [URL]({{ result['link_peer']['device']['url'] }})
+{%- endif %}
+#### [URL]({{ result['link_peer']['url'] }})
+#### Type: {{ result['link_peer_type'] }}
+### Mark Connected: {{ result['mark_connected'] }}
+### Module: {{ result['module'] }}
+### Positions: {{ result['positions'] }}
+### Type
+#### Label: {{ result['type']['label'] }}
+#### Value: {{ result['type']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "regions" %}
+# Region
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Depth: {{ result['_depth'] }}
+### Site Count: {{ result['site_count'] }}
+### Parent
+#### ID: {{ result['parent']['id'] }}
+#### Name: {{ result['parent']['name'] }}
+#### Display: {{ result['parent']['display'] }}
+#### Slug: {{ result['parent']['slug'] }}
+#### Depth: {{ result['parent']['_depth'] }}
+#### [URL]({{ result['parent']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "site-groups" %}
+# Site Group
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Depth: {{ result['_depth'] }}
+### Site Count: {{ result['site_count'] }}
+### Parent
+#### ID: {{ result['parent']['id'] }}
+#### Name: {{ result['parent']['name'] }}
+#### Display: {{ result['parent']['display'] }}
+#### Slug: {{ result['parent']['slug'] }}
+#### Depth: {{ result['parent']['_depth'] }}
+#### [URL]({{ result['parent']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "sites" %}
+# Site
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Comments: {{ result['comments'] }}
+{%-         if result['asns'] %}
+### ASNs
+    {%-         for asn in result['asns'] %}
+#### ID: {{ asn['id'] }}
+#### ASN: {{ asn['asn'] }}
+#### Display: {{ asn['display'] }}
+#### [URL]({{ asn['url'] }})
+    {%-          endfor %}
+{%-         endif %}
+### Facility: {{ result['facility'] }}
+### Group: 
+#### ID: {{ result['group']['id'] }}
+#### Name: {{ result['group']['name'] }}
+#### Display: {{ result['group']['display'] }}
+#### Slug: {{ result['group']['slug'] }}
+#### Depth: {{ result['group']['_depth'] }}
+#### [URL]({{ result['group']['url'] }})
+### Location
+#### Latitude: {{ result['latitude'] }}
+#### Longitude: {{ result['longitude'] }}
+#### Time Zone: {{ result['time_zone'] }}
+#### Physical Address: {{ result['physical_address'] | replace("\r\n"," ") }}
+#### Shipping Address: {{ result['shipping_address'] | replace("\r\n"," ") }}
+#### Region 
+##### ID: {{ result['region']['id'] }}
+##### Name: {{ result['region']['name'] }}
+##### Display: {{ result['region']['display'] }}
+##### Slug: {{ result['region']['slug'] }}
+##### Depth: {{ result['region']['_depth'] }}
+##### [URL]({{ result['region']['url'] }})
+### Totals
+#### Prefixes: {{ result['prefix_count'] }}
+#### Racks: {{ result['rack_count'] }}
+#### Circuits: {{ result['circuit_count'] }}
+#### Devices: {{ result['device_count'] }}
+#### Virtual Machines: {{ result['virtualmachine_count'] }}
+#### VLANs: {{ result['vlan_count'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "virtual-chassis" %}
+# Virtual Chassis
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Domain: {{ result['domain'] }}
+### Member Count: {{ result['member_count'] }}
+### Master
+#### ID: {{ result['master']['id'] }}
+#### Name: {{ result['master']['name'] }}
+#### Display: {{ result['master']['display'] }}
+#### [URL]({{ result['master']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "status" %}
+# NetBox Status
+## Versions
+### NetBox: {{ data_to_template['netbox-version'] }}
+### Django: {{ data_to_template['django-version'] }}
+### Python: {{ data_to_template['python-version'] }}
+## RQ Workers Running: {{ data_to_template['rq-workers-running'] }}
+## Applications
+{%-     for app in data_to_template['installed-apps'] %}
+### {{ app }}
+{%-     endfor %}
+## Plugins
+{%-     for plugin in data_to_template['plugins'] %}
+### {{ plugin }}
+{%-     endfor %}
+{%- else %}
+{%- if api == "aggregates" %}
+# Aggregate
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name']}}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Prefix: {{ result['prefix'] }}
+### Family
+#### Label: {{ result['family']['label'] }}
+#### Value: {{ result['family']['value'] }}
+### RIR
+#### ID: {{ result['rir']['id'] }}
+#### Name: {{ result['rir']['name'] }}
+#### Display: {{ result['rir']['display'] }}
+#### Slug: {{ result['rir']['slug'] }}
+#### [URL]({{ result['rir']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "asns" %}
+# Autonomous System Number
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Autonomous System Number: {{ result['asn'] }}
+### Totals
+#### Providers: {{ result['provider_count'] }}
+#### Sites: {{ result['site_count'] }}
+### RIR: {{ result['rir'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "ip-addresses" %}
+# IP Address
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Address: {{ result['address'] }}
+### Assigned Object
+#### ID: {{ result['assigned_object_id'] }}
+#### Type: {{ result['assigned_object_type'] }}
+#### Object: {{ result['assigned_object'] }}
+### DNS Name: {{ result['dns_name'] }}
+### Family
+#### Label: {{ result['family']['label'] }}
+#### Value: {{ result['family']['value'] }}
+### NAT
+#### Inside: {{ result['nat_inside'] }}
+#### Outside: {{ result['nat_outside'] }}
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### VRF
+#### ID: {{ result['vrf']['id'] }}
+#### Name: {{ result['vrf']['name'] }}
+#### Display: {{ result['vrf']['display'] }}
+#### RD: {{ result['vrf']['rd'] }}
+#### [URL]({{ result['vrf']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "ip-ranges" %}
+# IP Range
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Range
+#### Start Address: {{ result['start_address'] }}
+#### End Address: {{ result['end_address'] }}
+### Family
+#### Label: {{ result['family']['label'] }}
+#### Value: {{ result['family']['value'] }}
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### VRF
+#### ID: {{ result['vrf']['id'] }}
+#### Name: {{ result['vrf']['name'] }}
+#### Display: {{ result['vrf']['display'] }}
+#### RD: {{ result['vrf']['rd'] }}
+#### [URL]({{ result['vrf']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "prefixes" %}
+# Prefix
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Prefix: {{ result['prefix'] }}
+### Depth: {{ result['_depth'] }}
+### Children: {{ result['children'] }}
+### Is Pool: {{ result['is_pool'] }}
+### Mark Utilized: {{ result['mark_utilized'] }}
+### Family
+#### Label: {{ result['family']['label'] }}
+#### Value: {{ result['family']['value'] }}
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### VRF
+#### ID: {{ result['vrf']['id'] }}
+#### Name: {{ result['vrf']['name'] }}
+#### Display: {{ result['vrf']['display'] }}
+#### RD: {{ result['vrf']['rd'] }}
+#### [URL]({{ result['vrf']['url'] }})
+### VLAN
+#### ID: {{ result['vlan']['id'] }}
+#### Name: {{ result['vlan']['name'] }}
+#### Display: {{ result['vlan']['display'] }}
+#### VID: {{ result['vlan']['vid'] }}
+#### [URL]({{ result['vlan']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+#### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "rirs" %}
+# RIR
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Aggregate Count: {{ result['aggregate_count'] }}
+### Is Private: {{ result['is_private'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "roles" %}
+# Role
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Totals
+#### Prefixes: {{ result['prefix_count'] }}
+#### VLANs: {{ result['vlan_count'] }}
+### Weight: {{ result['weight'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "route-targets"%}
+# Route Target
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "service-templates" %}
+# Service Template
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Ports
+{%- for port in result['ports'] %}
+#### {{ port }}
+{%- endfor %}
+### Protocol
+#### Label: {{ result['protocol']['label'] }}
+#### Value: {{ result['protocol']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "services" %}
+# Service
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Ports
+{%- for port in result['ports'] %}
+#### {{ port }}
+{%- endfor %}
+### Protocol
+#### Label: {{ result['protocol']['label'] }}
+#### Value: {{ result['protocol']['value'] }}
+### IP Addresses
+{%- for ip in result['ipaddresses'] %}
+#### {{ ip }}
+{%- endfor %}
+### Device
+#### ID: {{ result['device']['id'] }}
+#### Name: {{ result['device']['name'] }}
+#### Display: {{ result['device']['display'] }}
+#### [URL]({{ result['device']['url'] }})
+### Virtual Machine
+#### ID: {{ result['virtual_machine']['id'] }}
+#### Name: {{ result['virtual_machine']['name'] }}
+#### Display: {{ result['virtual_machine']['display'] }}
+#### [URL]({{ result['virtual_machine']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "vlan-groups" %}
+# VLAN Group
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### VID
+#### Max: {{ result['max_vid'] }}
+#### Min: {{ result['min_vid'] }}
+### Scope
+#### ID: {{ result['scope']['id'] }}
+#### Name: {{ result['scope']['name'] }}
+#### Display: {{ result['scope']['display'] }}
+#### Slug: {{ result['scope']['slug'] }}
+#### [URL]({{ result['scope']['url'] }})
+#### Type: {{ result['scope_type'] }}
+### VLAN Count: {{ result['vlan_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "vlans" %}
+# VLAN
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### VID: {{ result['vid'] }}
+### Prefix Count: {{ result['prefix_count'] }}
+### Group
+#### ID: {{ result['group']['id'] }}
+#### Name: {{ result['group']['name'] }}
+#### Display: {{ result['group']['display'] }}
+#### Slug: {{ result['group']['slug'] }}
+#### [URL]({{ result['group']['url'] }})
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "vrfs" %}
+# VRF
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Enforce Unique: {{ result['enforce_unique'] }}
+### Totals
+#### IP Addresses: {{ result['ipaddress_count'] }}
+#### Prefixes: {{ result['prefix_count'] }}
+### RD: {{ result['rd'] }}
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Export Targets
+{%-    for export_target in result['export_targets'] %}
+#### ID: {{ export_target['id'] }}
+##### Name: {{ export_target['name'] }}
+##### Display: {{ export_target['display'] }}
+##### [URL]({{ export_target['url'] }})
+{%-    endfor %}
+### Import Targets
+{%-    for import_target in result['import_targets'] %}
+#### ID: {{ import_target['id'] }}
+##### Name: {{ import_target['name'] }}
+##### Display: {{ import_target['display'] }}
+##### [URL]({{ import_target['url'] }})
+{%-    endfor %}
+### Timestamps
+#### Created {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "contact-assignments" %}
+# Contact Assignment
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Contact
+#### ID: {{ result['contact']['id'] }}
+#### Name: {{ result['contact']['name'] }}
+#### Display: {{ result['contact']['display'] }}
+#### [URL]({{ result['contact']['url'] }})
+### Content Type: {{ result['content_type'] }}
+### Object
+#### ID: {{ result['object']['id'] }}
+#### Name: {{ result['object']['name'] }}
+#### Display: {{ result['object']['display'] }}
+#### Slug: {{ result['object']['slug'] }}
+#### [URL]({{ result['object']['url'] }})
+### Priority
+#### Label: {{ result['priority']['label'] }}
+#### Value: {{ result['priority']['value'] }}
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "contact-groups" %}
+# Contact Group
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Depth: {{ result['_depth'] }}
+### Contact Count: {{ result['contact_count'] }}
+### Parent
+#### ID: {{ result['parent']['id'] }}
+#### Name: {{ result['parent']['name'] }}
+#### Display: {{ result['parent']['display'] }}
+#### Slug: {{ result['parent']['slug'] }}
+#### Depth: {{ result['parent']['_depth'] }}
+#### [URL]({{ result['parent']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "contact-roles" %}
+# Contact Role
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "contacts" %}
+# Contact
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Comments: {{ result['comments'] }}
+### Title: {{ result['title'] }}
+### Address: {{ result['address'] | replace("\r\n"," ") }}
+### Email: {{ result['email'] }}
+### Phone: {{ result['phone'] }}
+### Link: {{ result['link'] }}
+### Group
+#### ID: {{ result['group']['id'] }}
+#### Name: {{ result['group']['name'] }}
+#### Display: {{ result['group']['display'] }}
+#### Slug: {{ result['group']['slug'] }}
+#### Depth: {{ result['group']['_depth'] }}
+#### [URL]({{ result['group']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "tenant-groups" %}
+# Tenant Group
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Depth: {{ result['_depth'] }}
+### Tenant Count: {{ result['tenant_count'] }}
+### Parent
+#### ID: {{ result['parent']['id'] }}
+#### Name: {{ result['parent']['name'] }}
+#### Display: {{ result['parent']['display'] }}
+#### Slug: {{ result['parent']['slug'] }}
+#### Depth: {{ result['parent']['_depth'] }}
+#### [URL]({{ result['parent']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "groups" %}
+# User Group
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### User Count: {{ result['user_count'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "tokens" %}
+# User Token
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Description: {{ result['description'] }}
+### Key: {{ result['key'] }}
+### Write Enabled: {{ result['write_enabled'] }}
+### User
+#### ID: {{ result['user']['id'] }}
+#### Display: {{ result['user']['display'] }}
+#### Username: {{ result['user']['username'] }}
+#### [URL]({{ result['user']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Expires: {{ result['expires'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "users" %}
+# User
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Username: {{ result['username'] }}
+### First Name: {{ result['first_name'] }}
+### Last Name: {{ result['last_name'] }}
+### Email: {{ result['email'] }}
+### Active: {{ result['is_active'] }}
+### Staff: {{ result['is_staff'] }}
+### Date Joined: {{ result['date_joined'] }}
+### Groups
+{%-     for group in result['groups'] %}
+#### ID: {{ group['id'] }}
+##### Name: {{ group['name'] }}
+##### Display: {{ group['display'] }}
+##### [URL]({{ group['url'] }})
+{%-     endfor %}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "cluster-groups" %}
+# Cluster Groups
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Cluster Count: {{ result['cluster_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "cluster-types" %}
+# Cluster Types
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Slug: {{ result['slug'] }}
+### Cluster Count: {{ result['cluster_count'] }}
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "clusters" %}
+# Cluster
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Comments: {{ result['comments'] }}
+### Totals
+#### Devices: {{ result['device_count'] }}
+#### Virtual Machines: {{ result['virtualmachine_count'] }}
+### Type
+#### ID: {{ result['type']['id'] }}
+#### Name: {{ result['type']['name'] }}
+#### Display: {{ result['type']['display'] }}
+#### Slug: {{ result['type']['slug'] }}
+#### [URL]({{ result['type']['url'] }})
+### Group
+#### ID: {{ result['group']['id'] }}
+#### Name: {{ result['group']['name'] }}
+#### Display: {{ result['group']['display'] }}
+#### Slug: {{ result['group']['slug'] }}
+#### [URL]({{ result['group']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "virtual-interfaces" %}
+# Virtual Interface
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Description: {{ result['description'] }}
+### Bridge: {{ result['bridge'] }}
+### Totals
+#### FHRP Groups: {{ result['count_fhrp_groups'] }}
+#### IP Addresses: {{ result['count_ipaddresses'] }}
+### Enabled: {{ result['enabled'] }}
+### MAC Address: {{ result['mac_address'] }}
+### Mode: {{ result['mode'] }}
+### MTU: {{ result['mtu'] }}
+### VLANs
+#### Tagged
+{%- for vlan in result['tagged_vlans'] %} 
+##### {{ vlan }}
+{%- endfor %}
+#### Untagged {{ result['untagged_vlan'] }}
+### VRF: {{ result['vrf'] }}
+### Virtual Machine
+#### ID: {{ result['virtual_machine']['id'] }}
+#### Name: {{ result['virtual_machine']['name'] }}
+#### Display: {{ result['virtual_machine']['display'] }}
+#### [URL]({{ result['virtual_machine']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- else %}
+{%- if api == "virtual-machines" %}
+# Virtual Machines
+## ID: {{ result['id'] }}
+### Display: {{ result['display'] }}
+### Name: {{ result['name'] }}
+### Comments: {{ result['comments'] }}
+### Disk: {{ result['disk'] }}
+### Memory: {{ result['memory'] }}
+### IP Addresses
+#### Primary: {{ result['primary_ip'] }}
+#### Primary IPv4: {{ result['primary_ipv4'] }}
+#### Primary IPv6: {{ result['primary_ipv6'] }}
+### Status
+#### Label: {{ result['status']['label'] }}
+#### Value: {{ result['status']['value'] }}
+### Cluster
+#### ID: {{ result['cluster']['id'] }}
+#### Name: {{ result['cluster']['name'] }}
+#### Display: {{ result['cluster']['display'] }}
+#### [URL]({{ result['cluster']['url'] }})
+### Platform
+#### ID: {{ result['platform']['id'] }}
+#### Name: {{ result['platform']['name'] }}
+#### Display: {{ result['platform']['display'] }}
+#### Slug: {{ result['platform']['slug'] }}
+#### [URL]({{ result['platform']['url'] }})
+### Role
+#### ID: {{ result['role']['id'] }}
+#### Name: {{ result['role']['name'] }}
+#### Display: {{ result['role']['display'] }}
+#### Slug: {{ result['role']['slug'] }}
+#### [URL]({{ result['role']['url'] }})
+### Site
+#### ID: {{ result['site']['id'] }}
+#### Name: {{ result['site']['name'] }}
+#### Display: {{ result['site']['display'] }}
+#### Slug: {{ result['site']['slug'] }}
+#### [URL]({{ result['site']['url'] }})
+### Tenant
+#### ID: {{ result['tenant']['id'] }}
+#### Name: {{ result['tenant']['name'] }}
+#### Display: {{ result['tenant']['display'] }}
+#### Slug: {{ result['tenant']['slug'] }}
+#### [URL]({{ result['tenant']['url'] }})
+### Timestamps
+#### Created: {{ result['created'] }}
+#### Last Updated: {{ result['last_updated'] }}
+### [URL]({{ result['url'] }})
+{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}
