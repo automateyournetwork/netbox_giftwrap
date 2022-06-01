@@ -501,9 +501,9 @@
 #### Slug: {{ result['tenant']['slug'] }}
 #### [URL]({{ result['tenant']['url'] }})
 ### IP Addresses
-#### Primary: {{ result['primary_ip'] }}
-#### Primary IPv4: {{ result['primary_ip4'] }}
-#### Primary IPv6: {{ result['primary_ip6'] }}
+#### Primary: {{ result['primary_ip']['display'] }}
+#### Primary IPv4: {{ result['primary_ip4']['display'] }}
+#### Primary IPv6: {{ result['primary_ip6']['display'] }}
 ### VC 
 #### Position: {{ result['vc_position'] }}
 #### Priority: {{ result['vc_priority'] }}
@@ -2145,9 +2145,9 @@
 ### Disk: {{ result['disk'] }}
 ### Memory: {{ result['memory'] }}
 ### IP Addresses
-#### Primary: {{ result['primary_ip'] }}
-#### Primary IPv4: {{ result['primary_ipv4'] }}
-#### Primary IPv6: {{ result['primary_ipv6'] }}
+#### Primary: {{ result['primary_ip']['display'] }}
+#### Primary IPv4: {{ result['primary_ip4']['display'] }}
+#### Primary IPv6: {{ result['primary_ip6']['display'] }}
 ### Status
 #### Label: {{ result['status']['label'] }}
 #### Value: {{ result['status']['value'] }}

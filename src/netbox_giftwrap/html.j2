@@ -1038,9 +1038,9 @@
     <td>{{ result['tenant']['display'] }}</td>
     <td>{{ result['tenant']['slug'] }}</td>
     <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
-    <td>{{ result['primary_ip'] }}</td>
-    <td>{{ result['primary_ip4'] }}</td>
-    <td>{{ result['primary_ip6'] }}</td>
+    <td>{{ result['primary_ip']['display'] }}</td>
+    <td>{{ result['primary_ip4']['display'] }}</td>
+    <td>{{ result['primary_ip6']['display'] }}</td>
     <td>{{ result['vc_position'] }}</td>
     <td>{{ result['vc_priority'] }}</td>
     <td>{{ result['virtual_chassis'] }}</td>
@@ -4562,9 +4562,9 @@
     <td>{{ result['comments'] }}</td>
     <td>{{ result['disk'] }}</td>
     <td>{{ result['memory'] }}</td>
-    <td>{{ result['primary_ip'] }}</td>
-    <td>{{ result['primary_ipv4'] }}</td>
-    <td>{{ result['primary_ipv6'] }}</td>
+    <td>{{ result['primary_ip']['display'] }}</td>
+    <td>{{ result['primary_ip4']['display'] }}</td>
+    <td>{{ result['primary_ip6']['display'] }}</td>
     <td>{{ result['status']['label'] }}</td>
     <td>{{ result['status']['value'] }}</td>
     <td>{{ result['cluster']['id'] }}</td>
