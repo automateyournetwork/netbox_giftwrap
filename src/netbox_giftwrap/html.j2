@@ -3300,6 +3300,77 @@
   </thead>
   <tbody> 
 {%-     for result in data_to_template %}
+{%-       if result.assigned_object.device %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['address'] }}</td>
+    <td>{{ result['assigned_object']['device']['display'] }} / {{ result['assigned_object']['display'] }}</td>
+    <td>{{ result['assigned_object_id'] }}</td>
+    <td>{{ result['assigned_object_type'] }}</td>
+    <td>{{ result['dns_name'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['nat_inside'] }}</td>
+    <td>{{ result['nat_outside'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['vrf']['id'] }}</td>
+    <td>{{ result['vrf']['name'] }}</td>
+    <td>{{ result['vrf']['display'] }}</td>
+    <td>{{ result['vrf']['rd'] }}</td>
+    <td><a href="{{ result['vrf']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-       elif result.assigned_object.virtual_machine %}
+  <tr>
+    <td>{{ result['id'] }}</td>
+    <td>{{ result['display'] }}</td>
+    <td>{{ result['description'] }}</td>
+    <td>{{ result['address'] }}</td>
+    <td>{{ result['assigned_object']['virtual_machine']['display'] }} / {{ result['assigned_object']['display'] }}</td>
+    <td>{{ result['assigned_object_id'] }}</td>
+    <td>{{ result['assigned_object_type'] }}</td>
+    <td>{{ result['dns_name'] }}</td>
+    <td>{{ result['family']['label'] }}</td>
+    <td>{{ result['family']['value'] }}</td>
+    <td>{{ result['nat_inside'] }}</td>
+    <td>{{ result['nat_outside'] }}</td>
+    <td>{{ result['role']['id'] }}</td>
+    <td>{{ result['role']['name'] }}</td>
+    <td>{{ result['role']['display'] }}</td>
+    <td>{{ result['role']['slug'] }}</td>
+    <td><a href="{{ result['role']['url'] }}">URL</a></td>
+    <td>{{ result['status']['label'] }}</td>
+    <td>{{ result['status']['value'] }}</td>
+    <td>{{ result['tenant']['id'] }}</td>
+    <td>{{ result['tenant']['name'] }}</td>
+    <td>{{ result['tenant']['display'] }}</td>
+    <td>{{ result['tenant']['slug'] }}</td>
+    <td><a href="{{ result['tenant']['url'] }}">URL</a></td>
+    <td>{{ result['vrf']['id'] }}</td>
+    <td>{{ result['vrf']['name'] }}</td>
+    <td>{{ result['vrf']['display'] }}</td>
+    <td>{{ result['vrf']['rd'] }}</td>
+    <td><a href="{{ result['vrf']['url'] }}">URL</a></td>
+    <td>{{ result['created'] }}</td>
+    <td>{{ result['last_updated'] }}</td>
+    <td><a href="{{ result['url'] }}">URL</a></td>
+  </tr>
+{%-       else %}
   <tr>
     <td>{{ result['id'] }}</td>
     <td>{{ result['display'] }}</td>
@@ -3334,6 +3405,7 @@
     <td>{{ result['last_updated'] }}</td>
     <td><a href="{{ result['url'] }}">URL</a></td>
   </tr>
+{%-       endif %}
 {%-     endfor %}
   </tbody>  
 </table>
