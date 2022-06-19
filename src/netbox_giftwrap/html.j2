@@ -3305,7 +3305,13 @@
     <td>{{ result['display'] }}</td>
     <td>{{ result['description'] }}</td>
     <td>{{ result['address'] }}</td>
+{%-       if result.assigned_object.device %}
+    <td>{{ result['assigned_object']['device']['display'] }} / {{ result['assigned_object']['display'] }}</td>
+{%-       elif result.assigned_object.virtual_machine %}
+    <td>{{ result['assigned_object']['virtual_machine']['display'] }} / {{ result['assigned_object']['display'] }}</td>
+{%-       else %}
     <td>{{ result['assigned_object'] }}</td>
+{%-       endif %}
     <td>{{ result['assigned_object_id'] }}</td>
     <td>{{ result['assigned_object_type'] }}</td>
     <td>{{ result['dns_name'] }}</td>

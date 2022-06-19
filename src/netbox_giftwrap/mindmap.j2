@@ -1570,7 +1570,13 @@
 ### Assigned Object
 #### ID: {{ result['assigned_object_id'] }}
 #### Type: {{ result['assigned_object_type'] }}
+{%-   if result.assigned_object.device %}
+#### Object: {{ result['assigned_object']['device']['display'] }} / {{ result['assigned_object']['display'] }}
+{%-   elif result.assigned_object.virtual_machine %}
+#### Object: {{ result['assigned_object']['virtual_machine']['display'] }} / {{ result['assigned_object']['display'] }}
+{%-   else %}
 #### Object: {{ result['assigned_object'] }}
+{%-   endif %}
 ### DNS Name: {{ result['dns_name'] }}
 ### Family
 #### Label: {{ result['family']['label'] }}
