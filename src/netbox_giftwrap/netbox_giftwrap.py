@@ -124,25 +124,25 @@ class NetboxGiftwrap():
 
     async def main(self):
         self.api_count = 0
+        self.file_count = 0
         api_list = self.netbox_api_list()
         results = await asyncio.gather(*(self.get_api(api_url) for api_url in api_list))
         await self.all_files(json.dumps(results, indent=4, sort_keys=True))
-        print(f"Netbox Giftwrap gathered data from { self.api_count } Netbox APIs")
+        click.secho(f"Netbox Giftwrap gathered data from { self.api_count } Netbox APIs",fg='green')
+        click.secho(f"Netbox Giftwrap created { self.file_count } business ready reports",fg='green')
 
     async def json_file(self, parsed_json):
         for api, payload in json.loads(parsed_json):
-            async with aiofiles.open(f'{api}.json'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.json'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(json.dumps(payload, indent=4, sort_keys=True))
-            click.secho(f"JSON file created at { sys.path[0] }/{api}.json",
-        fg='green')
+            self.file_count += 1
 
     async def yaml_file(self, parsed_json):
         for api, payload in json.loads(parsed_json):
             clean_yaml = yaml.dump(payload, default_flow_style=False)
-            async with aiofiles.open(f'{api}.yaml'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.yaml'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(clean_yaml)
-            click.secho(f"YAML file created at { sys.path[0] }/{api}.yaml",
-        fg='green')
+            self.file_count += 1
 
     async def html_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -151,10 +151,9 @@ class NetboxGiftwrap():
         for api, payload in json.loads(parsed_json):        
             html_output = await html_template.render_async(api = api,
                                          data_to_template = payload)
-            async with aiofiles.open(f'{api}.html'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.html'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(html_output)
-            click.secho(f"HTML file created at { sys.path[0] }/{api}.html",
-                fg='green')
+            self.file_count += 1
 
     async def markdown_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -163,10 +162,9 @@ class NetboxGiftwrap():
         for api, payload in json.loads(parsed_json):        
             md_output = await md_template.render_async(api = api,
                                          data_to_template = payload)
-            async with aiofiles.open(f'{api}.md'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.md'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(md_output)
-            click.secho(f"Markdown file created at { sys.path[0] }/{api}.md",
-                fg='green')
+            self.file_count += 1
 
     async def csv_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -175,10 +173,9 @@ class NetboxGiftwrap():
         for api, payload in json.loads(parsed_json):        
             csv_output = await csv_template.render_async(api = api,
                                          data_to_template = payload)
-            async with aiofiles.open(f'{api}.csv'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.csv'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(csv_output)
-            click.secho(f"CSV file created at { sys.path[0] }/{api}.csv",
-                fg='green')
+            self.file_count += 1
 
     async def mindmap_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -187,10 +184,9 @@ class NetboxGiftwrap():
         for api, payload in json.loads(parsed_json):        
             mindmap_output = await mindmap_template.render_async(api = api,
                                          data_to_template = payload)
-            async with aiofiles.open(f'{api}.md'.replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api}.md'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(mindmap_output)
-            click.secho(f"Mindmap file created at { sys.path[0] }/{api}.md",
-                fg='green')
+            self.file_count += 1
 
     async def mp3_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -205,8 +201,7 @@ class NetboxGiftwrap():
             # Save MP3
             mp3.save(f'{self.api} MP3.mp3')
 
-            click.secho(f'MP3 file created at { sys.path[0] }/{self.api} mindmap.md',
-                fg='green')
+            self.file_count += 1
         else:        
             for result in json_results:
                 mp3_output = mp3_template.render_async(api = self.api,
@@ -215,13 +210,11 @@ class NetboxGiftwrap():
                 mp3 = gTTS(text = mp3_output, lang=language)
                 # Save MP3
                 mp3.save(f'{self.api} {result["id"]} MP3.mp3')
-                click.secho(
-                    f"MP3 file created at { sys.path[0] }/{self.api} {result['id']} MP3.mp3",
-                    fg='green')
+                self.file_count += 1
 
     async def all_files(self, parsed_json):
-        await asyncio.gather(self.json_file(parsed_json), self.yaml_file(parsed_json), self.csv_file(parsed_json), self.markdown_file(parsed_json))
-        #self.html_file(parsed_json), self.mindmap_file(parsed_json)), self.mp3_file(parsed_json))
+        await asyncio.gather(self.json_file(parsed_json), self.yaml_file(parsed_json), self.csv_file(parsed_json), self.markdown_file(parsed_json), self.html_file(parsed_json), self.mindmap_file(parsed_json))
+        #, self.mp3_file(parsed_json))
 
 @click.command()
 @click.option('--url',
