@@ -208,33 +208,37 @@
 ### Termination A
 #### ID: {{ result['termination_a_id'] }}
 #### Type: {{ result['termination_a_type'] }}
+{%- if result['termination_a'] %}
 #### Display: {{ result['termination_a']['display'] }}
 #### Cable: {{ result['termination_a']['cable'] }}
 #### Occupied: {{ result['termination_a']['_occupied'] }}
 #### Term Side: {{ result['termination_a']['term_side'] }}
-{%- if result['termination_a']['circuit'] is defined %}
+{%-     if result['termination_a']['circuit'] is defined %}
 #### Circuit
 ##### ID: {{ result['termination_a']['circuit']['id'] }}
 ##### CID: {{ result['termination_a']['circuit']['cid'] }}
 ##### Display: {{ result['termination_a']['circuit']['display'] }}
 ##### [URL]({{ result['termination_a']['circuit']['url'] }})
-{%- endif %}
+{%-     endif %}
 #### [URL]({{ result['termination_a']['url'] }})
+{%- endif %}
 ### Termination B
 #### ID: {{ result['termination_b_id'] }}
 #### Type: {{ result['termination_b_type'] }}
+{%- if result['termination_b'] %}
 #### Display: {{ result['termination_b']['display'] }}
 #### Cable: {{ result['termination_b']['cable'] }}
 #### Occupied: {{ result['termination_b']['_occupied'] }}
 #### Term Side: {{ result['termination_b']['term_side'] }}
-{%- if result['termination_b']['circuit'] is defined %}
+{%-     if result['termination_b']['circuit'] is defined %}
 #### Circuit
 ##### ID: {{ result['termination_b']['circuit']['id'] }}
 ##### CID: {{ result['termination_b']['circuit']['cid'] }}
 ##### Display: {{ result['termination_b']['circuit']['display'] }}
 ##### [URL]({{ result['termination_b']['circuit']['url'] }})
-{%- endif %}
+{%-     endif %}
 #### [URL]({{ result['termination_b']['url'] }})
+{%- endif %}
 ### Timestamps
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}

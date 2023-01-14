@@ -97,23 +97,23 @@ The cable color is {{ result['color'] }}.
 The cable length is {{ result['length'] }} using {{ result['length_unit'] }} units.
 The cable status label is {{ result['status']['label'] }} and value is {{ result['status']['value'] }}.
 The cable termination A ID is {{ result['termination_a_id'] }}. 
-The termination A type is {{ result['termination_a_type'] }} and display is {{ result['termination_a']['display'] }}.
+The termination A type is {{ result['termination_a_type'] }} {%- if result['termination_a'] %} and display is {{ result['termination_a']['display'] }}.
 The termination A Cable is {{ result['termination_a']['cable'] }}.
 Is the termination A Occupied? {{ result['termination_a']['_occupied'] }}.
 The termination A Term Side is {{ result['termination_a']['term_side'] }}.
 {%- if result['termination_a']['circuit'] is defined %}
 The termination A Circuit ID is {{ result['termination_a']['circuit']['id'] }} and CID is {{ result['termination_a']['circuit']['cid'] }}.
 The termination A circuit display is {{ result['termination_a']['circuit']['display'] }}.
-{%- endif %}
+{%- endif %}{%- endif %}
 The cable termination B ID is {{ result['termination_b_id'] }}. 
-The termination B type is {{ result['termination_b_type'] }} and display is {{ result['termination_b']['display'] }}.
+The termination B type is {{ result['termination_b_type'] }} {%- if result['termination_a'] %} and display is {{ result['termination_b']['display'] }}.
 The termination B Cable is {{ result['termination_b']['cable'] }}.
 Is the termination B Occupied? {{ result['termination_b']['_occupied'] }}.
 The termination B Term Side is {{ result['termination_b']['term_side'] }}.
 {%- if result['termination_b']['circuit'] is defined %}
 The termination B Circuit ID is {{ result['termination_b']['circuit']['id'] }} and CID is {{ result['termination_b']['circuit']['cid'] }}.
 The termination B circuit display is {{ result['termination_b']['circuit']['display'] }}.
-{%- endif %}
+{%- endif %}{%- endif %}
 The cable was created on {{ result['created'] }} and last updated {{ result['last_updated'] }}.
 {%- else %}
 {%- if api == "console-port-templates" %}
