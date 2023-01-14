@@ -69,8 +69,15 @@
     <td>{{ result['link_peer']['device']['display'] }}</td>
     <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
 {%-         else %}
+<<<<<<< HEAD
+=======
     <td>N/A</td>
     <td>N/A</td>
+>>>>>>> main
+    <td>N/A</td>
+    <td>N/A</td>
+{%-         endif %}
+{%-     else %}
     <td>N/A</td>
     <td>N/A</td>
 {%-         endif %}
@@ -1487,6 +1494,7 @@
     <td>{{ result['cable']['display'] }}</td>
     <td>{{ result['cable']['label'] }}</td>
     <td><a href="{{ result['cable']['url'] }}">URL</a></td>
+{%- if result['connected_endpoint'] %}
     <td>{{ result['connected_endpoint']['id'] }}</td>
     <td>{{ result['connected_endpoint']['name'] }}</td>
     <td>{{ result['connected_endpoint']['display'] }}</td>
@@ -1499,6 +1507,14 @@
     <td>{{ result['connected_endpoint']['device']['display'] }}</td>
     <td><a href="{{ result['connected_endpoint']['device']['url'] }}">URL</a></td>
 {%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
