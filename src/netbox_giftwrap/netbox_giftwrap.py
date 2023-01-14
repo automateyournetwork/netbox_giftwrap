@@ -33,7 +33,6 @@ class NetboxGiftwrap():
             "/api/circuits/circuits",
             "/api/virtualization/cluster-groups/",
             "/api/virtualization/cluster-types/",
-            #"/api/virtualization/cluster-types/"
             "/api/dcim/console-port-templates/",
             "/api/dcim/console-ports/",
             "/api/tenancy/contact-assignments/",
@@ -114,6 +113,7 @@ class NetboxGiftwrap():
                     total_pages = responseJSON['count'] / 50
                     while total_pages > 1:
                         async with session.get(f"{self.url}{api_url}?limit=50&offset={offset}", headers=headers, data=payload, verify_ssl=False) as resp:
+                            self.api_count += 1
                             responseDict = await resp.json()
                             responseList.extend(responseDict['results'])
                             offset = offset +50
