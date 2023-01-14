@@ -25,7 +25,7 @@ class NetboxGiftwrap():
 
     def netbox_api_list(self):
         self.api_list = [
-            "/api/ipam/aggregates",
+            "/api/ipam/aggregates/",
             "/api/ipam/asns/",
             "/api/dcim/cables/",
             "/api/circuits/circuit-terminations/",
@@ -33,6 +33,7 @@ class NetboxGiftwrap():
             "/api/circuits/circuits",
             "/api/virtualization/cluster-groups/",
             "/api/virtualization/cluster-types/",
+            "/api/virtualization/clusters/",
             "/api/dcim/console-port-templates/",
             "/api/dcim/console-ports/",
             "/api/tenancy/contact-assignments/",
@@ -152,8 +153,8 @@ class NetboxGiftwrap():
                                          data_to_template = payload)
             async with aiofiles.open(f'{api}.html'.replace("/"," "), 'w') as f:
                 await f.write(html_output)
-        click.secho(f"HTML file created at { sys.path[0] }/{api}.html",
-            fg='green')
+            click.secho(f"HTML file created at { sys.path[0] }/{api}.html",
+                fg='green')
 
     async def markdown_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -164,8 +165,8 @@ class NetboxGiftwrap():
                                          data_to_template = payload)
             async with aiofiles.open(f'{api}.md'.replace("/"," "), 'w') as f:
                 await f.write(md_output)
-        click.secho(f"Markdown file created at { sys.path[0] }/{api}.md",
-            fg='green')
+            click.secho(f"Markdown file created at { sys.path[0] }/{api}.md",
+                fg='green')
 
     async def csv_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -176,8 +177,8 @@ class NetboxGiftwrap():
                                          data_to_template = payload)
             async with aiofiles.open(f'{api}.csv'.replace("/"," "), 'w') as f:
                 await f.write(csv_output)
-        click.secho(f"CSV file created at { sys.path[0] }/{api}.csv",
-            fg='green')
+            click.secho(f"CSV file created at { sys.path[0] }/{api}.csv",
+                fg='green')
 
     async def mindmap_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -188,8 +189,8 @@ class NetboxGiftwrap():
                                          data_to_template = payload)
             async with aiofiles.open(f'{api}.md'.replace("/"," "), 'w') as f:
                 await f.write(mindmap_output)
-        click.secho(f"Mindmap file created at { sys.path[0] }/{api}.md",
-            fg='green')
+            click.secho(f"Mindmap file created at { sys.path[0] }/{api}.md",
+                fg='green')
 
     async def mp3_file(self, parsed_json):
         template_dir = Path(__file__).resolve().parent
@@ -219,8 +220,8 @@ class NetboxGiftwrap():
                     fg='green')
 
     async def all_files(self, parsed_json):
-        await asyncio.gather(self.json_file(parsed_json), self.yaml_file(parsed_json), self.csv_file(parsed_json))
-        #self.markdown_file(parsed_json)), self.html_file(parsed_json), self.mindmap_file(parsed_json)), self.mp3_file(parsed_json))
+        await asyncio.gather(self.json_file(parsed_json), self.yaml_file(parsed_json), self.csv_file(parsed_json), self.markdown_file(parsed_json))
+        #self.html_file(parsed_json), self.mindmap_file(parsed_json)), self.mp3_file(parsed_json))
 
 @click.command()
 @click.option('--url',
