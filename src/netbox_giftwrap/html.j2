@@ -60,15 +60,21 @@
     <td><a href="{{ result['circuit']['url'] }}">URL</a></td>
     <td>{{ result['created'] }}</td>
     <td>{{ result['last_updated'] }}</td>
+{%-     if result['link_peer'] %}
     <td>{{ result['link_peer']['_occupied'] | default("False") }}</td>
     <td>{{ result['link_peer']['cable'] }}</td>
-{%- if result['link_peer']['device'] is defined %}<td>{{ result['link_peer']['device']['id'] }}</td>
+{%-         if result['link_peer']['device'] is defined %}
+    <td>{{ result['link_peer']['device']['id'] }}</td>
     <td>{{ result['link_peer']['device']['name'] }}</td>
     <td>{{ result['link_peer']['device']['display'] }}</td>
     <td><a href="{{ result['link_peer']['device']['url'] }}">URL</a></td>
-{%- else %}
+{%-         else %}
     <td>N/A</td>
     <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%-         endif %}
+{%-     else %}
     <td>N/A</td>
     <td>N/A</td>
 {%- endif %}
@@ -446,40 +452,59 @@
     <td>{{ result['status']['value'] }}</td>
     <td>{{ result['termination_a_id'] }}</td>
     <td>{{ result['termination_a_type'] }}</td>
+{%-     if result['termination_a'] %}
     <td>{{ result['termination_a']['display'] }}</td>
     <td>{{ result['termination_a']['cable'] }}</td>
     <td>{{ result['termination_a']['_occupied'] }}</td>
     <td>{{ result['termination_a']['term_side'] }}</td>
-{%- if result['termination_a']['circuit'] is defined %}
+{%-         if result['termination_a']['circuit'] is defined %}
     <td>{{ result['termination_a']['circuit']['id'] }}</td>
     <td>{{ result['termination_a']['circuit']['cid'] }}</td>
     <td>{{ result['termination_a']['circuit']['display'] }}</td>
     <td><a href="{{ result['termination_a']['circuit']['url'] }}">URL</a></td>
-{%- else %}
+{%-         else %}
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
-{%- endif %}
+{%-         endif %}
+{%-     else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%-     endif %}
+{%-     if result['termination_a'] %}
     <td><a href="{{ result['termination_a']['url'] }}">URL</a></td>
+{%-     else %}
+    <td>N/A</td>
+{%-     endif %}
     <td>{{ result['termination_b_id'] }}</td>
     <td>{{ result['termination_b_type'] }}</td>
+{%-     if result['termination_b'] %}    
     <td>{{ result['termination_b']['display'] }}</td>
     <td>{{ result['termination_b']['cable'] }}</td>
     <td>{{ result['termination_b']['_occupied'] }}</td>
     <td>{{ result['termination_b']['term_side'] }}</td>
-{%- if result['termination_b']['circuit'] is defined %}
+{%-         if result['termination_b']['circuit'] is defined %}
     <td>{{ result['termination_b']['circuit']['id'] }}</td>
     <td>{{ result['termination_b']['circuit']['cid'] }}</td>
     <td>{{ result['termination_b']['circuit']['display'] }}</td>
     <td><a href="{{ result['termination_b']['circuit']['url'] }}">URL</a></td>
+{%-         else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%-         endif %}
+    <td><a href="{{ result['termination_b']['url'] }}">URL</a></td>
 {%- else %}
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
     <td>N/A</td>
+    <td>N/A</td>
 {%- endif %}
-    <td><a href="{{ result['termination_b']['url'] }}">URL</a></td>
     <td>{{ result['created'] }}</td>
     <td>{{ result['last_updated'] }}</td>
     <td><a href="{{ result['url'] }}">URL</a></td>
@@ -658,6 +683,7 @@
     <td>{{ result['connected_endpoint'] }}</td>
     <td>{{ result['connected_endpoint_reachable'] }}</td>
     <td>{{ result['connected_endpoint_type'] }}</td>
+{%- if result['link_peer'] %}
     <td>{{ result['link_peer']['id'] }}</td>
     <td>{{ result['link_peer']['name'] }}</td>
     <td>{{ result['link_peer']['display'] }}</td>
@@ -675,6 +701,14 @@
     <td>N/A</td>
 {%- endif %}
     <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}    
     <td>{{ result['link_peer_type'] }}</td>
     <td>{{ result['mark_connected'] }}</td>
     <td>{{ result['module']['id'] }}</td>
@@ -1187,6 +1221,7 @@
     <td>{{ result['device']['name'] }}</td>
     <td>{{ result['device']['display'] }}</td>
     <td><a href="{{ result['device']['url'] }}">URL</a></td>
+{%- if result['link_peer'] %}
     <td>{{ result['link_peer']['id'] }}</td>
     <td>{{ result['link_peer']['name'] }}</td>
     <td>{{ result['link_peer']['display'] }}</td>
@@ -1204,6 +1239,14 @@
     <td>N/A</td>
 {%- endif %}
     <td><a href="{{ result['link_peer']['url'] }}">URL</a></td>
+{%- else %}
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+    <td>N/A</td>
+{%- endif %}
     <td>{{ result['link_peer_type'] }}</td>
     <td>{{ result['mark_connected'] }}</td>
     <td>{{ result['module'] }}</td>
