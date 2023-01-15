@@ -1,62 +1,65 @@
-{%- if api == "circuit-terminations" %}
+{%- if api == "/api/circuits/circuit-terminations/" %}
 # Circuit Termination
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Description: {{ result['description'] }}
 ### Display: {{ result['display'] }}
 ### Occupied: {{ result['_occupied'] }}
-{%- if result['cable'] %}
+{%-         if result['cable'] %}
 ### Cable
 #### ID: {{ result['cable']['id'] }}
 #### Display: {{ result['cable']['display'] }}
 #### Label: {{ result['cable']['label'] }}
 #### [Cable URL]({{ result['cable']['url'] }})
-{%- endif %}
-{%- if result['circuit'] %}
+{%-         endif %}
+{%-         if result['circuit'] %}
 ### Circuit
 #### CID: {{ result['circuit']['cid'] }}
 #### Display: {{ result['circuit']['display'] }}
 #### ID: {{ result['circuit']['id'] }}
 #### [Circuit URL]({{ result['circuit']['url'] }})
-{%- endif %}
+{%-         endif %}
 ### Timestamps
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
-{%- if result['link_peer'] %}
+{%-         if result['link_peer'] %}
 ### Link Peer
 #### Occupied: {{ result['link_peer']['_occupied'] | default("False") }}
 #### Cable: {{ result['link_peer']['cable'] }}
-{%-     if result['link_peer']['device'] is defined %}{{ result['link_peer']['device']['id'] }}
+{%-             if result['link_peer']['device'] is defined %}{{ result['link_peer']['device']['id'] }}
 #### Device Name: {{ result['link_peer']['device']['name'] }}
 #### Device Display: {{ result['link_peer']['device']['display'] }}
 #### [Device URL]({{ result['link_peer']['device']['url'] }})
-{%-     endif %}
-{%- endif %}
+{%-             endif %}
+{%-         endif %}
 #### Type: {{ result['link_peer_type'] }}
 ### Mark Connected: {{ result['mark_connected'] }}
 ### Port Speed: {{ result['port_speed'] }}
 ### PP Info: {{ result['pp_info'] }}
-{%- if result['provider_network'] %}
+{%-         if result['provider_network'] %}
 ### Provider Network
 #### ID: {{ result['provider_network']['id'] }}
 #### Name: {{ result['provider_network']['name'] }}
 #### Display: {{ result['provider_network']['display'] }}
 #### [Provider Network URL]({{ result['provider_network']['url'] }})
-{%- endif %}
-{%- if result['site'] %}
+{%-         endif %}
+{%-         if result['site'] %}
 ### Site
 #### ID: {{ result['site']['id'] }}
 #### Name: {{ result['site']['name'] }}
 #### Display: {{ result['site']['display'] }}
 #### Slug: {{ result['site']['slug'] }}
 #### [Site URL]({{ result['site']['url'] }})
-{%- endif %}
+{%-         endif %}
 ### Term Side: {{ result['term_side'] }}
 ### Upstream Speed: {{ result['upstream_speed'] }}
 ### [URL]({{ result['url'] }})
 ### X-Connect ID: {{ result['xconnect_id'] }}
+{%-     endfor %}
 {%- else %}
-{%- if api == "circuit-types" %}
+{%- if api == "/api/circuits/circuit-types/" %}
 # Circuit Type
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Name: {{ result['name'] }}
 ### Display: {{ result['display'] }}
@@ -67,9 +70,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "circuits" %}
+{%- if api == "/api/circuits/circuits/" %}
 # Circuit
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### CID: {{ result['cid'] }}
 ### Display: {{ result['display'] }}
@@ -146,9 +151,11 @@
 #### Last Updated: {{ result['last_updated'] }}
 #### Install Date: {{ result['install_date'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "provider-networks" %}
+{%- if api == "/api/circuits/provider-networks/" %}
 # Provider Network
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Name: {{ result['name'] }}
 ### Display: {{ result['display'] }}
@@ -165,9 +172,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "providers" %}
+{%- if api == "/api/circuits/providers/" %}
 # Provider
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Name: {{ result['name'] }}
 ### Display: {{ result['display'] }}
@@ -185,9 +194,11 @@
 ### URLs
 #### [Portal]({{ result['portal_url'] }})
 #### [URL]({{ result['url'] }})
+{%-     endfor %}
 {% else %}
-{% if api == "cables" %}
+{% if api == "/api/dcim/cables/" %}
 # Cable
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Label: {{ result['label'] }}
@@ -243,9 +254,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "console-port-templates" %}
+{%- if api == "/api/dcim/console-port-templates/" %}
 # Console Port Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -285,9 +298,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "console-ports" %}
+{%- if api == "/api/dcim/console-ports/" %}
 # Console Port
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -310,6 +325,7 @@
 #### Endpoint: {{ result['connected_endpoint'] }}
 #### Reachable: {{ result['connected_endpoint_reachable'] }}
 #### Type: {{ result['connected_endpoint_type'] }}
+{%- if result['link_peer'] %}
 ### Link Peer
 #### ID: {{ result['link_peer']['id'] }}
 #### Name: {{ result['link_peer']['name'] }}
@@ -324,6 +340,7 @@
 ##### [URL]({{ result['link_peer']['device']['url'] }})
 {%- endif %}
 #### [URL]({{ result['link_peer']['url'] }})
+{%- endif %}
 ### Link Peer Type: {{ result['link_peer_type'] }}
 ### Mark Connected: {{ result['mark_connected'] }}
 ### Module
@@ -346,9 +363,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated']}}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "device-bay-templates"%}
+{%- if api == "/api/dcim/device-bay-templates/"%}
 # Device Bay Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -370,9 +389,11 @@
 #### Created: {{ result['created']}}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "device-bays" %}
+{%- if api == "/api/dcim/device-bays/" %}
 # Device Bay
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -388,9 +409,11 @@
 #### Created: {{ result['created']}}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }}")
+{%-     endfor %}
 {%- else %}
-{%- if api == "device-roles" %}
+{%- if api == "/api/dcim/device-roles/" %}
 # Device Role
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -405,8 +428,10 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }}")
+{%-      endfor %}
 {%- else %}
-{%- if api == "device-types" %}
+{%- if api == "/api/dcim/device-types/" %}
+{%-     for result in data_to_template %}
 # Device Type
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
@@ -435,9 +460,11 @@
 #### Created: {{ result['created']}}
 #### Last Updated: {{ result['last_updated']}}
 ### [URL]({{ result['url']}})
+{%-     endfor %}
 {%- else %}
-{%- if api == "devices" %}
+{%- if api == "/api/dcim/devices/" %}
 # Device
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -516,9 +543,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "front-port-templates" %}
+{%- if api == "/api/dcim/front-port-templates/" %}
 # Front Port Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -550,9 +579,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "front-ports" %}
+{%- if api == "/api/dcim/front-ports/" %}
 # Front Port
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -601,9 +632,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "interface-templates" %}
-# Interface Template 
+{%- if api == "/api/dcim/interface-templates/" %}
+# Interface Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -644,9 +677,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "interfaces" %}
+{%- if api == "/api/dcim/interfaces/" %}
 # Interface
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -681,6 +716,7 @@
 #### Display: {{ result['cable']['display'] }}
 #### Label: {{ result['cable']['label'] }}
 #### [URL]({{ result['cable']['url'] }})
+{%- if result['connected_endpoint'] %}
 ### Connected Endpoint
 #### ID: {{ result['connected_endpoint']['id'] }}
 #### Name: {{ result['connected_endpoint']['name'] }}
@@ -697,6 +733,7 @@
 {%- endif %}
 #### Reachable: {{ result['connected_endpoint_reachable'] }}
 #### Type: {{ result['connected_endpoint_type'] }}
+{%- endif %}
 ### Count
 #### FHRP Groups: {{ result['count_fhrp_groups'] }}
 #### IP Addresses: {{ result['count_ipaddresses'] }}
@@ -716,6 +753,7 @@
 ##### Display: {{ result['lag']['device']['display'] }}
 ##### [URL]({{ result['lag']['device']['url'] }})
 {%- endif %}
+{%- if result['link_peer '] %}
 ### Link Peer
 #### ID: {{ result['link_peer']['id'] }}
 #### Name: {{ result['link_peer']['name'] }}
@@ -731,6 +769,7 @@
 ##### [URL]({{ result['link_peer']['device']['url'] }})
 {%- endif %}
 #### Type: {{ result['link_peer_type'] }}
+{%- endif %}
 ### MAC Address: {{ result['mac_address'] }}
 ### Mark Connected: {{ result['mark_connected'] }}
 ### Mode: {{ result['mode'] }}
@@ -754,9 +793,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "inventory-items" %}
+{%- if api == "/api/dcim/inventory-items/" %}
 # Inventory Item
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -790,9 +831,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "locations" %}
+{%- if api == "/api/dcim/locations/" %}
 # Location
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -818,9 +861,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "manufacturers" %}
+{%- if api == "/api/dcim/manufacturers/" %}
 # Manufacturer
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -834,9 +879,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-      endfor %}
 {%- else %}
-{%- if api == "module-bay-templates" %}
+{%- if api == "/api/dcim/module-bay-templates/" %}
 # Module Bay Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -859,9 +906,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-      endfor %}
 {%- else %}
-{%- if api == "module-bays" %}
+{%- if api == "/api/dcim/module-bays/" %}
 # Module Bay
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -877,9 +926,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "module-types" %}    
-# Module Type    
+{%- if api == "/api/dcim/module-types/" %}    
+# Module Type
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -896,9 +947,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "modules" %}
+{%- if api == "/api/dcim/modules/" %}
 # Module
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Asset Tag: {{ result['asset_tag'] }}
@@ -931,9 +984,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "platforms" %}
+{%- if api == "/api/dcim/platforms/" %}
 # Platform
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -954,9 +1009,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-feeds" %}
+{%- if api == "/api/dcim/power-feeds/" %}
 # Power Feed
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -993,9 +1050,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-outlet-templates" %}
+{%- if api == "/api/dcim/power-outlet-templates/" %}
 # Power Outlet Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1026,9 +1085,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-outlets" %}
+{%- if api == "/api/dcim/power-outlets/" %}
 # Power Outlet
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1047,7 +1108,7 @@
 #### Display: {{ result['power_port']['display'] }}
 #### Occupied: {{ result['power_port']['_occupied'] }}
 #### Cable: {{ result['power_port']['cable'] }}
-#### [URL]({{ result['power_port']['url'] }}
+#### [URL]({{ result['power_port']['url'] }})
 {%- if result['power_port']['device'] is defined %}
 #### Device
 ##### ID: {{ result['power_port']['device']['id'] }}
@@ -1099,9 +1160,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-panels" %}
+{%- if api == "/api/dcim/power-panels/" %}
 # Power Panel
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1117,9 +1180,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-port-templates" %}
+{%- if api == "/api/dcim/power-port-templates/" %}
 # Power Port Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1148,9 +1213,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "power-ports" %}
+{%- if api == "/api/dcim/power-ports/" %}
 # Power Port
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1174,6 +1241,7 @@
 #### Display: {{ result['cable']['display'] }}
 #### Label: {{ result['cable']['label'] }}
 #### [URL]({{ result['cable']['url'] }})
+{%- if result['connected_endpoint'] %}
 ### Connected Endpoint
 #### ID: {{ result['connected_endpoint']['id'] }}
 #### Name: {{ result['connected_endpoint']['name'] }}
@@ -1190,6 +1258,8 @@
 {%- endif %}
 #### Reachable: {{ result['connected_endpoint_reachable'] }}
 #### Type: {{ result['connected_endpoint_type'] }}
+{%- endif %}
+{%- if result['link_peer'] %}
 ### Link Peer
 #### ID: {{ result['link_peer']['id'] }}
 #### Name: {{ result['link_peer']['name'] }}
@@ -1205,14 +1275,17 @@
 ##### [URL]({{ result['link_peer']['device']['url'] }})
 {%- endif %}
 #### Type: {{ result['link_peer_type'] }}
+{%- endif %}
 ### Mark Connected: {{ result['mark_connected'] }}
 ### Timestamps
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-      endfor %}
 {%- else %}
-{%- if api == "rack-reservations" %}
+{%- if api == "/api/dcim/rack-reservations/" %}
 # Rack Reservation
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1237,9 +1310,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "rack-roles" %}
+{%- if api == "/api/dcim/rack-roles/" %}
 # Rack Role
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1251,9 +1326,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "racks" %}
+{%- if api == "/api/dcim/racks/" %}
 # Rack
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1309,9 +1386,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "rear-port-templates" %}
+{%- if api == "/api/dcim/rear-port-templates/" %}
 # Rear Port Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1338,9 +1417,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "rear-ports" %}
+{%- if api == "/api/dcim/rear-ports/" %}
 # Rear Port
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1383,9 +1464,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-      endfor %}
 {%- else %}
-{%- if api == "regions" %}
+{%- if api == "/api/dcim/regions/" %}
 # Region
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1404,9 +1487,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "site-groups" %}
+{%- if api == "/api/dcim/site-groups/" %}
 # Site Group
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1425,9 +1510,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-      endfor %}
 {%- else %}
-{%- if api == "sites" %}
+{%- if api == "/api/dcim/sites/" %}
 # Site
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1484,9 +1571,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "virtual-chassis" %}
+{%- if api == "/api/dcim/virtual-chassis/" %}
 # Virtual Chassis
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1501,9 +1590,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "status" %}
+{%- if api == "/api/status/" %}
 # NetBox Status
+{%-     for result in data_to_template %}
 ## Versions
 ### NetBox: {{ data_to_template['netbox-version'] }}
 ### Django: {{ data_to_template['django-version'] }}
@@ -1517,9 +1608,11 @@
 {%-     for plugin in data_to_template['plugins'] %}
 ### {{ plugin }}
 {%-     endfor %}
+{%-     endfor %}
 {%- else %}
-{%- if api == "aggregates" %}
-# Aggregate
+{%- if api == "/api/ipam/aggregates/" %}
+# Aggregates
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1543,9 +1636,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "asns" %}
+{%- if api == "/api/ipam/asns/" %}
 # Autonomous System Number
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1564,9 +1659,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "ip-addresses" %}
+{%- if api == "/api/ipam/ip-addresses/" %}
 # IP Address
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1613,9 +1710,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "ip-ranges" %}
+{%- if api == "/api/ipam/ip-ranges/" %}
 # IP Range
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1650,9 +1749,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "prefixes" %}
+{%- if api == "/api/ipam/prefixes/" %}
 # Prefix
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -1701,9 +1802,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 #### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "rirs" %}
+{%- if api == "/api/ipam/rirs/" %}
 # RIR
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1715,9 +1818,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "roles" %}
+{%- if api == "/api/ipam/roles/" %}
 # Role
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1731,9 +1836,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "route-targets"%}
+{%- if api == "/api/ipam/route-targets/" %}
 # Route Target
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1748,9 +1855,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "service-templates" %}
+{%- if api == "/api/ipam/service-templates/" %}
 # Service Template
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1766,9 +1875,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "services" %}
+{%- if api == "/api/ipam/services/" %}
 # Service
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1798,9 +1909,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "vlan-groups" %}
+{%- if api == "/api/ipam/vlan-groups/" %}
 # VLAN Group
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1821,9 +1934,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "vlans" %}
+{%- if api == "/api/ipam/vlans/" %}
 # VLAN
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1861,9 +1976,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "vrfs" %}
+{%- if api == "/api/ipam/vrfs/" %}
 # VRF
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1897,9 +2014,11 @@
 #### Created {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "contact-assignments" %}
+{%- if api == "/api/tenancy/contact-assignments/" %}
 # Contact Assignment
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Contact
@@ -1927,9 +2046,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "contact-groups" %}
+{%- if api == "/api/tenancy/contact-groups/" %}
 # Contact Group
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1948,9 +2069,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "contact-roles" %}
+{%- if api == "/api/tenancy/contact-roles/" %}
 # Contact Role
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1960,9 +2083,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "contacts" %}
+{%- if api == "/api/tenancy/contacts/" %}
 # Contact
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -1983,9 +2108,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "tenant-groups" %}
+{%- if api == "/api/tenancy/tenant-groups/" %}
 # Tenant Group
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2004,17 +2131,21 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "groups" %}
+{%- if api == "/api/users/groups/" %}
 # User Group
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
 ### User Count: {{ result['user_count'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "tokens" %}
+{%- if api == "/api/users/tokens/" %}
 # User Token
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Description: {{ result['description'] }}
@@ -2029,9 +2160,11 @@
 #### Created: {{ result['created'] }}
 #### Expires: {{ result['expires'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "users" %}
+{%- if api == "/api/users/users/" %}
 # User
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Username: {{ result['username'] }}
@@ -2049,9 +2182,11 @@
 ##### [URL]({{ group['url'] }})
 {%-     endfor %}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
 {%- if api == "cluster-groups" %}
 # Cluster Groups
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2062,9 +2197,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "cluster-types" %}
+{%- if api == "/api/virtualization/cluster-types/" %}
 # Cluster Types
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2075,9 +2212,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "clusters" %}
+{%- if api == "/api/virtualization/clusters/" %}
 # Cluster
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2114,9 +2253,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "virtual-interfaces" %}
+{%- if api == "/api/virtualization/interfaces/" %}
 # Virtual Interface
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2145,9 +2286,11 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%-     endfor %}
 {%- else %}
-{%- if api == "virtual-machines" %}
+{%- if api == "/api/virtualization/virtual-machines/" %}
 # Virtual Machines
+{%-     for result in data_to_template %}
 ## ID: {{ result['id'] }}
 ### Display: {{ result['display'] }}
 ### Name: {{ result['name'] }}
@@ -2194,4 +2337,5 @@
 #### Created: {{ result['created'] }}
 #### Last Updated: {{ result['last_updated'] }}
 ### [URL]({{ result['url'] }})
+{%- endfor %}
 {%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}{%- endif %}

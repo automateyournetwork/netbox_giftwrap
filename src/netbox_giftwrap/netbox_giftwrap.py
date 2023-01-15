@@ -1,5 +1,3 @@
-import sys
-import os
 import json
 import aiohttp
 import asyncio
@@ -30,7 +28,7 @@ class NetboxGiftwrap():
             "/api/dcim/cables/",
             "/api/circuits/circuit-terminations/",
             "/api/circuits/circuit-types/",
-            "/api/circuits/circuits",
+            "/api/circuits/circuits/",
             "/api/virtualization/cluster-groups/",
             "/api/virtualization/cluster-types/",
             "/api/virtualization/clusters/",
@@ -184,37 +182,37 @@ class NetboxGiftwrap():
         for api, payload in json.loads(parsed_json):        
             mindmap_output = await mindmap_template.render_async(api = api,
                                          data_to_template = payload)
-            async with aiofiles.open(f'{api}.md'.replace("api","").replace("/"," "), 'w') as f:
+            async with aiofiles.open(f'{api} mindmap.md'.replace("api","").replace("/"," "), 'w') as f:
                 await f.write(mindmap_output)
             self.file_count += 1
 
-    async def mp3_file(self, parsed_json):
-        template_dir = Path(__file__).resolve().parent
-        env = Environment(loader=FileSystemLoader(str(template_dir)), enable_async=True)
-        mp3_template = env.get_template(f'mp3.j2')
-        json_results = json.loads(parsed_json)
-        language = 'en-US'
-        if self.api == "status":
-            mp3_output = mp3_template.render_async(api = self.api,
-                data_to_template=json_results)
-            mp3 = gTTS(text = mp3_output, lang=language)
-            # Save MP3
-            mp3.save(f'{self.api} MP3.mp3')
+    # async def mp3_file(self, parsed_json):
+    #     template_dir = Path(__file__).resolve().parent
+    #     env = Environment(loader=FileSystemLoader(str(template_dir)), enable_async=True)
+    #     mp3_template = env.get_template(f'mp3.j2')
+    #     for api,payload in json.loads(parsed_json):
+    #         language = 'en-US'
+    #         if api == "/api/status/":
+    #             mp3_output = await mp3_template.render_async(api = api,
+    #                 data_to_template=payload)
+    #             mp3 = gTTS(text = mp3_output, lang=language)
+    #             # Save MP3
+    #             mp3.save(f'{api} MP3.mp3'.replace("api","").replace("/"," "))
 
-            self.file_count += 1
-        else:        
-            for result in json_results:
-                mp3_output = mp3_template.render_async(api = self.api,
-                        result=result
-                        )
-                mp3 = gTTS(text = mp3_output, lang=language)
-                # Save MP3
-                mp3.save(f'{self.api} {result["id"]} MP3.mp3')
-                self.file_count += 1
+    #             self.file_count += 1
+    #         else:        
+    #             for result in payload:
+    #                 mp3_output = await mp3_template.render_async(api = api,
+    #                         result=result
+    #                         )
+    #                 mp3 = gTTS(text = mp3_output, lang=language)
+    #                 # Save MP3
+    #                 mp3.save(f'{api} {result["id"]} MP3.mp3'.replace("api","").replace("/"," "))
+    #                 self.file_count += 1
 
     async def all_files(self, parsed_json):
         await asyncio.gather(self.json_file(parsed_json), self.yaml_file(parsed_json), self.csv_file(parsed_json), self.markdown_file(parsed_json), self.html_file(parsed_json), self.mindmap_file(parsed_json))
-        #, self.mp3_file(parsed_json))
+        # self.mp3_file(parsed_json))
 
 @click.command()
 @click.option('--url',
