@@ -8,7 +8,7 @@ from pathlib import Path
 from rich import print_json
 from rich.console import Console
 from jinja2 import Environment, FileSystemLoader
-from gtts import gTTS
+# from gtts import gTTS
 
 class NetboxGiftwrap():
     def __init__(self,
