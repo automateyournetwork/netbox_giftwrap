@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "netbox_giftwrap"
-version = "2.0.0"
+version = "2.0.1"
 description = "Transform NetBox APIs into Business Ready Documents"
 authors = ["John Capobianco <ptcapo@gmail.com>"]
 packages = [{ include = "netbox_giftwrap", from = "src"}]
